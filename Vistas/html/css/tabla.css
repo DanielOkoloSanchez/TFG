@@ -1,0 +1,33 @@
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th,
+  td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 2px solid #333;
+  }
+  
+  th {
+    background-color: #333;
+    color: white;
+  }
+  
+ 
+  
+  tbody td:hover {
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  
+  
+tr{
+    color: white;
+}

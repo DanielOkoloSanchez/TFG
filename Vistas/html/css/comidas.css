@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: red;
+}
+
+
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+.crear-comida {
+    display: flex;
+   color: white;
+   
+}
+
+
+
+.dia {
+    text-align: center;
+    margin: 20px;
+    padding: 10px;
+    width: 200px;
+    
+}
+
+select{
+    padding: 10px;
+}
+
+
+
+.title{
+    margin-top: 100px;
+}
+
+.create-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.create-button:hover {
+    background-color: #111;
+}
+
+

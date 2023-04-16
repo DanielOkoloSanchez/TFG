@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Estadísticas Personales</title>
+    <link rel="stylesheet" href="css/personalInfo.css">
+    <link rel="stylesheet" href="css/navBar.css">
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="personalInfoVista.html">Info Personal</a></li>
+            <li class="nav-item"><a href="comidasVista.html">Comidas</a></li>
+            <li class="nav-item"><a href="rutinasVista.html">Entrenamientos</a></li>
+            <li class="nav-item"><a href="anunciosVista.html">Tablon de anuncios</a></li>
+            <li class="nav-item right"><a href="#cerrar-sesion">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <div class="title">
+        <h1>Estadísticas Personales de Manolo</h1>
+    </div>
+<form action="personalInfoVista.html">
+    <div class="stats-container">
+       
+        <div class="stat" id="peso">
+            <h2>Peso</h2>
+            <input type="number">
+            
+        </div>
+        <div class="stat" id="altura">
+            <h2>Altura</h2>
+            <p>175 cm</p>
+        </div>
+        <div class="stat" id="imc">
+            <h2>IMC</h2>
+            <p>22.9</p>
+        </div>
+        <div class="stat" id="edad">
+            <h2>Edad</h2>
+            <p>30 años</p>
+        </div>
+
+        <div class="stat" id="Objetivo">
+            <h2>Objetivo</h2>
+                <select>
+                    <option value="mantenimiento">mantenimiento</option>
+                    <option value="mantenimiento">volumen</option>
+                    <option value="mantenimiento">definición</option>
+                </select>
+        </div>
+    </div>
+    <input type="submit" value="Guardar Datos" class="edit-button">
+    
+</body>
+</form>
+</html>

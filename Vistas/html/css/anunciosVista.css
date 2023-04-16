@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f00;
+}
+
+.container {
+   
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+.anuncio {
+    margin-top: 30px;
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.titulo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.contenido {
+    font-size: 16px;
+}
+
+.fecha {
+    font-size: 14px;
+    color: #777;
+}
+
+
+
+
+
