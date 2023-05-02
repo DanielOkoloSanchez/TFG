@@ -3,19 +3,28 @@
 
 <head>
     <title>Estadísticas Personales</title>
-    <link rel="stylesheet" href="css/personalInfo.css">
-    <link rel="stylesheet" href="css/navBar.css">
+    <link rel="stylesheet" href="../css/personalInfo.css">
+    <link rel="stylesheet" href="../css/navBar.css">
     <meta charset="utf-8">
 </head>
 
 <body>
+
+<?php
+        session_start(); // reanudamos la sesión
+        if (!isset($_SESSION['usuario']))
+        {
+            header("Location: login.php");
+        }
+    ?>
+
     <nav class="navbar">
         <ul class="nav-list">
             <li class="nav-item"><a href="#info-personal">Info Personal</a></li>
             <li class="nav-item"><a href="comidasVista.html">Comidas</a></li>
             <li class="nav-item"><a href="rutinasVista.html">Entrenamientos</a></li>
             <li class="nav-item"><a href="anunciosVista.html">Tablon de anuncios</a></li>
-            <li class="nav-item right"><a href="#cerrar-sesion">Cerrar Sesión</a></li>
+            <li class="nav-item right"><a href="logout.php">Cerrar Sesión</a></li>
         </ul>
     </nav>
 

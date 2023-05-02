@@ -3,7 +3,7 @@ create database entrenaOnlineDB;
 Use entrenaOnlineDB;
 
 CREATE TABLE usuario (
-  id INT PRIMARY KEY,
+  id INT PRIMARY KEY auto_increment,
   nombre VARCHAR(25) NOT NULL,
   clave VARCHAR(255) NOT NULL,
   rango ENUM('admin', 'client') NOT NULL
@@ -18,7 +18,9 @@ CREATE TABLE cliente (
   altura DECIMAL(3,2) NOT NULL,
   peso DECIMAL(4,1) NOT NULL,
   complexion ENUM('Hectomorfo', 'Mesoformo', 'Endomorfo') NOT NULL,
-  objetivo ENUM('mantenimiento', 'volumen', 'definicion') NOT NULL
+  objetivo ENUM('mantenimiento', 'volumen', 'definicion') NOT NULL,
+  usuario_id INT NOT NULL UNIQUE,
+  FOREIGN KEY (usuario_id) REFERENCES usuario(id)
 );
 
 CREATE TABLE comidas (
@@ -43,7 +45,9 @@ CREATE TABLE rutinas (
   diaDos VARCHAR(255) NOT NULL,
   diaTres VARCHAR(255) NOT NULL,
   diaCuatro VARCHAR(255) NOT NULL,
-  diaCinco VARCHAR(255) NOT NULL
+  diaCinco VARCHAR(255) NOT NULL,
+  entrenamiento_id INT NOT NULL,
+  FOREIGN KEY (entrenamiento_id) REFERENCES entrenamientos(id)
 );
 
 CREATE TABLE planesAlimentarios (
@@ -66,6 +70,14 @@ CREATE TABLE cliente_rutina (
   FOREIGN KEY (idRutina) REFERENCES rutinas(id)
 );
 
+CREATE TABLE planesAlimentarios_comidas (
+  plan_id INT NOT NULL,
+  comida_id INT NOT NULL,
+  PRIMARY KEY (plan_id, comida_id),
+  FOREIGN KEY (plan_id) REFERENCES planesAlimentarios(id),
+  FOREIGN KEY (comida_id) REFERENCES comidas(id)
+);
+
 CREATE TABLE cliente_planesAlimentarios (
   id INT PRIMARY KEY,
   idCliente INT NOT NULL,
@@ -78,5 +90,7 @@ CREATE TABLE anuncios (
   id INT PRIMARY KEY,
   nombre VARCHAR(255) NOT NULL,
   descripcion TEXT NOT NULL,
-  fecha DATE NOT NULL
+  fecha DATE NOT NULL,
+  usuario_id INT NOT NULL,
+  FOREIGN KEY (usuario_id) REFERENCES usuario(id)
 );

@@ -1,6 +1,8 @@
 
 body {
-    background-color: red;
+    background-image: url(../imgs/fitness-594143_1280.jpg) ;
+    background-repeat: no-repeat;
+    background-size: cover;
     margin: 0;
     display: flex;
     align-items: center;
@@ -47,3 +49,4 @@ body {
     color: #333;
   }
   
+ 
