@@ -5,21 +5,27 @@
     <title>Estadísticas Personales</title>
     <link rel="stylesheet" href="../css/personalInfo.css">
     <link rel="stylesheet" href="../css/navBar.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <meta charset="utf-8">
 </head>
 
 <body>
 
 <?php
+    require ("../../Negocio/clienteNegocio.php");
         session_start(); // reanudamos la sesión
         if (!isset($_SESSION['usuario']))
         {
             header("Location: login.php");
         }
+        
+        
     ?>
 
     <nav class="navbar">
         <ul class="nav-list">
+           
             <li class="nav-item"><a href="#info-personal">Info Personal</a></li>
             <li class="nav-item"><a href="comidasVista.html">Comidas</a></li>
             <li class="nav-item"><a href="rutinasVista.html">Entrenamientos</a></li>
@@ -27,34 +33,60 @@
             <li class="nav-item right"><a href="logout.php">Cerrar Sesión</a></li>
         </ul>
     </nav>
+        
+    <?php
+             $clienteBL = new clienteReglasNegocio();  
+             $datos = $clienteBL->obtenerClienteInfo($_SESSION['idUsuario']); 
+             
+             echo( "<div class=title>");
+             echo ("<h1>"."Estadísticas Personales de ".$datos["nombre"]." " .$datos["primerApellido"]."</h1>");
+             echo("</div>");
+             var_dump($datos);
 
-    <div class="title">
-        <h1>Estadísticas Personales de Manolo</h1>
-    </div>
+             echo("<div class=stats-container>");
+             echo("<div class=stat id=peso>");
 
-    <div class="stats-container">
-        <div class="stat" id="peso">
-            <h2>Peso</h2>
-             30 kg
-        </div>
-        <div class="stat" id="altura">
-            <h2>Altura</h2>
-            <p>175 cm</p>
-        </div>
-        <div class="stat" id="imc">
-            <h2>IMC</h2>
-            <p>22.9</p>
-        </div>
-        <div class="stat" id="edad">
-            <h2>Edad</h2>
-            <p>30 años</p>
-        </div>
+             echo("<h2> Peso </h2>");
+             echo($datos["peso"]."kg");
+             echo("</div>");
 
-        <div class="stat" id="Objetivo">
-            <h2>Objetivo</h2>
-            <p>mantenimiento</p>
+            echo"<div class=stat id=altura>";
+            echo"<h2>Altura</h2>";
+            echo"<p>$datos[altura] cm</p>";
+            echo"</div>";
+
+            echo"<div class=stat id=imc>";
+            echo"<h2>IMC</h2>";
+            echo "<p></p>";
+            echo "</div>";
+
+            echo "<div class=stat id=edad>";
+            echo "<h2>Edad</h2>";
+            echo"<p></p>";
+            echo"</div>";
+
+            echo"<div class=stat id=Objetivo>";
+            echo"<h2>Objetivo</h2>";
+            echo"<p>$datos[objetivo]</p>";
+            echo"</div>";
+
+
+             echo("</div>");
+    ?>
+   
+        
+   
+
+   
+       
+            
+             
         </div>
-    </div>
+       
+        
+       
+
+        
     <a href="personalInfoVista(edicionMode).html"><div class="edit-button"> Editar valores</div></a>
 </body>
 

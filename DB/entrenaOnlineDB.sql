@@ -10,11 +10,11 @@ CREATE TABLE usuario (
 );
 
 CREATE TABLE cliente (
-  id INT PRIMARY KEY,
+  id INT PRIMARY KEY auto_increment,
   nombre VARCHAR(25) NOT NULL,
   primerApellido VARCHAR(25) NOT NULL,
   segundoApellido VARCHAR(25) NOT NULL,
-  edad INT NOT NULL,
+  fechaNacimiento date NOT NULL,
   altura DECIMAL(3,2) NOT NULL,
   peso DECIMAL(4,1) NOT NULL,
   complexion ENUM('Hectomorfo', 'Mesoformo', 'Endomorfo') NOT NULL,

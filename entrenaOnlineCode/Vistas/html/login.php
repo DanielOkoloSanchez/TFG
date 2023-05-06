@@ -12,12 +12,16 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 {
     $loginBL = new loginReglasNegocio();
     $rango =  $loginBL->verificar($_POST['usuario'],$_POST['clave']);
-    var_dump( $rango);
+    $idCliente = $loginBL->obtenerUserId($_POST['usuario']);
+    
+   
     if ($rango==="admin" || $rango==="client")
     {
        
         session_start(); //inicia o reinicia una sesión
         $_SESSION['usuario'] = $_POST['usuario'];
+       
+        $_SESSION['idUsuario'] = $idCliente;
         
         if($rango==="client"){
         header("Location: personalInfoVista.php");

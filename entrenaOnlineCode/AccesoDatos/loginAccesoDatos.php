@@ -60,4 +60,30 @@ class LoginAccesoDatos
             return 'NOT_FOUND';
         }
     }
-}
+
+    function obtenerUserId($usuario)
+	{
+		$conexion = mysqli_connect('localhost','root','1234');
+		if (mysqli_connect_errno())
+		{
+				echo "Error al conectar a MySQL: ". mysqli_connect_error();
+		}
+ 		mysqli_select_db($conexion, 'entrenaOnlineDB');
+		
+		$consulta = mysqli_prepare($conexion, "SELECT id  from usuario where nombre = ? ;" );
+        $sanitized_usuario = mysqli_real_escape_string($conexion, $usuario);       
+        $consulta->bind_param("s", $sanitized_usuario);
+        $consulta->execute();
+        $result = $consulta->get_result();
+        
+        $myrow = $result->fetch_assoc();
+        $x = $myrow['id'];
+		
+		return $x;
+	}
+	
+
+	}
+
+ 
+
