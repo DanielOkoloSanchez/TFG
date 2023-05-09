@@ -23,6 +23,17 @@ CREATE TABLE cliente (
   FOREIGN KEY (usuario_id) REFERENCES usuario(id)
 );
 
+CREATE TABLE empleado (
+  id INT PRIMARY KEY auto_increment,
+  nombre VARCHAR(25) NOT NULL,
+  primerApellido VARCHAR(25) NOT NULL,
+  segundoApellido VARCHAR(25) NOT NULL,
+  fechaNacimiento date NOT NULL,
+  usuario_id INT NOT NULL UNIQUE,
+  cargo ENUM('Entrenador', 'Mantenimiento', 'Recepcion') NOT NULL,
+  FOREIGN KEY (usuario_id) REFERENCES usuario(id)
+);
+
 CREATE TABLE comidas (
   id INT PRIMARY KEY,
   nombre VARCHAR(25) NOT NULL,
@@ -87,10 +98,10 @@ CREATE TABLE cliente_planesAlimentarios (
 );
 
 CREATE TABLE anuncios (
-  id INT PRIMARY KEY,
+  id INT PRIMARY KEY auto_increment,
   nombre VARCHAR(255) NOT NULL,
   descripcion TEXT NOT NULL,
   fecha DATE NOT NULL,
-  usuario_id INT NOT NULL,
+  empleado_id INT NOT NULL,
   FOREIGN KEY (usuario_id) REFERENCES usuario(id)
 );

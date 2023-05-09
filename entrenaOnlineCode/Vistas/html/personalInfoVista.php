@@ -5,14 +5,13 @@
     <title>Estadísticas Personales</title>
     <link rel="stylesheet" href="../css/personalInfo.css">
     <link rel="stylesheet" href="../css/navBar.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <meta charset="utf-8">
 </head>
 
 <body>
 
 <?php
+//TODO (hacer que peso y edad los calcule el programa) 
     require ("../../Negocio/clienteNegocio.php");
         session_start(); // reanudamos la sesión
         if (!isset($_SESSION['usuario']))
@@ -29,7 +28,7 @@
             <li class="nav-item"><a href="#info-personal">Info Personal</a></li>
             <li class="nav-item"><a href="comidasVista.html">Comidas</a></li>
             <li class="nav-item"><a href="rutinasVista.html">Entrenamientos</a></li>
-            <li class="nav-item"><a href="anunciosVista.html">Tablon de anuncios</a></li>
+            <li class="nav-item"><a href="anunciosVista.php">Tablon de anuncios</a></li>
             <li class="nav-item right"><a href="logout.php">Cerrar Sesión</a></li>
         </ul>
     </nav>

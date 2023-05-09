@@ -41,11 +41,6 @@ class clienteReglasNegocio
     {
         $ClienteDAL = new ClienteAccesoDatos();
         $rs = $ClienteDAL->obtenerClienteInfo($idUsuario);
-
-       
-      
-	
-       
         return $rs;
         
     }
