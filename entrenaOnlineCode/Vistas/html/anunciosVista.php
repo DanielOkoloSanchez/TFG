@@ -26,7 +26,7 @@
             <li class="nav-item"><a href="comidasVista.html">Comidas</a></li>
             <li class="nav-item"><a href="rutinasVista.html">Entrenamientos</a></li>
             <li class="nav-item"><a href="#">Tablon de anuncios</a></li>
-            <li class="nav-item right"><a href="#cerrar-sesion">Cerrar Sesión</a></li>
+            <li class="nav-item right"><a href="logout.php">Cerrar Sesión</a></li>
         </ul>
     </nav>
     
