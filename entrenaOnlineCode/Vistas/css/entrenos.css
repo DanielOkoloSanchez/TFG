@@ -10,8 +10,8 @@ h1, h2 {
     color: #333;
 }
 
-.title {
-    margin-top: 100px;
+.title-div {
+    margin-top: 90px;
 }
 
 .select-wrapper {
@@ -34,7 +34,7 @@ h1, h2 {
 .create-button {
     background-color: #333;
     color: white;
-    padding: 12px 24px;
+    padding: 12px 13px;
     border: none;
     cursor: pointer;
     margin-left: 10px;
@@ -48,6 +48,7 @@ h1, h2 {
 table {
     width: 100%;
     border-collapse: collapse;
+    
 }
 
 th,
@@ -56,7 +57,9 @@ td {
     text-align: left;
     border-bottom: 1px solid #ccc;
     cursor: pointer;
+   
 }
+
 
 th {
     background-color: #333;
@@ -79,7 +82,7 @@ tr {
     color: #333;
 }
 
-.navbar {
+.barra-navegacion {
     background-color: #333;
     overflow: hidden;
     width: 100%;
@@ -123,7 +126,30 @@ tr {
 }
 
 .select-container select {
-    width: 180px;
+    width: 240px;
     padding: 10px;
     font-size: 16px;
+}
+
+.reset-button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 4px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius:2px; 
+}
+
+
+
+.desc{
+ margin-top: 40px;
+ margin-bottom: 40px;
+ 
+}
+
+.reload-boton{
+    color: #ccc;
 }

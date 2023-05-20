@@ -1,26 +1,64 @@
 <?php
 require_once("../../Negocio/entrenamientosNegocio.php");
 
-$prueba = new entrenamientosReglasNegocio();
-$listas = $prueba->obtenerEntrenamientos();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $action = $_POST['action']; 
 
-// Crear un array para almacenar los datos
-$data = array();
-
-foreach ($listas as $lista) {
-    // Crear un array asociativo con los datos del entrenamiento
-    $entrenamiento = array(
-        "id" => $lista->getID(),
-        "nombre" => $lista->getNombre(),
-        "descripcion" => $lista->getDescripcion(),
-        "parteCuerpo" => $lista->getParteCuerpo()
-    );
-
-    // Agregar el entrenamiento al array de datos
-    $data[] = $entrenamiento;
+    if ($action === 'obtenerValoresSelect') {
+        obtenerValoresSelect();
+    }elseif ($action === 'obtenerValoresSelectFiltrado') {
+        $parteCuerpo = $_POST['parteCuerpo'];
+        obtenerValoresSelectFiltrado($parteCuerpo);
+    }
 }
 
-// Devolver los datos en formato JSON
-header('Content-Type: application/json');
-echo json_encode($data);
+function obtenerValoresSelect() {
+    $prueba = new entrenamientosReglasNegocio();
+    $listas = $prueba->obtenerEntrenamientos();
+
+   
+    $data = array();
+
+    foreach ($listas as $lista) {
+       
+        $entrenamiento = array(
+            "id" => $lista->getID(),
+            "nombre" => $lista->getNombre(),
+            "descripcion" => $lista->getDescripcion(),
+            "parteCuerpo" => $lista->getParteCuerpo()
+        );
+
+        
+        $data[] = $entrenamiento;
+    }
+
+   
+    header('Content-Type: application/json');
+    echo json_encode($data);
+}
+
+function obtenerValoresSelectFiltrado($parteCuerpo) {
+    $entrenamientosBL = new entrenamientosReglasNegocio();
+    $entrenamientos = $entrenamientosBL->obtenerEntrenamientosFiltrados($parteCuerpo);
+
+   
+    $data = array();
+
+    foreach ($entrenamientos as $entreno) {
+       
+        $entrenamiento = array(
+            "id" => $entreno->getID(),
+            "nombre" => $entreno->getNombre(),
+            "descripcion" => $entreno->getDescripcion(),
+            "parteCuerpo" => $entreno->getParteCuerpo()
+        );
+
+        
+        $data[] = $entrenamiento;
+    }
+
+   
+    header('Content-Type: application/json');
+    echo json_encode($data);
+}
 ?>

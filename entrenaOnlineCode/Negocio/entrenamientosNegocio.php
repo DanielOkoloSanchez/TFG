@@ -70,7 +70,7 @@ class entrenamientosReglasNegocio
         
  
 
-    function obtenerEntrenamientosFiltrados()
+    function obtenerEntrenamientosFiltrados($parteCuerpo)
     {
         $EntrenamientosDAL = new enterenamientoAccesoDatos();
         $rs = $EntrenamientosDAL->obtenerEntrenamientos();
@@ -80,7 +80,7 @@ class entrenamientosReglasNegocio
         foreach ($rs as $entrenamiento)
         {
             
-            if ($entrenamiento['parteCuerpo'] === "brazo") {
+            if ($entrenamiento['parteCuerpo'] === $parteCuerpo) {
                 $EntrenamientosReglasNegocio = new entrenamientosReglasNegocio();
                  $EntrenamientosReglasNegocio->Init($entrenamiento['id'], $entrenamiento['nombre'], $entrenamiento['descripcion'], $entrenamiento['parteCuerpo']);
                 array_push($listaEntrenamientos, $EntrenamientosReglasNegocio);
