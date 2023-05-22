@@ -1,6 +1,10 @@
 <?php
 require_once("../../Negocio/entrenamientosNegocio.php");
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action']; 
 
@@ -61,4 +65,7 @@ function obtenerValoresSelectFiltrado($parteCuerpo) {
     header('Content-Type: application/json');
     echo json_encode($data);
 }
+
+
+
 ?>

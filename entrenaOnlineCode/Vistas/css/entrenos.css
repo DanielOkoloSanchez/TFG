@@ -48,7 +48,7 @@ h1, h2 {
 table {
     width: 100%;
     border-collapse: collapse;
-    
+    border-spacing: 0;
 }
 
 th,
@@ -57,9 +57,7 @@ td {
     text-align: left;
     border-bottom: 1px solid #ccc;
     cursor: pointer;
-   
 }
-
 
 th {
     background-color: #333;
@@ -119,14 +117,15 @@ tr {
 }
 
 .select-partecuerpo {
-    position: absolute;
+    position: fixed;
     top: 60px;
     right: 20px;
     margin: 10px;
 }
 
-.select-container select {
-    width: 240px;
+.select-container select,
+.select-container input[type="text"] {
+    width: 200px;
     padding: 10px;
     font-size: 16px;
 }
@@ -139,17 +138,65 @@ tr {
     width: 40px;
     height: 40px;
     cursor: pointer;
-    border-radius:2px; 
+    border-radius: 2px; 
+    margin-left: 10px;
 }
 
-
-
-.desc{
- margin-top: 40px;
- margin-bottom: 40px;
- 
+.desc {
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
-.reload-boton{
-    color: #ccc;
+.table-container table {
+    border-spacing: 0;
+}
+
+/* Media queries */
+@media only screen and (max-width: 768px) {
+    .title-div {
+        margin-top: 60px;
+    }
+    
+    .table-container {
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+    
+    table {
+        display: block;
+        white-space: nowrap;
+    }
+    
+    th,
+    td {
+        display: inline-block;
+        border: none;
+    }
+    
+    th {
+        background-color: #333;
+        color: white;
+        padding: 8px;
+        min-width: 100px;
+    }
+    
+    td {
+        padding: 8px;
+        min-width: 100px;
+        border-top: 1px solid #ccc;
+    }
+    
+    .nav-list {
+        display: none;
+    }
+    
+    .select-partecuerpo {
+        position: static;
+        margin: 10px 0;
+    }
+    
+    .select-container select,
+    .select-container input[type="text"] {
+        width: 100%;
+    }
 }

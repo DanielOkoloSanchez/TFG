@@ -12,7 +12,7 @@
 
 <?php
 //TODO (hacer que peso y edad los calcule el programa) 
-    require ("../../Negocio/clienteNegocio.php");
+    require_once ("../../Negocio/clienteNegocio.php");
         session_start(); // reanudamos la sesión
         if (!isset($_SESSION['usuario']))
         {
@@ -26,8 +26,8 @@
         <ul class="nav-list">
            
             <li class="nav-item"><a href="#info-personal">Info Personal</a></li>
-            <li class="nav-item"><a href="comidasVista.html">Comidas</a></li>
-            <li class="nav-item"><a href="rutinasVista.html">Entrenamientos</a></li>
+            <li class="nav-item"><a href="comidasVista.php">Comidas</a></li>
+            <li class="nav-item"><a href="rutinasVista.php">Entrenamientos</a></li>
             <li class="nav-item"><a href="anunciosVista.php">Tablon de anuncios</a></li>
             <li class="nav-item right"><a href="logout.php">Cerrar Sesión</a></li>
         </ul>
@@ -71,19 +71,10 @@
 
 
              echo("</div>");
-    ?>
-   
-        
-   
-
-   
-       
-            
+    ?> 
              
         </div>
-       
-        
-       
+         
 
         
     <a href="personalInfoVista(edicionMode).html"><div class="edit-button"> Editar valores</div></a>

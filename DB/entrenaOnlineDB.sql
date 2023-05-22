@@ -41,6 +41,7 @@ CREATE TABLE ListaEntrenoDia (
   entrenamiento3 INT NOT NULL,
   entrenamiento4 INT NOT NULL,
   entrenamiento5 INT NOT NULL,
+  diaSemana enum('Lunes','Martes','Miercoles','Jueves','Viernes') not null,
   FOREIGN KEY (entrenamiento1) REFERENCES entrenamientos(id),
   FOREIGN KEY (entrenamiento2) REFERENCES entrenamientos(id),
   FOREIGN KEY (entrenamiento3) REFERENCES entrenamientos(id),
