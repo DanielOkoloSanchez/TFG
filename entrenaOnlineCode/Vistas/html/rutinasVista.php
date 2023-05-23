@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 </head>
 
 <body>
-<?php
+    <?php
 
     require_once ("../../Negocio/clienteNegocio.php");
    
@@ -40,16 +40,16 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 
     <nav class="barra-navegacion">
         <ul class="nav-list">
-            <li class="nav-item"><a href="personalInfoVista.html">Info Personal</a></li>
-            <li class="nav-item"><a href="comidasVista.html">Comidas</a></li>
+            <li class="nav-item"><a href="personalInfoVista.php">Info Personal</a></li>
+            <li class="nav-item"><a href="comidasVista.php">Comidas</a></li>
             <li class="nav-item"><a href="#entrenamientos">Entrenamientos</a></li>
-            <li class="nav-item"><a href="anunciosVista.html">Tablón de anuncios</a></li>
+            <li class="nav-item"><a href="anunciosVista.php">Tablón de anuncios</a></li>
             <li class="nav-item right"><a href="logout.php">Cerrar Sesión</a></li>
         </ul>
     </nav>
 
- 
- 
+
+
     <div class="select-partecuerpo">
         <label for="parte-cuerpo">Parte del Cuerpo:</label>
         <select id="parte-cuerpo">
@@ -63,8 +63,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         <button disabled class="reset-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
+                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
                 <path
                     d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
             </svg>
@@ -79,15 +78,16 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
     <div class="desc">
         <p>Crea tu tabla de 5 ejercicios para un día</p>
     </div>
-    <form  method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <form id="formulario" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <div class="select-wrapper">
             <div class="select-row">
                 <div class="select-container">
-                    <input name="nombreTabla" required  type="text" placeholder="Nombre">
+                    <input id="nombre" name="nombreTabla" required type="text" placeholder="Nombre">
                 </div>
 
                 <div class="select-container">
                     <select name="diaSemana" id="dias-semana">
+                        <option value="">-</option>
                         <option value="lunes">Lunes</option>
                         <option value="martes">Martes</option>
                         <option value="miercoles">Miércoles</option>
@@ -96,8 +96,8 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
                     </select>
                 </div>
                 <div class="select-container">
-                    <select name="ejercicioUno"class="ejer" id="ejer1">
-                        <option value=""  selected>Ejercicio</option>
+                    <select name="ejercicioUno" class="ejer" id="ejer1">
+                        <option value="" selected>Ejercicio</option>
                     </select>
                 </div>
                 <div class="select-container">
@@ -107,21 +107,21 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
                 </div>
                 <div class="select-container">
                     <select name="ejercicioTres" class="ejer" id="ejer3">
-                        <option value=""  selected>Ejercicio</option>
+                        <option value="" selected>Ejercicio</option>
                     </select>
                 </div>
                 <div class="select-container">
                     <select name="ejercicioCuatro" class="ejer" id="ejer4">
-                        <option value=""  selected>Ejercicio</option>
+                        <option value="" selected>Ejercicio</option>
                     </select>
                 </div>
                 <div class="select-container">
                     <select name="ejercicioCinco" class="ejer" id="ejer5">
-                        <option value=""  selected>Ejercicio</option>
+                        <option value="" selected>Ejercicio</option>
                     </select>
                 </div>
             </div>
-            <input type="submit"  class="create-button">Crear rutina</input>
+            <input type="submit" value="Crear rutina" id="create-buton" class="create-button"></input>
         </div>
     </form>
 
@@ -138,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         </thead>
         <tbody>
             <tr>
-               
+
                 <td>Ejercicio 1</td>
                 <td>Ejercicio 2</td>
                 <td>Ejercicio 3</td>
@@ -146,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
                 <td>Ejercicio 5</td>
             </tr>
             <tr>
-                
+
                 <td>Ejercicio 1</td>
                 <td>Ejercicio 2</td>
                 <td>Ejercicio 3</td>
@@ -156,6 +156,66 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         </tbody>
     </table>
 
+
+    <!-- Toast container -->
+
+    <div id="myToastContainer" class="toast-container top-0 end-0 p-3">
+
+        <div id="myToast1" class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Error</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                El nombre de la tabla debe contener entre 3 y 15 letras.
+            </div>
+        </div>
+
+
+        <div id="myToast2" class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Error</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Existen caracteres especiales o espacios en el nombre de la Tabla.
+            </div>
+        </div>
+
+
+
+        <div id="myToast3" class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Error</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                No se puede dejar ningún campo null.
+            </div>
+        </div>
+    
+
+    <div id="myToast4" class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto">Error</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            No puedes repetir ejercicios en una misma tabla.
+        </div>
+    </div>
+   
+ 
+
+
+
+
+
+
+
+
 </body>
+
+
 
 </html>

@@ -1,6 +1,7 @@
      class GestionDatos {
        constructor() {
 
+
        }
 
 
@@ -31,8 +32,8 @@
 
        reiniciarFiltro() {
          $(".reset-button").on("click", () => {
-          $('#parte-cuerpo')[0].selectedIndex = 0;
-          $(".reset-button").prop('disabled', true);
+           $('#parte-cuerpo')[0].selectedIndex = 0;
+           $(".reset-button").prop('disabled', true);
            var selectEjercicios = $(".ejer");
            var valorSeleccionado = selectEjercicios.val();
            selectEjercicios.find("option:not(:selected)").remove();
@@ -60,7 +61,7 @@
              }
            });
          });
-        
+
        }
 
 
@@ -102,27 +103,116 @@
        checkFiltroValor() {
          $('#parte-cuerpo').on('input', function () {
            console.log()
-          if ($(this).val() !== "def") {
+           if ($(this).val() !== "def") {
              $(".reset-button").prop('disabled', false);
            } else {
              $(".reset-button").prop('disabled', true);
            }
-           var nuevoValor = $(this).val();
+
          });
        }
 
-       
+       obtenerValoresFormulario() {
+         var valores = [];
+         var formulario = $('#formulario')[0];
+         var ejercicios = $('.ejer');
+
+         valores.push($('#nombre').val());
+         valores.push($('#dias-semana').val());
+
+         ejercicios.each(function () {
+           var valor = $(this).val();
+          
+             valores.push(valor);
+           
+         });
+
+         return valores;
+       }
+
+       comprobarValoresRepetidos(valores) {
+        var valoresRepetidos = false;
+      
+        for (var i = 0; i < valores.length; i++) {
+          for (var j = i + 1; j < valores.length; j++) {
+            if (valores[i] === valores[j]) {
+              valoresRepetidos = true;
+              break;
+            }
+          }
+          if (valoresRepetidos) {
+            break;
+          }
+        }
+      
+        return valoresRepetidos;
       }
 
+
+
+      comprobarValoresNulos(valores) {
+        var valoresNulos = false;
       
+        for (var i = 0; i < valores.length; i++) {
+          if (valores[i] === null || valores[i] === '') {
+            valoresNulos = true;
+            break;
+          }
+        }
+      
+        return valoresNulos;
+      }
+
+      checkValores() {
+       
+        var self = this;
+        $('#formulario').on('submit', function (event) {
+          event.preventDefault();
+          var nombre = $('#nombre').val();
+          var regex = /^[a-zA-Z0-9]+$/;
+          var formulario = $('#formulario')[0];
+          var valoresFormulario = self.obtenerValoresFormulario();
+          
+          console.log( valoresFormulario)
+          if (nombre.length > 15 || nombre.length < 3) {
+            $('#myToast1').toast('show');
+            formulario.reset();
+            return;
+          } else if (!regex.test(nombre)) {
+            $('#myToast2').toast('show');
+            formulario.reset();
+            return;
+        
+          }
+
+          if (self.comprobarValoresNulos(valoresFormulario)) {
+            $('#myToast3').toast('show');
+            formulario.reset();
+            return;
+          }
+      
+          if (self.comprobarValoresRepetidos(valoresFormulario)) {
+            $('#myToast4').toast('show');
+            formulario.reset();
+            return;
+          }
+          
+          this.submit();
+         
+        });
+      }
+
+    }
+
      $(document).ready(function () {
        let datos = new GestionDatos();
+       datos.checkValores();
        datos.checkFiltroValor();
        datos.reiniciarFiltro();
        datos.obtenerValoresSelect();
        datos.recibirFiltroCuerpo();
-      
-      
+
+
 
        $(".ejer").on("change", function () {
          var valorSeleccionado = $(this).val();
