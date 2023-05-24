@@ -6,78 +6,55 @@
     <link rel="stylesheet" href="../css/personalInfo.css">
     <link rel="stylesheet" href="../css/navBar.css">
     <meta charset="utf-8">
+    <script src="../js/jquery.js"></script>
+    <link rel="stylesheet" href="../css/bts-css/css/bootstrap.min.css">
+    <script src="../js/bts-js/js/bootstrap.min.js"></script>
 </head>
 
+
+
+    <?php
+    //TODO (hacer que peso y edad los calcule el programa) 
+    require_once ("../../Negocio/clienteNegocio.php");
+    session_start(); // reanudamos la sesión
+    if (!isset($_SESSION['usuario'])) {
+        header("Location: login.php");
+    }
+    ?>
 <body>
 
-<?php
-//TODO (hacer que peso y edad los calcule el programa) 
-    require_once ("../../Negocio/clienteNegocio.php");
-        session_start(); // reanudamos la sesión
-        if (!isset($_SESSION['usuario']))
-        {
-            header("Location: login.php");
-        }
-        
-        
-    ?>
+<nav class="barra-navegacion">
+    <ul class="nav-list">
+        <li class="nav-item"><a href="#info-personal">Info Personal</a></li>
+        <li class="nav-item"><a href="comidasVista.php">Comidas</a></li>
+        <li class="nav-item"><a href="rutinasVista.php">Entrenamientos</a></li>
+        <li class="nav-item"><a href="anunciosVista.php">Tablon de anuncios</a></li>
+        <li class="nav-item right"><a href="logout.php">Cerrar Sesión</a></li>
+    </ul>
+</nav>
 
-    <nav class="navbar">
-        <ul class="nav-list">
-           
-            <li class="nav-item"><a href="#info-personal">Info Personal</a></li>
-            <li class="nav-item"><a href="comidasVista.php">Comidas</a></li>
-            <li class="nav-item"><a href="rutinasVista.php">Entrenamientos</a></li>
-            <li class="nav-item"><a href="anunciosVista.php">Tablon de anuncios</a></li>
-            <li class="nav-item right"><a href="logout.php">Cerrar Sesión</a></li>
-        </ul>
-    </nav>
-        
-    <?php
-             $clienteBL = new clienteReglasNegocio();  
-             $datos = $clienteBL->obtenerClienteInfo($_SESSION['idUsuario']); 
-             
-             echo( "<div class=title>");
-             echo ("<h1>"."Estadísticas Personales de ".$datos["nombre"]." " .$datos["primerApellido"]."</h1>");
-             echo("</div>");
-             var_dump($datos);
+<script src="../js/datosUsuario.js"></script>
 
-             echo("<div class=stats-container>");
-             echo("<div class=stat id=peso>");
+<div class="container">
+    <div class="title">
+        <h1>Estadísticas Personales</h1>
+    </div>
 
-             echo("<h2> Peso </h2>");
-             echo($datos["peso"]."kg");
-             echo("</div>");
-
-            echo"<div class=stat id=altura>";
-            echo"<h2>Altura</h2>";
-            echo"<p>$datos[altura] cm</p>";
-            echo"</div>";
-
-            echo"<div class=stat id=imc>";
-            echo"<h2>IMC</h2>";
-            echo "<p></p>";
-            echo "</div>";
-
-            echo "<div class=stat id=edad>";
-            echo "<h2>Edad</h2>";
-            echo"<p></p>";
-            echo"</div>";
-
-            echo"<div class=stat id=Objetivo>";
-            echo"<h2>Objetivo</h2>";
-            echo"<p>$datos[objetivo]</p>";
-            echo"</div>";
-
-
-             echo("</div>");
-    ?> 
-             
+    <div class="card-container">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                
+            </div>
+            <ul class="list-group list-group-flush">
+                
+            </ul>
         </div>
-         
+    </div>
+</div>
 
-        
-    <a href="personalInfoVista(edicionMode).html"><div class="edit-button"> Editar valores</div></a>
+<a href="personalInfoVista(edicionMode).html">
+    <div class="edit-button">Editar valores</div>
+</a>
 </body>
 
 </html>

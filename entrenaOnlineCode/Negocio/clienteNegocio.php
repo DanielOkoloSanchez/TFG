@@ -22,6 +22,41 @@ class clienteReglasNegocio
         return $this->_clientId;
     }
 
+    function getNombre()
+    {
+        return $this->_nombre;
+    }
+
+    function getApellido()
+    {
+        return $this->_apellido;
+    }
+
+    function getFechaNacimiento()
+    {
+        return $this->_fechaNacimiento;
+    }
+
+    function getAltura()
+    {
+        return $this->_altura;
+    }
+
+    function getPeso()
+    {
+        return $this->_peso;
+    }
+
+    function getComplexion()
+    {
+        return $this->_complexion;
+    }
+
+    function getObjetivo()
+    {
+        return $this->_objetivo;
+    }
+
     function init($id,$nombre,$apellido,$fechaNacimiento,$altura,$peso,$complexion,$objetivo)
     {
         
@@ -37,12 +72,17 @@ class clienteReglasNegocio
 
    
 
-    function obtenerClienteInfo($idUsuario)
+    function obtenerClienteInfo()
     {
         $ClienteDAL = new ClienteAccesoDatos();
-        $rs = $ClienteDAL->obtenerClienteInfo($idUsuario);
-        return $rs;
+        $rs = $ClienteDAL->obtenerClienteInfo($_COOKIE["IdClienteCookie"]);
+
+        $ClienteBL = new clienteReglasNegocio();
+
+         $ClienteBL->init($rs['id'], $rs['nombre'], $rs['primerApellido'], $rs['fechaNacimiento'], $rs['altura'], $rs['peso'], $rs['complexion'], $rs['objetivo']);
         
+         return $ClienteBL;
+       
     }
 
 

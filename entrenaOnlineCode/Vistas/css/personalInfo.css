@@ -2,12 +2,10 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: red;
+    background-color: #f2f2f2;
 }
 
-
-
-h1 {
+h1, h2 {
     text-align: center;
     color: white;
 }
@@ -18,6 +16,19 @@ h1 {
     align-items: center;
 }
 
+.container {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-top: 80px; /* Ajusta el espacio entre el contenedor y la barra de navegación */
+    border-radius: 10px; /* Agrega bordes redondeados al contenedor */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Agrega sombra al contenedor para darle profundidad */
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+}
+
 .stat {
     text-align: center;
     margin: 20px;
@@ -25,11 +36,13 @@ h1 {
     border: 1px solid #333;
     width: 200px;
     background-color: #f9f9f9;
+    color: #333;
+    border-radius: 5px; /* Agrega bordes redondeados a las estadísticas */
 }
 
-
-.title{
+.title {
     margin-top: 200px;
+    margin-bottom: 20px;
 }
 
 .edit-button {
@@ -41,6 +54,83 @@ h1 {
     padding: 10px 20px;
     border: none;
     cursor: pointer;
+    border-radius: 5px; /* Agrega bordes redondeados al botón */
+}
+
+.edit-button:hover {
+    background-color: #111;
+}
+
+.barra-navegacion {
+    background-color: #333;
+    overflow: hidden;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Asegura que la barra de navegación se muestre encima de otros elementos */
+}
+
+.nav-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.nav-item {
+    float: left;
+}
+
+.nav-item a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.nav-item a:hover {
+    background-color: #111;
+}
+
+.nav-item.right {
+    float: right;
+}
+
+.card {
+    width: 18rem;
+    margin: 0 auto;
+    margin-top: 20px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    border-radius: 5px; /* Agrega bordes redondeados a la tarjeta */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Agrega sombra a la tarjeta para darle profundidad */
+    padding: 20px; /* Agrega padding a la tarjeta */
+    margin-bottom: 40px; /* Ajusta el espacio entre la tarjeta y el siguiente elemento */
+}
+
+.card-header {
+    background-color: #333;
+    color: white;
+}
+
+.list-group-item {
+    background-color: black;
+    color: white;
+}
+
+.edit-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px; /* Agrega bordes redondeados al botón */
 }
 
 .edit-button:hover {

@@ -13,12 +13,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }elseif ($action === 'obtenerValoresSelectFiltrado') {
         $parteCuerpo = $_POST['parteCuerpo'];
         obtenerValoresSelectFiltrado($parteCuerpo);
-    }
+    }elseif ($action === 'obtenerValoresUsuario') {
+        obtenerValoresUsuario();
 }
+    }
+
 
 function obtenerValoresSelect() {
-    $prueba = new entrenamientosReglasNegocio();
-    $listas = $prueba->obtenerEntrenamientos();
+    $valor = new entrenamientosReglasNegocio();
+    $listas = $valor->obtenerEntrenamientos();
 
    
     $data = array();
@@ -62,6 +65,30 @@ function obtenerValoresSelectFiltrado($parteCuerpo) {
     }
 
    
+    header('Content-Type: application/json');
+    echo json_encode($data);
+}
+
+
+
+function obtenerValoresUsuario()
+{
+    $usuarioBL = new clienteReglasNegocio();
+    $cliente = $usuarioBL->obtenerClienteInfo();
+
+    
+    $data = array(
+        "id" => $cliente->getClientId(),
+        "nombre" =>  $cliente->getNombre(),
+        "primerApellido" => $cliente->getApellido(),
+        "fechaNacimiento" => $cliente->getFechaNacimiento(),
+        "altura" => $cliente->getAltura(),
+        "peso" => $cliente->getPeso(),
+        "complexion" => $cliente->getComplexion(),
+        "objetivo" => $cliente->getObjetivo()
+    );
+    
+    
     header('Content-Type: application/json');
     echo json_encode($data);
 }

@@ -7,8 +7,8 @@
 
 
        obtenerValoresSelect() {
-         $.ajax({
-           url: 'enlaceDatosEntreno.php',
+        $.ajax({
+           url: 'enlaceDatos.php',
            type: 'POST',
            data: {
              action: 'obtenerValoresSelect'
@@ -38,7 +38,7 @@
            var valorSeleccionado = selectEjercicios.val();
            selectEjercicios.find("option:not(:selected)").remove();
            $.ajax({
-             url: 'enlaceDatosEntreno.php',
+             url: 'enlaceDatos.php',
              type: 'POST',
              data: {
                action: 'obtenerValoresSelect'
@@ -69,7 +69,7 @@
          $("#parte-cuerpo").on("change", function () {
            var parteCuerpo = $(this).val();
            $.ajax({
-             url: 'enlaceDatosEntreno.php',
+             url: 'enlaceDatos.php',
              type: 'POST',
              data: {
                action: 'obtenerValoresSelectFiltrado',
