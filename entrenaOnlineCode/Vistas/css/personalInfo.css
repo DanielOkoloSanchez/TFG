@@ -19,7 +19,7 @@ h1, h2 {
 .container {
     background-color: #f2f2f2;
     padding: 20px;
-    margin-top: 80px; /* Ajusta el espacio entre el contenedor y la barra de navegación */
+    margin-top: 200px; /* Ajusta el espacio entre el contenedor y la barra de navegación */
     border-radius: 10px; /* Agrega bordes redondeados al contenedor */
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Agrega sombra al contenedor para darle profundidad */
 }
@@ -41,7 +41,7 @@ h1, h2 {
 }
 
 .title {
-    margin-top: 200px;
+    margin-top: 50px;
     margin-bottom: 20px;
 }
 

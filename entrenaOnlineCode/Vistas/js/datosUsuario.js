@@ -95,6 +95,13 @@ class GestionDatosUsuario {
               card.find(".list-group").append("<li class='list-group-item'>Edad: " + self.calcularEdad(data.fechaNacimiento) + "</li>");
               card.find(".list-group").append("<li class='list-group-item'>IMC: " + self.calcularIMC(data.altura,data.peso) + "</li>");
               card.find(".list-group").append("<li class='list-group-item'>Calorias ha consumir: " + self.calcularCalorias(data.peso, data.altura, self.calcularEdad(data.fechaNacimiento)  , "Hombre", data.objetivo , data.complexion) + "Kcal" + "</li>");
+
+
+              var nombre = $(".nombreCliente"); 
+                 
+  
+                        nombre.append(data.nombre)   ;
+
             } else {
                 console.log(data);
               console.log("La respuesta del servidor no contiene datos JSON válidos.");
@@ -107,10 +114,14 @@ class GestionDatosUsuario {
           }
         });
       }
+
+
+      
 }
 
 
 $(document).ready(function () {
     let datos = new GestionDatosUsuario();
     datos.obtenerValoresUsuario();
+    datos.obtenerNombreCliente();
 });

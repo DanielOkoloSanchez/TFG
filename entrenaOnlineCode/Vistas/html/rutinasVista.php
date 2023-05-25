@@ -37,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         
     ?>
     <script src="../js/entrenos.js"></script>
+    <script src="../js/datosUsuario.js"></script> 
 
     <nav class="barra-navegacion">
         <ul class="nav-list">
@@ -71,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
     </div>
 
     <div class="title-div">
-        <h1>Rutinas de Manolo</h1>
+        <h1>Rutinas de <span class = "nombreCliente"></span></h1>
         <h2>Elige tus Ejercicios</h2>
     </div>
 
