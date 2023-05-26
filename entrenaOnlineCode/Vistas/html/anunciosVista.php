@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="../css/anunciosVista.css">
     <link rel="stylesheet" href="../css/navBar.css">
     <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/bts-css/css/bootstrap.min.css">
+    <script src="../js/bts-js/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -20,19 +22,21 @@
    
     ?>  
 
-    <nav class="navbar">
+<nav class="barra-navegacion">
         <ul class="nav-list">
             <li class="nav-item"><a href="personalInfoVista.php">Info Personal</a></li>
-            <li class="nav-item"><a href="comidasVista.html">Comidas</a></li>
-            <li class="nav-item"><a href="rutinasVista.html">Entrenamientos</a></li>
-            <li class="nav-item"><a href="#">Tablon de anuncios</a></li>
+            <li class="nav-item"><a href="comidasVista.php">Comidas</a></li>
+            <li class="nav-item"><a href="rutinasVista.php">Entrenamientos</a></li>
+            <li class="nav-item"><a href="calendarioVista.php">Calendario de Dietas</a></li>
+            <li class="nav-item"><a href="anunciosVista.php">Tablón de anuncios</a></li>
+
             <li class="nav-item right"><a href="logout.php">Cerrar Sesión</a></li>
         </ul>
     </nav>
     
 
     <div class="container">
-
+    <script src="../js/datosAnuncio.js"></script>
         <?php
        
        ini_set('display_errors', 1);
@@ -46,7 +50,7 @@
         $anunciosBL = new anunciosReglasNegocio();
         $datosAnuncio = $anunciosBL->obtenerAnuncios();
         
-        
+       echo "<h1 class=titulo>Anuncios para clientes</h1>";
         
 
         foreach ($datosAnuncio as $anuncio)

@@ -100,7 +100,7 @@ class GestionDatosUsuario {
               var nombre = $(".nombreCliente"); 
                  
   
-                        nombre.append(data.nombre)   ;
+                        nombre.append(data.nombre + " " + data.primerApellido);
 
             } else {
                 console.log(data);

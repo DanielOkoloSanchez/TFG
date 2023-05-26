@@ -1,40 +1,69 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f00;
+.barra-navegacion {
+    background-color: #333;
+    overflow: hidden;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.nav-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.nav-item {
+    float: left;
+}
+
+.nav-item a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.nav-item a:hover {
+    background-color: #111;
+}
+
+.nav-item.right {
+    float: right;
 }
 
 .container {
-   
-    width: 80%;
-    margin: 0 auto;
-    padding-top: 20px;
+    background-color: #333;
+    padding: 50px;
+    margin-top: 220px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .anuncio {
-    margin-top: 40px;
-    background-color: #fff;
+    margin-bottom: 30px;
     padding: 20px;
-    margin-bottom: 10px;
+    background-color: #666;
+    border: 1px solid #333;
+    border-radius: 5px;
 }
 
 .titulo {
-    margin: 10px;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
+    color: white;
 }
 
 .contenido {
-    margin: 10px;
-    font-size: 16px;
+    margin-top: 10px;
+    color: #ddd;
 }
 
 .fecha {
-    margin: 10px;
-    font-size: 14px;
-    color: #777;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #999;
 }
-
-
-
-
-

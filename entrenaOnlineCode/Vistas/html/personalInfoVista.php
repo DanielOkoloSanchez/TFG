@@ -24,14 +24,16 @@
 <body>
 
 <nav class="barra-navegacion">
-    <ul class="nav-list">
-        <li class="nav-item"><a href="#info-personal">Info Personal</a></li>
-        <li class="nav-item"><a href="comidasVista.php">Comidas</a></li>
-        <li class="nav-item"><a href="rutinasVista.php">Entrenamientos</a></li>
-        <li class="nav-item"><a href="anunciosVista.php">Tablon de anuncios</a></li>
-        <li class="nav-item right"><a href="logout.php">Cerrar Sesión</a></li>
-    </ul>
-</nav>
+        <ul class="nav-list">
+            <li class="nav-item"><a href="personalInfoVista.php">Info Personal</a></li>
+            <li class="nav-item"><a href="comidasVista.php">Comidas</a></li>
+            <li class="nav-item"><a href="rutinasVista.php">Entrenamientos</a></li>
+            <li class="nav-item"><a href="calendarioVista.php">Calendario de Dietas</a></li>
+            <li class="nav-item"><a href="anunciosVista.php">Tablón de anuncios</a></li>
+
+            <li class="nav-item right"><a href="logout.php">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
 
 <script src="../js/datosUsuario.js"></script>
 
