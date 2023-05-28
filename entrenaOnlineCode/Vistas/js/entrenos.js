@@ -49,16 +49,16 @@
               $.each(data, function(index, entrenamiento) {
             
                 if (entrenamiento.diaSemana == "Lunes") {
-                  $(".lista-lunes").append("<li>"+entrenamiento.nombre+"</li>")
+                  $(".lista-lunes").append("<a href= entrenoVista.php?EjerciciosId=" + entrenamiento.id +">" + "<li>"+entrenamiento.nombre+"</li>" + "</a>")
                   
                  }else if(entrenamiento.diaSemana == "Martes"){
-                  $(".lista-Martes").append("<li>"+entrenamiento.nombre+"</li>")
+                  $(".lista-Martes").append("<a href= entrenoVista.php?EjerciciosId=" + entrenamiento.id +">"+"<li>"+entrenamiento.nombre+"</li>"+ "</a>")
                  }else if(entrenamiento.diaSemana == "Miercoles"){
-                  $(".lista-Miercoles").append("<li>"+entrenamiento.nombre+"</li>")
+                  $(".lista-Miercoles").append("<a href= entrenoVista.php?EjerciciosId=" + entrenamiento.id +">"+"<li>"+entrenamiento.nombre+"</li>"+ "</a>")
                  }else if(entrenamiento.diaSemana == "Jueves"){
-                  $(".lista-Jueves").append("<li>"+entrenamiento.nombre+"</li>")
+                  $(".lista-Jueves").append("<a href= entrenoVista.php?EjerciciosId=" + entrenamiento.id +">"+"<li>"+entrenamiento.nombre+"</li>"+ "</a>")
                  }else{
-                  $(".lista-Viernes").append("<li>"+entrenamiento.nombre+"</li>")
+                  $(".lista-Viernes").append("<a href= entrenoVista.php?EjerciciosId=" + entrenamiento.id +">"+"<li>"+entrenamiento.nombre+"</li>"+ "</a>")
                  }
               
               });
