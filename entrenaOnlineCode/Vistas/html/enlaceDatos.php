@@ -1,5 +1,6 @@
 <?php
 require_once("../../Negocio/entrenamientosNegocio.php");
+require_once("../../Negocio/comidaNegocio.php");
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -15,7 +16,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         obtenerValoresSelectFiltrado($parteCuerpo);
     }elseif ($action === 'obtenerValoresUsuario') {
         obtenerValoresUsuario();
-}
+    }elseif ($action === 'obtenerValoresRecetas') {
+        obtenerValoresRecetas();
+    }elseif ($action === 'obtenerCaloriasComida') {
+        $comidaSeleccionada = $_POST['comidaSeleccionada'];
+        obtenerCaloriasComida($comidaSeleccionada);
+    }   
+    }
+
+
+    function obtenerCaloriasComida($comidaSeleccionada)
+    {
+        $valor = new comidasReglasNegocio();
+        $calorias = $valor->obtenerCaloriasComida($comidaSeleccionada);
+    
+        
+        $data = array(
+            "calorias" => $calorias
+        );
+    
+        header('Content-Type: application/json');
+        echo json_encode($data);
     }
 
 
@@ -41,6 +62,34 @@ function obtenerValoresSelect() {
 
    
     header('Content-Type: application/json');
+    echo json_encode($data);
+}
+
+function obtenerValoresRecetas() {
+    $valor = new comidasReglasNegocio();
+    $listas = $valor->obtenerRecetas();
+
+   
+    $data = array();
+
+    foreach ($listas as $lista) {
+       
+        $recetas = array(
+            "id" => $lista->getID(),
+            "nombre" => $lista->getNombre(),
+            "descripcion" => $lista->getDescripcion(),
+            "calorias" => $lista->getCalorias(),
+            "tipo"=>$lista->getTipo(),
+            "momentoComida"=>$lista->getMomentoComida()
+        );
+
+        
+        $data[] = $recetas;
+    }
+    
+   
+    header('Content-Type: application/json');
+    
     echo json_encode($data);
 }
 
@@ -92,6 +141,8 @@ function obtenerValoresUsuario()
     header('Content-Type: application/json');
     echo json_encode($data);
 }
+
+
 
 
 

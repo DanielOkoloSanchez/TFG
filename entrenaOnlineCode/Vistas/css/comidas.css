@@ -101,59 +101,7 @@ h1, h2 {
     margin-bottom: 40px;
 }
 
-.progress {
-    width: 65%;
-    height: 20px;
-    background-color: #ccc;
-    border-radius: 4px;
-    margin-top: 50px;
-    margin-left: 10px;
-    position: relative;
-}
 
-.progress-bar {
-    height: 100%;
-    background-color: #333;
-    border-radius: 4px;
-    width: 75%;
-    position: absolute;
-    transition: width 0.3s ease-in-out;
-}
-
-.progress-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-}
-
-/* Update the progress-bar width based on the percentage */
-.progress-bar[data-percentage] {
-    width: var(--percentage, 50%);
-}
-
-/* Additional styles to make the progress bar visually appealing */
-.progress-bar[data-percentage]::before {
-    content: attr(data-percentage);
-    position: absolute;
-    top: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 14px;
-    color: white;
-}
-
-.progress-bar[data-percentage]::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-}
 
 .select-row {
     display: flex;

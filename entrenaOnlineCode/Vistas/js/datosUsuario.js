@@ -1,8 +1,12 @@
 class GestionDatosUsuario {
     constructor() {
-
+      
+      this.caloriasAConsumir = 0;
 
     }
+
+
+
     calcularEdad(fechaNacimiento) {
       const fechaActual = new Date();
       const fechaNac = new Date(fechaNacimiento);
@@ -84,7 +88,7 @@ class GestionDatosUsuario {
             if (data) {
               
               var card = $(".card"); 
-               
+              self.caloriasAConsumir = self.calcularCalorias(data.peso, data.altura, self.calcularEdad(data.fechaNacimiento)  , "Hombre", data.objetivo , data.complexion)
 
               card.find(".card-header").append("<h4>" + data.nombre +" " + data.primerApellido + "</h4>");
               
@@ -94,14 +98,16 @@ class GestionDatosUsuario {
               card.find(".list-group").append("<li class='list-group-item'>Complexion: " + data.complexion + "</li>");
               card.find(".list-group").append("<li class='list-group-item'>Edad: " + self.calcularEdad(data.fechaNacimiento) + "</li>");
               card.find(".list-group").append("<li class='list-group-item'>IMC: " + self.calcularIMC(data.altura,data.peso) + "</li>");
-              card.find(".list-group").append("<li class='list-group-item'>Calorias ha consumir: " + self.calcularCalorias(data.peso, data.altura, self.calcularEdad(data.fechaNacimiento)  , "Hombre", data.objetivo , data.complexion) + "Kcal" + "</li>");
+              card.find(".list-group").append("<li class='list-group-item'>Calorias ha consumir: " + self.caloriasAConsumir + "Kcal" + "</li>");
 
 
               var nombre = $(".nombreCliente"); 
-                 
-  
+               var caloriasConsumir = $(".caloriasConsumir")
+                console.log(self.cacatua);
                         nombre.append(data.nombre + " " + data.primerApellido);
+                        caloriasConsumir.append(self.caloriasAConsumir + "Kcal");
 
+                        
             } else {
                 console.log(data);
               console.log("La respuesta del servidor no contiene datos JSON válidos.");
@@ -115,6 +121,7 @@ class GestionDatosUsuario {
         });
       }
 
+      
 
       
 }
@@ -122,6 +129,9 @@ class GestionDatosUsuario {
 
 $(document).ready(function () {
     let datos = new GestionDatosUsuario();
+    
+   
     datos.obtenerValoresUsuario();
-    datos.obtenerNombreCliente();
+   
+   
 });

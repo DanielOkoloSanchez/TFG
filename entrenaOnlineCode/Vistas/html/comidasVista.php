@@ -1,9 +1,9 @@
 <?php
-require ("../../Negocio/entrenamientosNegocio.php");
+require ("../../Negocio/comidaNegocio.php");
 if ($_SERVER["REQUEST_METHOD"]=="POST")
 {
-    $EntrenamientosReglasNegocio = new entrenamientosReglasNegocio();
-    $EntrenamientosReglasNegocio->createTablaEntrenamientos($_POST['nombreTabla'], $_POST['ejercicioUno'],$_POST['ejercicioDos'],$_POST['ejercicioTres'],$_POST['ejercicioCuatro'],$_POST['ejercicioCinco']);
+    $comidasReglasNegocio = new comidasReglasNegocio();
+    $comidasReglasNegocio->createAlimentacionDelDia($_POST['recetaDesayuno'],$_POST['recetaMerienda'],$_POST['recetaComida'],$_POST['recetaMeriendaDos'],$_POST['recetaCena']);
 }
 ?>
 
@@ -34,8 +34,12 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
        
         
     ?>
-    <script src="../js/entrenos.js"></script>
+    <script src="../js/comidas.js"></script>
     <script src="../js/datosUsuario.js"></script>
+      
+    
+  
+    
 
     <nav class="barra-navegacion">
         <ul class="nav-list">
@@ -56,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 
     <div class="desc">
         <p>Elige tus recetas favoritas para un día eligiendo desayuno,comida,merienda ... 
-        Y así poder crear tus dietas :)
+        Y así poder crear tus dietas :))
         </p>
     </div>
    
@@ -66,28 +70,28 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
             <div class="select-row">
               
                 <div class="select-container">
-                    <select name="ejercicioUno" class="ejer" id="ejer1">
-                        <option value="" selected>Desayuno</option>
+                    <select name="recetaDesayuno" class="receta" id="recetaDesayuno">
+                        <option value="0" selected>Desayuno</option>
                     </select>
                 </div>
                 <div class="select-container">
-                    <select name="ejercicioDos" class="ejer" id="ejer2">
-                        <option value="" selected>Merienda</option>
+                    <select name="recetaMerienda" class="receta" id="recetaMerienda">
+                        <option value="0" selected>Merienda</option>
                     </select>
                 </div>
                 <div class="select-container">
-                    <select name="ejercicioTres" class="ejer" id="ejer3">
-                        <option value="" selected>Comida</option>
+                    <select name="recetaComida" class="receta" id="recetaComida">
+                        <option value="0" selected>Comida</option>
                     </select>
                 </div>
                 <div class="select-container">
-                    <select name="ejercicioCuatro" class="ejer" id="ejer4">
-                        <option value="" selected>Merienda</option>
+                    <select name="recetaMeriendaDos" class="receta" id="recetaMeriendaDos">
+                        <option value="0" selected>Merienda</option>
                     </select>
                 </div>
                 <div class="select-container">
-                    <select name="ejercicioCinco" class="ejer" id="ejer5">
-                        <option value="" selected>Cena</option>
+                    <select name="recetaCena" class="receta" id="recetaCena">
+                        <option value="0" selected>Cena</option>
                     </select>
                 </div>
             </div>
@@ -95,12 +99,15 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         </div>
 
         </div>
-        <div class="progress">
-    <div class="progress-bar" data-percentage="75%">
-        <span class="progress-text">50%</span>
-    </div>
+
+        <div class="title">
+            <h2> Calorias a consumir : <span class="caloriasConsumir"></span></h2>
+        </div>
+        
+  
 </div>
         
+
    
 </form>
 
@@ -118,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
-                El nombre de la tabla debe contener entre 3 y 15 letras.
+                El nombre de la dieta debe contener entre 3 y 15 letras.
             </div>
         </div>
 
@@ -129,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
-                Existen caracteres especiales o espacios en el nombre de la Tabla.
+                Existen caracteres especiales o espacios en el nombre de la Dieta.
             </div>
         </div>
 
@@ -142,7 +149,53 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
                 </button>
             </div>
             <div class="toast-body">
-                No se pudo crear la tabla de entrenamientos.
+                No se pudo crear la dieta.
+            </div>
+        </div>
+
+
+        <div id="myToast5" class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Error</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
+                </button>
+            </div>
+            <div class="toast-body">
+                La comida no esta lista , vuelva mas tarde...  .
+            </div>
+        </div>
+
+
+        <div id="myToast4" class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Error</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
+                </button>
+            </div>
+            <div class="toast-body">
+                O paso algo inesperado... :((
+            </div>
+        </div>
+
+        <div id="myToast6" class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Error</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
+                </button>
+            </div>
+            <div class="toast-body">
+                Error Campos sin rellenar encontrados;
+            </div>
+        </div>
+
+        <div id="myToast7" class="toast bg-warning text-white" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Aviso</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
+                </button>
+            </div>
+            <div class="toast-body">
+                No puedes Repetir tu comida en la cena 
             </div>
         </div>
 

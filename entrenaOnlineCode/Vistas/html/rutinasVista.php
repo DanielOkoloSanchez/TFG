@@ -207,6 +207,30 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
             No puedes repetir ejercicios en una misma tabla.
         </div>
     </div>
+
+    <div id="myToast5" class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Error</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
+                </button>
+            </div>
+            <div class="toast-body">
+                La comida no esta lista , vuelva mas tarde...  .
+            </div>
+        </div>
+
+
+        <div id="myToast6" class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Error</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
+                </button>
+            </div>
+            <div class="toast-body">
+                O paso algo inesperado... 
+            </div>
+        </div>
+
    
  
 

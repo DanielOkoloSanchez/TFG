@@ -1,4 +1,4 @@
-     class GestionDatos {
+     class GestionDatosEntreno {
        constructor() {
 
 
@@ -7,6 +7,30 @@
 
 
        obtenerValoresSelect() {
+        $.ajax({
+           url: 'enlaceDatos.php',
+           type: 'POST',
+           data: {
+             action: 'obtenerValoresSelect'
+           },
+           dataType: 'json',
+           success: function (data) {
+             if (data && data.length > 0) {
+               console.log(data);
+               $.each(data, function (index, entrenamiento) {
+                 $(".ejer").append("<option value='" + entrenamiento.id + "'>" + entrenamiento.nombre + "</option>");
+               });
+             } else {
+               console.log("La respuesta del servidor no contiene datos JSON válidos.");
+             }
+           },
+           error: function (xhr, status, error) {
+             console.log("Error en la petición AJAX: " + error);
+           }
+         });
+       }
+
+       obtenerValoresTabla() {
         $.ajax({
            url: 'enlaceDatos.php',
            type: 'POST',
@@ -205,7 +229,7 @@
     }
 
      $(document).ready(function () {
-       let datos = new GestionDatos();
+       let datos = new GestionDatosEntreno();
        datos.checkValores();
        datos.checkFiltroValor();
        datos.reiniciarFiltro();

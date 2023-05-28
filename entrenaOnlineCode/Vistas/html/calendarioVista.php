@@ -35,7 +35,9 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         
     ?>
     <script src="../js/entrenos.js"></script>
-    <script src="../js/datosUsuario.js"></script> 
+    <script src="../js/comidas.js"></script>
+    <script src="../js/datosUsuario.js"></script>
+    
 
     <nav class="barra-navegacion">
         <ul class="nav-list">

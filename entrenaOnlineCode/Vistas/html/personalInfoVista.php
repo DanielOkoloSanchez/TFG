@@ -34,8 +34,8 @@
             <li class="nav-item right"><a href="logout.php">Cerrar Sesión</a></li>
         </ul>
     </nav>
-
-<script src="../js/datosUsuario.js"></script>
+    <script src="../js/comidas.js"></script>
+    <script src="../js/datosUsuario.js"></script>
 
 <div class="container">
     <div class="title">
