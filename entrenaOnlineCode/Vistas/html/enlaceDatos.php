@@ -1,5 +1,6 @@
 <?php
 require_once("../../Negocio/entrenamientosNegocio.php");
+require_once("../../Negocio/TablasEntrenamientosNegocio.php");
 require_once("../../Negocio/comidaNegocio.php");
 
 ini_set('display_errors', 1);
@@ -21,7 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }elseif ($action === 'obtenerCaloriasComida') {
         $comidaSeleccionada = $_POST['comidaSeleccionada'];
         obtenerCaloriasComida($comidaSeleccionada);
-    }   
+    }elseif ($action === 'obtenerValoresTabla') {
+        obtenerValoresTabla();
+    }      
     }
 
 
@@ -64,6 +67,34 @@ function obtenerValoresSelect() {
     header('Content-Type: application/json');
     echo json_encode($data);
 }
+
+
+
+
+function obtenerValoresTabla() {
+    $valor = new tablasEntrenamientosReglasNegocio();
+    $listas = $valor->obtenerTablaEntrenamientos();
+
+    $data = array();
+
+    foreach ($listas as $lista) {
+       
+        $entrenamiento = array(
+            "id" => $lista->getID(),
+            "nombre" => $lista->getNombre(),
+            "diaSemana" => $lista->getDiaSemana()
+        );
+
+        $data[] = $entrenamiento;
+    }
+
+   
+    header('Content-Type: application/json');
+    echo json_encode($data);
+}
+
+
+
 
 function obtenerValoresRecetas() {
     $valor = new comidasReglasNegocio();

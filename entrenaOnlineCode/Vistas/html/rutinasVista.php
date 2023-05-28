@@ -4,6 +4,9 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 {
     $EntrenamientosReglasNegocio = new entrenamientosReglasNegocio();
     $EntrenamientosReglasNegocio->createTablaEntrenamientos($_POST['nombreTabla'], $_POST['diaSemana'],$_POST['ejercicioUno'],$_POST['ejercicioDos'],$_POST['ejercicioTres'],$_POST['ejercicioCuatro'],$_POST['ejercicioCinco']);
+
+    header("Location: " . $_SERVER['PHP_SELF']);
+    
 }
 ?>
 
@@ -14,11 +17,14 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 
 <head>
     <title>Rutinas</title>
-    <link rel="stylesheet" href="../css/entrenos.css">
     <script src="../js/jquery.js"></script>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../css/bts-css/css/bootstrap.min.css">
     <script src="../js/bts-js/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/entrenos.css">
+    
+    
+   
 
 </head>
 
@@ -129,35 +135,85 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
     </form>
 
     <br>
-    <table>
-        <thead>
-            <tr>
-                <th>Lunes</th>
-                <th>Martes</th>
-                <th>Miércoles</th>
-                <th>Jueves</th>
-                <th>Viernes</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
 
-                <td>Ejercicio 1</td>
-                <td>Ejercicio 2</td>
-                <td>Ejercicio 3</td>
-                <td>Ejercicio 4</td>
-                <td>Ejercicio 5</td>
-            </tr>
-            <tr>
 
-                <td>Ejercicio 1</td>
-                <td>Ejercicio 2</td>
-                <td>Ejercicio 3</td>
-                <td>Ejercicio 4</td>
-                <td>Ejercicio 5</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+       Lunes
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+      <div class="accordion-body">
+       <ul class = "lista-lunes">
+        
+       </ul>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+        Martes
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+      <div class="accordion-body">
+      <ul class = "lista-Martes">
+        
+        </ul>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed headeArcordeon" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+        Miercoles
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+      <div class="accordion-body">
+      <ul class = "lista-Miercoles">
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="accordion-item">
+    <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+            Jueves
+        </button>
+    </h2>
+    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <ul class="lista-Jueves">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="accordion-item">
+    <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
+            Viernes
+        </button>
+    </h2>
+    <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <ul class="lista-Viernes">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
 
 
     <!-- Toast container -->
@@ -165,6 +221,8 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
     <div id="myToastContainer" class="toast-container top-0 end-0 p-3">
 
         <div id="myToast1" class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
+
+  
             <div class="toast-header">
                 <strong class="me-auto">Error</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -207,30 +265,6 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
             No puedes repetir ejercicios en una misma tabla.
         </div>
     </div>
-
-    <div id="myToast5" class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <strong class="me-auto">Error</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
-                </button>
-            </div>
-            <div class="toast-body">
-                La comida no esta lista , vuelva mas tarde...  .
-            </div>
-        </div>
-
-
-        <div id="myToast6" class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <strong class="me-auto">Error</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
-                </button>
-            </div>
-            <div class="toast-body">
-                O paso algo inesperado... 
-            </div>
-        </div>
-
    
  
 

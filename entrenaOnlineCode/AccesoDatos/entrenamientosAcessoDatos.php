@@ -31,6 +31,31 @@ class enterenamientoAccesoDatos
 	
 	}
 
+
+	function obtenerTablaEntrenamientos($clienteId)
+	{
+		$conexion = mysqli_connect('localhost','root','1234');
+		if (mysqli_connect_errno())
+		{
+				echo "Error al conectar a MySQL: ". mysqli_connect_error();
+		}
+ 		mysqli_select_db($conexion, 'entrenaOnlineDB');
+		
+		$consulta = mysqli_prepare($conexion, "
+		select id , nombre , diaSemana from ListaEntrenoDia where clienteId = ".$clienteId.";" );
+        $consulta->execute();
+        $result = $consulta->get_result();
+        $entrenamientos = array();
+       	while($myrow = $result->fetch_assoc())
+		{
+			array_push($entrenamientos,$myrow);
+	   	};
+		
+		return $entrenamientos;
+	
+	}
+
+
 	function createTablaEntrenamientos($nombre, $diaSemana, $ejerUno, $ejerDos, $ejerTres, $ejerCuatro, $ejerCinco, $idUsuario)
     {
 		
