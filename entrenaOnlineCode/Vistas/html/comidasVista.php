@@ -3,7 +3,9 @@ require ("../../Negocio/comidaNegocio.php");
 if ($_SERVER["REQUEST_METHOD"]=="POST")
 {
     $comidasReglasNegocio = new comidasReglasNegocio();
-    $comidasReglasNegocio->createAlimentacionDelDia($_POST['recetaDesayuno'],$_POST['recetaMerienda'],$_POST['recetaComida'],$_POST['recetaMeriendaDos'],$_POST['recetaCena']);
+    $comidasReglasNegocio->createAlimentacionDelDia($_POST['nombreDieta'],$_POST['recetaDesayuno'],$_POST['recetaMerienda'],$_POST['recetaComida'],$_POST['recetaMeriendaDos'],$_POST['recetaCena']);
+
+    header("Location: " . $_SERVER['PHP_SELF']);
 }
 ?>
 
@@ -58,6 +60,10 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         <h2>Crea tus Dietas</h2>
     </div>
 
+    <div class="title">
+            <h2> Valor Nutritivo : <span class="caloriasConsumidas">0</span> de <span class="caloriasConsumir"></span></h2>
+        </div>
+
     <div class="desc">
         <p>Elige tus recetas favoritas para un día eligiendo desayuno,comida,merienda ... 
         Y así poder crear tus dietas :))
@@ -68,6 +74,9 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
     <form id="formulario" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
     <div class="select-wrapper">
             <div class="select-row">
+            <div class="select-container">
+                    <input id="nombre" name="nombreDieta" required type="text" placeholder="Nombre">
+                </div>
               
                 <div class="select-container">
                     <select name="recetaDesayuno" class="receta" id="recetaDesayuno">
@@ -100,9 +109,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 
         </div>
 
-        <div class="title">
-            <h2> Calorias a consumir : <span class="caloriasConsumir"></span></h2>
-        </div>
+       
         
   
 </div>
@@ -195,7 +202,29 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
                 </button>
             </div>
             <div class="toast-body">
-                No puedes Repetir tu comida en la cena 
+                No puedes Repetir tu comida en la cena ni tus meriendas . 
+            </div>
+        </div>
+
+        <div id="myToast8" class="toast bg-warning text-white" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Aviso</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
+                </button>
+            </div>
+            <div class="toast-body">
+                Calorias Insuficientes , Recuerda que estas en volumen.
+            </div>
+        </div>
+
+        <div id="myToast9" class="toast bg-warning text-white" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Aviso</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
+                </button>
+            </div>
+            <div class="toast-body">
+                Demasiadas Calorias , seguramente estes buscando el cuerpo ideal.
             </div>
         </div>
 

@@ -34,7 +34,7 @@ class comidasAccesoDatos
 	
 	}
 
-	function createAlimentacionDelDia($desayuno,$meriendaMedioDia,$comida,$meriendaTarde, $cena)
+	function createAlimentacionDelDia($nombre,$desayuno,$meriendaMedioDia,$comida,$meriendaTarde, $cena)
     {
 		
         $conexion = mysqli_connect('localhost', 'root', '1234');
@@ -43,11 +43,11 @@ class comidasAccesoDatos
             echo "Error al conectar a MySQL: " . mysqli_connect_error();
         }
         mysqli_select_db($conexion, 'entrenaOnlineDB');
-        
-        $consulta = mysqli_prepare($conexion, "INSERT INTO  alimentacionDelDia (desayuno, meriendaMedioDia, comida, meriendaTarde, cena)
-        VALUES (?, ?, ?, ?,?);");
-        
-        mysqli_stmt_bind_param($consulta, "iiiii", $desayuno, $meriendaMedioDia, $comida, $meriendaTarde, $cena);
+		$sanetizedNombre = mysqli_real_escape_string($conexion, $nombre);
+        $consulta = mysqli_prepare($conexion, "INSERT INTO  alimentacionDelDia (nombre,desayuno, meriendaMedioDia, comida, meriendaTarde, cena)
+        VALUES (?, ?, ?, ?,?,?);");
+       
+        mysqli_stmt_bind_param($consulta, "siiiii", $sanetizedNombre, $desayuno, $meriendaMedioDia, $comida, $meriendaTarde, $cena);
         
 		$consulta->execute();
     }

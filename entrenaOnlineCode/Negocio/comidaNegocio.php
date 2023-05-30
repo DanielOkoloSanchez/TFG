@@ -101,11 +101,11 @@ class comidasReglasNegocio
 
     
 
-     function createAlimentacionDelDia($desayuno,$merienda,$comida,$meriendaDos, $cena)
+     function createAlimentacionDelDia($nombre,$desayuno,$merienda,$comida,$meriendaDos, $cena)
      {   
         
          $comidasAccesoDatos = new comidasAccesoDatos();
-         $comidasAccesoDatos->createAlimentacionDelDia($desayuno,$merienda,$comida,$meriendaDos, $cena);
+         $comidasAccesoDatos->createAlimentacionDelDia($nombre,$desayuno,$merienda,$comida,$meriendaDos, $cena);
     
      }
 

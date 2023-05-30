@@ -17,7 +17,7 @@ class ClienteAccesoDatos
 		}
  		mysqli_select_db($conexion, 'entrenaOnlineDB');
 		
-		$consulta = mysqli_prepare($conexion, "SELECT id , nombre , primerApellido , fechaNacimiento , altura , peso , complexion , objetivo    from cliente where usuario_id = ? ;" );
+		$consulta = mysqli_prepare($conexion, "SELECT id , nombre , primerApellido ,sexo, fechaNacimiento , altura , peso , complexion , objetivo    from cliente where usuario_id = ? ;" );
         $consulta->bind_param("i", $idUsuario);
         $consulta->execute();
         $result = $consulta->get_result();

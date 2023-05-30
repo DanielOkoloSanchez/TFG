@@ -165,7 +165,8 @@ function obtenerValoresUsuario()
         "altura" => $cliente->getAltura(),
         "peso" => $cliente->getPeso(),
         "complexion" => $cliente->getComplexion(),
-        "objetivo" => $cliente->getObjetivo()
+        "objetivo" => $cliente->getObjetivo(),
+        "sexo" => $cliente->getSexo()
     );
     
     

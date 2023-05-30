@@ -88,7 +88,7 @@ class GestionDatosUsuario {
             if (data) {
               
               var card = $(".card"); 
-              self.caloriasAConsumir = self.calcularCalorias(data.peso, data.altura, self.calcularEdad(data.fechaNacimiento)  , "Hombre", data.objetivo , data.complexion)
+              self.caloriasAConsumir = self.calcularCalorias(data.peso, data.altura, self.calcularEdad(data.fechaNacimiento)  , data.sexo, data.objetivo , data.complexion)
 
               card.find(".card-header").append("<h4>" + data.nombre +" " + data.primerApellido + "</h4>");
               

@@ -14,6 +14,7 @@ CREATE TABLE cliente (
   nombre VARCHAR(25) NOT NULL,
   primerApellido VARCHAR(25) NOT NULL,
   segundoApellido VARCHAR(25) NOT NULL,
+  sexo ENUM('Hombre', 'Mujer') not null, 
   fechaNacimiento DATE NOT NULL,
   altura DECIMAL(3,2) NOT NULL,
   peso DECIMAL(4,1) NOT NULL,
@@ -70,6 +71,7 @@ CREATE TABLE recetas (
 
 CREATE TABLE alimentacionDelDia (
   id INT PRIMARY KEY auto_increment,
+  nombre varchar(25) not null,
   desayuno INT NOT NULL,
   meriendaMedioDia INT NOT NULL,
   comida INT NOT NULL,
@@ -112,3 +114,6 @@ CREATE TABLE anuncios (
   empleado_id INT NOT NULL,
   FOREIGN KEY (empleado_id) REFERENCES empleado(id)
 );
+
+
+
