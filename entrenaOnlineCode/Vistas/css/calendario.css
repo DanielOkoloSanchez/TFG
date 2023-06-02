@@ -18,6 +18,13 @@ h1 , h2 {
    
 }
 
+.add-button svg {
+    width: 40px; /* Tamaño del icono */
+    height: 40px;
+   position: relative;
+   right: 10px;
+   bottom: 10px;
+  }
 
 
 .dia {

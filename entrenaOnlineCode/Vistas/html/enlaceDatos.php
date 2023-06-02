@@ -1,7 +1,15 @@
 <?php
+
 require_once("../../Negocio/entrenamientosNegocio.php");
 require_once("../../Negocio/TablasEntrenamientosNegocio.php");
 require_once("../../Negocio/comidaNegocio.php");
+require_once("../../Negocio/dietaNegocio.php");
+require_once("../../Negocio/horarioNegocio.php");
+
+
+
+
+
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -22,9 +30,74 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }elseif ($action === 'obtenerCaloriasComida') {
         $comidaSeleccionada = $_POST['comidaSeleccionada'];
         obtenerCaloriasComida($comidaSeleccionada);
-    }elseif ($action === 'obtenerValoresTabla') {
+    }elseif ($action === 'obtenerValoresTabla'){
         obtenerValoresTabla();
-    }      
+    }elseif ($action === 'obtenerDietasUsuario') 
+    {
+      obtenerDietasUsuario();
+    }elseif ($action === 'obtenerHorarios') 
+    {
+        obtenerHorarioComidas();
+    }
+}
+
+    
+
+function obtenerHorarioComidas(){
+    $valor = new horarioReglasNegocio();
+    $listas = $valor->obtenerHorarioComidas();
+
+    $data = array();
+
+    foreach ($listas as $lista) {
+       
+        $horario = array(
+            "id" => $lista->getID(),
+            "nombreHorario" => $lista->getNombreHorario(),
+            "HorarioLunes" => $lista->getHorarioComidaLunes(),
+            "HorarioMartes" => $lista->getHorarioComidaMartes(),
+            "HorarioMiercoles" => $lista->getHorarioComidaMiercoles(), 
+            "HorarioJueves" => $lista->getHorarioComidaJueves(),
+            "HorarioViernes" => $lista->getHorarioComidaViernes(),
+            "HorarioSabado" => $lista->getHorarioComidaSabado(),
+            "HorarioDomingo" => $lista->getHorarioComidaDomingo() 
+        );
+
+        
+        $data[] = $horario;
+    }
+
+   
+    header('Content-Type: application/json');
+    echo json_encode($data);
+}
+
+
+    function obtenerDietasUsuario(){
+        $valor = new dietaReglasNegocio();
+        $listas = $valor->obtenerDietasCreadasUsuario();
+    
+        $data = array();
+    
+        foreach ($listas as $lista) {
+           
+            $dieta = array(
+                "id" => $lista->getID(),
+                "nombre" => $lista->getNombre(),
+                "desayuno" => $lista->getDesayuno(),
+                "meriendaMedioDia"=> $lista->getMeriendaMedioDia(),
+                "comida" => $lista->getComida(), 
+                "meriendaTarde" => $lista->getMeriendaTarde(),
+                "cena" => $lista->getCena() 
+            );
+    
+            
+            $data[] = $dieta;
+        }
+    
+       
+        header('Content-Type: application/json');
+        echo json_encode($data);
     }
 
 

@@ -1,9 +1,11 @@
 <?php
-require ("../../Negocio/entrenamientosNegocio.php");
+require ("../../Negocio/dietaNegocio.php");
 if ($_SERVER["REQUEST_METHOD"]=="POST")
 {
-    $EntrenamientosReglasNegocio = new entrenamientosReglasNegocio();
-    $EntrenamientosReglasNegocio->createTablaEntrenamientos($_POST['nombreTabla'], $_POST['ejercicioUno'],$_POST['ejercicioDos'],$_POST['ejercicioTres'],$_POST['ejercicioCuatro'],$_POST['ejercicioCinco']);
+    $EntrenamientosReglasNegocio = new dietaReglasNegocio();
+    $EntrenamientosReglasNegocio->createHorarioComidas($_POST['nombreTabla'], $_POST['comidaLunes'],$_POST['comidaMartes'],$_POST['comidaMiercoles'],$_POST['comidaJueves'],$_POST['comidaViernes'],$_POST['comidaSabado'],$_POST['comidaDomingo']);
+
+    header("Location: " . $_SERVER['PHP_SELF']);
 }
 ?>
 
@@ -34,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
        
         
     ?>
-    <script src="../js/entrenos.js"></script>
+  
     <script src="../js/comidas.js"></script>
     <script src="../js/datosUsuario.js"></script>
     
@@ -53,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 
 
     
-    <form id="formularioDeHorario" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <form id="formularioHorario" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
     <div class="title-div">
         <h1>Calendario de <span class="nombreCliente"></span></h1>
         <h2>Organiza tus dietas</h2>
@@ -67,41 +69,41 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
             
             <div class="select-row">
                 <div class="select-container">
-                    <input id="nombre" name="nombreTabla" required type="text" placeholder="Nombre">
+                    <input id = "nombre" name="nombreTabla" required type="text" placeholder="Nombre">
                 </div>
         
                 <div class="select-container">
-                    <select name="ejercicioUno" class="ejer" id="ejer1">
+                    <select name="comidaLunes" class="dieta" id="comidaLunes">
                         <option value="Comida">Comida del Lunes</option>
                     </select>
                 </div>
                 <div class="select-container">
-                    <select name="ejercicioDos" class="ejer" id="ejer2">
+                    <select name="comidaMartes" class="dieta" id="comidaMartes">
                         <option value="Comida">Comida del Martes</option>
                     </select>
                 </div>
                 <div class="select-container">
-                    <select name="ejercicioTres" class="ejer" id="ejer3">
+                    <select name="comidaMiercoles" class="dieta" id="comidaMiercoles">
                         <option value="Comida">Comida del Miercoles</option>
                     </select>
                 </div>
                 <div class="select-container">
-                    <select name="ejercicioCuatro" class="ejer" id="ejer4">
+                    <select name="comidaJueves" class="dieta" id="comidaJueves">
                         <option value="Comida">Comida del Jueves</option>
                     </select>
                 </div>
                 <div class="select-container">
-                    <select name="ejercicioCinco" class="ejer" id="ejer5">
+                    <select name="comidaViernes" class="dieta" id="comidaViernes">
                         <option value="Comida">Comida del Viernes</option>
                     </select>
                 </div>
                 <div class="select-container">
-                    <select name="ejercicioSeis" class="ejer" id="ejer6">
+                    <select name="comidaSabado" class="dieta" id="comidaSabado">
                         <option value="Comida">Comida del Sabado</option>
                     </select>
                 </div>
                 <div class="select-container">
-                    <select name="ejercicioSiete" class="ejer" id="ejer7">
+                    <select name="comidaDomingo" class="dieta" id="comidaDomingo">
                         <option value="Comida">Comida del Domingo</option>
                     </select>
                 </div>
@@ -119,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 
 
     <br>
-    <table>
+    <table class = "horario">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -133,26 +135,8 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Rutina 1</td>
-                <td>Ejercicio 1</td>
-                <td>Ejercicio 2</td>
-                <td>Ejercicio 3</td>
-                <td>Ejercicio 4</td>
-                <td>Ejercicio 5</td>
-                <td>Ejercicio 6</td>
-                <td>Ejercicio 7</td>
-            </tr>
-            <tr>
-                <td>Rutina 2</td>
-                <td>Ejercicio 1</td>
-                <td>Ejercicio 2</td>
-                <td>Ejercicio 3</td>
-                <td>Ejercicio 4</td>
-                <td>Ejercicio 5</td>
-                <td>Ejercicio 6</td>
-                <td>Ejercicio 7</td>
-            </tr>
+           
+            
         </tbody>
     </table>
 

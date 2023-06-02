@@ -76,24 +76,33 @@ CREATE TABLE alimentacionDelDia (
   meriendaMedioDia INT NOT NULL,
   comida INT NOT NULL,
   meriendaTarde INT NOT NULL,
-  cena INT NOT NULL
+  cena INT NOT NULL,
+  usuario_id int not null,
+   FOREIGN KEY (usuario_id) REFERENCES usuario(id)
+  
 );
 
-CREATE TABLE Semana (
-  id INT PRIMARY KEY auto_increment,
-  nombre VARCHAR(30) NOT NULL
-);
+
 
 CREATE TABLE horarioAlimentos (
   id INT PRIMARY KEY AUTO_INCREMENT,
   nombreHorario VARCHAR(30) NOT NULL,
-  id_alimentacion INT NOT NULL,
-  dia VARCHAR(25) NOT NULL,
-  cliente_id INT NOT NULL,
-  semana_id INT NOT NULL,
-  FOREIGN KEY (id_alimentacion) REFERENCES alimentacionDelDia(id),
-  FOREIGN KEY (cliente_id) REFERENCES cliente(id),
-  FOREIGN KEY (semana_id) REFERENCES Semana(id)
+  HorioComidaLunes INT NOT NULL,
+  HorioComidaMartes INT NOT NULL,
+  HorioComidaMiercoles INT NOT NULL,
+  HorioComidaJueves INT NOT NULL,
+  HorioComidaViernes INT NOT NULL,
+  HorioComidaSabado INT NOT NULL,
+  HorioComidaDomingo INT NOT NULL,
+  clienteId int not null,
+  FOREIGN KEY (HorioComidaLunes) REFERENCES alimentacionDelDia(id),
+  FOREIGN KEY (HorioComidaMartes) REFERENCES alimentacionDelDia(id),
+  FOREIGN KEY (HorioComidaMiercoles) REFERENCES alimentacionDelDia(id),
+  FOREIGN KEY (HorioComidaJueves) REFERENCES alimentacionDelDia(id),
+  FOREIGN KEY (HorioComidaViernes) REFERENCES alimentacionDelDia(id),
+   FOREIGN KEY (HorioComidaSabado) REFERENCES alimentacionDelDia(id),
+  FOREIGN KEY (HorioComidaDomingo) REFERENCES alimentacionDelDia(id),
+  FOREIGN KEY (clienteId) REFERENCES cliente(id)
 );
 
 
