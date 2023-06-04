@@ -133,8 +133,8 @@ class comidasAccesoDatos
 		JOIN alimentacionDelDia ADJ ON HA.HorioComidaJueves = ADJ.id
 		JOIN alimentacionDelDia ADV ON HA.HorioComidaViernes = ADV.id
 		JOIN alimentacionDelDia ADS ON HA.HorioComidaSabado = ADS.id
-		JOIN alimentacionDelDia ADDo ON HA.HorioComidaDomingo = ADDo.id;
-	   WHERE clienteId =".$idCliente." ;"
+		JOIN alimentacionDelDia ADDo ON HA.HorioComidaDomingo = ADDo.id
+	   WHERE clienteId =".$idCliente.";"
 
 	);
 		

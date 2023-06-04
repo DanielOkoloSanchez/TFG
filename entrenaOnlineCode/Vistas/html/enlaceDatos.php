@@ -52,15 +52,22 @@ function obtenerHorarioComidas(){
     foreach ($listas as $lista) {
        
         $horario = array(
-            "id" => $lista->getID(),
+            "id" => $lista->getId(),
             "nombreHorario" => $lista->getNombreHorario(),
             "HorarioLunes" => $lista->getHorarioComidaLunes(),
+            "HorarioLunesId" => $lista->getHorarioComidaLunesId(),
             "HorarioMartes" => $lista->getHorarioComidaMartes(),
-            "HorarioMiercoles" => $lista->getHorarioComidaMiercoles(), 
+            "HorarioMartesId" => $lista->getHorarioComidaMartesId(),
+            "HorarioMiercoles" => $lista->getHorarioComidaMiercoles(),
+            "HorarioMiercolesId" => $lista->getHorarioComidaMiercolesId(), 
             "HorarioJueves" => $lista->getHorarioComidaJueves(),
+            "HorarioJuevesId" => $lista->getHorarioComidaJuevesId(),
             "HorarioViernes" => $lista->getHorarioComidaViernes(),
+            "HorarioViernesId" => $lista->getHorarioComidaViernesId(),
             "HorarioSabado" => $lista->getHorarioComidaSabado(),
-            "HorarioDomingo" => $lista->getHorarioComidaDomingo() 
+            "HorarioSabadoId" => $lista->getHorarioComidaSabadoId(),
+            "HorarioDomingo" => $lista->getHorarioComidaDomingo(),
+            "HorarioDomingoId" => $lista->getHorarioComidaDomingoId() 
         );
 
         

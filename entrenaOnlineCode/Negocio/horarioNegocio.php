@@ -9,79 +9,110 @@ class horarioReglasNegocio
     private $_id;
     private $_nombreHorario;
     private $_HorarioComidaLunes;
+    private $_HorarioComidaLunesId;
     private $_HorarioComidaMartes;
+    private $_HorarioComidaMartesId;
     private $_HorarioComidaMiercoles;
+    private $_HorarioComidaMiercolesId;
     private $_HorarioComidaJueves;
+    private $_HorarioComidaJuevesId;
     private $_HorarioComidaViernes;
+    private $_HorarioComidaViernesId;
     private $_HorarioComidaSabado;
+    private $_HorarioComidaSabadoId;
     private $_HorarioComidaDomingo;
-    
+    private $_HorarioComidaDomingoId;
+
 	function __construct()
     {
     }
 
-    function init($id,$nombreHorario,$HorarioComidaLunes,$HorarioComidaMartes,$HorarioComidaMiercoles,$HorarioComidaJueves,$HorarioComidaViernes,$HorarioComidaSabado,$HorarioComidaDomingo)
-    {
-        
+    public function init($id, $nombre, $idLunes, $nombreLunes, $idMartes, $nombreMartes, $idMiercoles, $nombreMiercoles, $idJueves, $nombreJueves, $idViernes, $nombreViernes, $idSabado, $nombreSabado, $idDomingo, $nombreDomingo) {
+        // Aquí inicializas los datos utilizando los parámetros proporcionados
+    
         $this->_id = $id;
-        $this->_nombreHorario = $nombreHorario;
-        $this->_HorarioComidaLunes = $HorarioComidaLunes;
-        $this->_HorarioComidaMartes = $HorarioComidaMartes;
-        $this->_HorarioComidaMiercoles = $HorarioComidaMiercoles; 
-        $this->_HorarioComidaJueves = $HorarioComidaJueves; 
-        $this->_HorarioComidaViernes = $HorarioComidaViernes;
-        $this->_HorarioComidaSabado = $HorarioComidaSabado;
-        $this->_HorarioComidaDomingo = $HorarioComidaDomingo;
-
+        $this->_nombreHorario = $nombre;
+        $this->_HorarioComidaLunesId = $idLunes;
+        $this->_HorarioComidaLunes = $nombreLunes;
+        $this->_HorarioComidaMartesId = $idMartes;
+        $this->_HorarioComidaMartes = $nombreMartes;
+        $this->_HorarioComidaMiercolesId = $idMiercoles;
+        $this->_HorarioComidaMiercoles = $nombreMiercoles;
+        $this->_HorarioComidaJuevesId = $idJueves;
+        $this->_HorarioComidaJueves = $nombreJueves;
+        $this->_HorarioComidaViernesId = $idViernes;
+        $this->_HorarioComidaViernes = $nombreViernes;
+        $this->_HorarioComidaSabadoId = $idSabado;
+        $this->_HorarioComidaSabado = $nombreSabado;
+        $this->_HorarioComidaDomingoId = $idDomingo;
+        $this->_HorarioComidaDomingo = $nombreDomingo;
     }
 
  
 
-    function getID()
-    {
+    public function getId() {
         return $this->_id;
     }
 
-    function getNombreHorario()
-    {
+    public function getNombreHorario() {
         return $this->_nombreHorario;
     }
 
-    function getHorarioComidaLunes()
-    {
+    public function getHorarioComidaLunes() {
         return $this->_HorarioComidaLunes;
     }
 
-    function getHorarioComidaMartes()
-    {
+    public function getHorarioComidaLunesId() {
+        return $this->_HorarioComidaLunesId;
+    }
+
+    public function getHorarioComidaMartes() {
         return $this->_HorarioComidaMartes;
     }
-    function getHorarioComidaMiercoles()
-    {
+
+    public function getHorarioComidaMartesId() {
+        return $this->_HorarioComidaMartesId;
+    }
+
+    public function getHorarioComidaMiercoles() {
         return $this->_HorarioComidaMiercoles;
     }
 
-    function getHorarioComidaJueves()
-    {
+    public function getHorarioComidaMiercolesId() {
+        return $this->_HorarioComidaMiercolesId;
+    }
+
+    public function getHorarioComidaJueves() {
         return $this->_HorarioComidaJueves;
     }
 
-    function getHorarioComidaViernes()
-    {
+    public function getHorarioComidaJuevesId() {
+        return $this->_HorarioComidaJuevesId;
+    }
+
+    public function getHorarioComidaViernes() {
         return $this->_HorarioComidaViernes;
     }
-    
-    function getHorarioComidaSabado()
-    {
+
+    public function getHorarioComidaViernesId() {
+        return $this->_HorarioComidaViernesId;
+    }
+
+    public function getHorarioComidaSabado() {
         return $this->_HorarioComidaSabado;
     }
 
-    function getHorarioComidaDomingo()
-    {
+    public function getHorarioComidaSabadoId() {
+        return $this->_HorarioComidaSabadoId;
+    }
+
+    public function getHorarioComidaDomingo() {
         return $this->_HorarioComidaDomingo;
     }
 
-
+    public function getHorarioComidaDomingoId() {
+        return $this->_HorarioComidaDomingoId;
+    }
 
    
     function obtenerHorarioComidas()
@@ -97,8 +128,27 @@ class horarioReglasNegocio
         {
           
             $horarioReglasNegocio = new horarioReglasNegocio();
-            $horarioReglasNegocio->init($horario['id'], $horario['nombreHorario'], $horario['HorioComidaLunes'], $horario['HorioComidaMartes'], $horario['HorioComidaMiercoles'], $horario['HorioComidaJueves'], $horario['HorioComidaViernes'],$horario['HorioComidaSabado'],$horario['HorioComidaDomingo']);
-            array_push($horarios,$horarioReglasNegocio);
+            $horarioReglasNegocio->init(
+                $horario['id'],
+                $horario['nombreHorario'],
+                $horario['idLunes'],
+                $horario['nombreLunes'],
+                $horario['idMartes'],
+                $horario['nombreMartes'],
+                $horario['idMiercoles'],
+                $horario['nombreMiercoles'],
+                $horario['idJueves'],
+                $horario['nombreJueves'],
+                $horario['idViernes'],
+                $horario['nombreViernes'],
+                $horario['idSabado'],
+                $horario['nombreSabado'],
+                $horario['idDomingo'],
+                $horario['nombreDomingo']
+            );
+            
+            array_push($horarios, $horarioReglasNegocio);
+            
             
 
         }
