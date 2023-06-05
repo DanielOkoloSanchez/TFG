@@ -56,7 +56,7 @@ class enterenamientoAccesoDatos
 	}
 
 
-	function createTablaEntrenamientos($nombre, $diaSemana, $ejerUno, $ejerDos, $ejerTres, $ejerCuatro, $ejerCinco, $idUsuario)
+	function createTablaEntrenamientos($nombre, $ejerUno, $ejerDos, $ejerTres, $ejerCuatro, $ejerCinco)
     {
 		
         $conexion = mysqli_connect('localhost', 'root', '1234');
@@ -66,15 +66,67 @@ class enterenamientoAccesoDatos
         }
         mysqli_select_db($conexion, 'entrenaOnlineDB');
         
-        $consulta = mysqli_prepare($conexion, "INSERT INTO ListaEntrenoDia (nombre, entrenamiento1, entrenamiento2, entrenamiento3, entrenamiento4, entrenamiento5, diaSemana, clienteId)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+        $consulta = mysqli_prepare($conexion, "INSERT INTO ListaEntrenos (nombre, entrenamiento1, entrenamiento2, entrenamiento3, entrenamiento4, entrenamiento5)
+        VALUES (?, ?, ?, ?, ?, ?);");
         
-        mysqli_stmt_bind_param($consulta, "sssssssi", $nombre, $ejerUno, $ejerDos, $ejerTres, $ejerCuatro, $ejerCinco, $diaSemana, $idUsuario);
+        mysqli_stmt_bind_param($consulta, "siiiii", $nombre, $ejerUno, $ejerDos, $ejerTres, $ejerCuatro, $ejerCinco);
         
 		$consulta->execute();
     }
 
+	function createEntrenamiento($nombre,$parteCuerpo,$descripcion)
+    {
+		
+        $conexion = mysqli_connect('localhost', 'root', '1234');
+        if (mysqli_connect_errno())
+        {
+            echo "Error al conectar a MySQL: " . mysqli_connect_error();
+        }
+        mysqli_select_db($conexion, 'entrenaOnlineDB');
+        
+        $consulta = mysqli_prepare($conexion, "INSERT INTO entrenamientos (nombre, parteCuerpo, descripcion)
+        VALUES (?, ?, ?);");
+        
+        mysqli_stmt_bind_param($consulta, "sss", $nombre, $parteCuerpo , $descripcion);
+        
+		$consulta->execute();
+    }
 	
+	function deleteEntrenamiento($id)
+    {
+		
+        $conexion = mysqli_connect('localhost', 'root', '1234');
+        if (mysqli_connect_errno())
+        {
+            echo "Error al conectar a MySQL: " . mysqli_connect_error();
+        }
+        mysqli_select_db($conexion, 'entrenaOnlineDB');
+        
+        $consulta = mysqli_prepare($conexion, "DELETE FROM entrenamientos WHERE id =".$id.
+        ";");
+        
+       
+        
+		$consulta->execute();
+    }
+
+	// function createTablaEntrenamientos($nombre, $diaSemana, $ejerUno, $ejerDos, $ejerTres, $ejerCuatro, $ejerCinco, $idUsuario)
+    // {
+		
+    //     $conexion = mysqli_connect('localhost', 'root', '1234');
+    //     if (mysqli_connect_errno())
+    //     {
+    //         echo "Error al conectar a MySQL: " . mysqli_connect_error();
+    //     }
+    //     mysqli_select_db($conexion, 'entrenaOnlineDB');
+        
+    //     $consulta = mysqli_prepare($conexion, "INSERT INTO ListaEntrenoDia (nombre, entrenamiento1, entrenamiento2, entrenamiento3, entrenamiento4, entrenamiento5, diaSemana, clienteId)
+    //     VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+        
+    //     mysqli_stmt_bind_param($consulta, "sssssssi", $nombre, $ejerUno, $ejerDos, $ejerTres, $ejerCuatro, $ejerCinco, $diaSemana, $idUsuario);
+        
+	// 	$consulta->execute();
+    // }	
 
 	}
 	

@@ -92,7 +92,22 @@
          return valores;
        }
 
+       obtenerValoresFormularioHorario() {
+        var valores = [];
+        var formulario = $('#formularioHorario')[0];
+        var dietas = $('.dieta');
 
+        valores.push($('#formularioHorario').val());
+
+        dietas.each(function () {
+          var valor = $(this).val();
+
+          valores.push(valor);
+
+        });
+
+        return valores;
+      }
 
 
 
@@ -100,7 +115,7 @@
          var valoresNulos = false;
 
          for (var i = 0; i < valores.length; i++) {
-           if (valores[i] === null || valores[i] === '' || valores[i] === 0) {
+           if (valores[i] === null || valores[i] === '' || valores[i] === 0 || valores[i] === "" ) {
              valoresNulos = true;
              break;
            }
@@ -132,14 +147,14 @@
            }
 
            if (self.comprobarValoresNulos(valoresFormulario)) {
-             $('#myToast6').toast('show');
+           
              formulario.reset();
              return;
            }
 
            if ($('#recetaComida').val() == $('#recetaCena').val() || $('#recetaMerienda').val() == $('#recetaMeriendaDos').val()) {
              $('#myToast7').toast('show');
-             formulario.reset();
+           
              return;
            }
 
@@ -156,20 +171,27 @@
            var nombre = $('#nombre').val();
            var regex = /^[a-zA-Z0-9]+$/;
            var formulario = $('#formularioHorario')[0];
-           var valoresFormulario = self.obtenerValoresFormulario();
+           var valoresFormulario = self.obtenerValoresFormularioHorario();
 
            console.log(valoresFormulario)
            if (nombre.length > 15 || nombre.length < 3) {
              $('#myToast1').toast('show');
-             formulario.reset();
+            
              return;
            } else if (!regex.test(nombre)) {
              $('#myToast2').toast('show');
-             formulario.reset();
+             
              return;
 
+           
+            }
+            if (self.comprobarValoresNulos(valoresFormulario)) {
+              $('#myToast4').toast('show');
+              formulario.reset();
+              return;
            }
-         });
+          }
+         );
        }
 
        obtenerCaloriasComida(comidaSeleccionada) {
@@ -374,13 +396,13 @@
 
                  var row = '<tr>';
                  row += '<td>' + horario.nombreHorario + '</td>';
-                 row += '<td><a href="tu_pagina.php?id=' + horario.HorarioLunesId + '">' + horario.HorarioLunes + '</a></td>';
-                 row += '<td><a href="tu_pagina.php?id=' + horario.HorarioMartesId + '">' + horario.HorarioMartes + '</a></td>';
-                 row += '<td><a href="tu_pagina.php?id=' + horario.HorarioMiercolesId + '">' + horario.HorarioMiercoles + '</a></td>';
-                 row += '<td><a href="tu_pagina.php?id=' + horario.HorarioJuevesId + '">' + horario.HorarioJueves + '</a></td>';
-                 row += '<td><a href="tu_pagina.php?id=' + horario.HorarioViernesId + '">' + horario.HorarioViernes + '</a></td>';
-                 row += '<td><a href="tu_pagina.php?id=' + horario.HorarioSabadoId + '">' + horario.HorarioSabado + '</a></td>';
-                 row += '<td><a href="tu_pagina.php?id=' + horario.HorarioDomingoId + '">' + horario.HorarioDomingo + '</a></td>';
+                 row += '<td><a href="horarioDia.php?id=' + horario.HorarioLunesId + '">' + horario.HorarioLunes + '</a></td>';
+                 row += '<td><a href="horarioDia.php?id=' + horario.HorarioMartesId + '">' + horario.HorarioMartes + '</a></td>';
+                 row += '<td><a href="horarioDia.php?id=' + horario.HorarioMiercolesId + '">' + horario.HorarioMiercoles + '</a></td>';
+                 row += '<td><a href="horarioDia.php?id=' + horario.HorarioJuevesId + '">' + horario.HorarioJueves + '</a></td>';
+                 row += '<td><a href="horarioDia.php?id=' + horario.HorarioViernesId + '">' + horario.HorarioViernes + '</a></td>';
+                 row += '<td><a href="horarioDia.php?id=' + horario.HorarioSabadoId + '">' + horario.HorarioSabado + '</a></td>';
+                 row += '<td><a href="horarioDia.php?id=' + horario.HorarioDomingoId + '">' + horario.HorarioDomingo + '</a></td>';
                  row += '</tr>';
                  $(".horario tbody").append(row);
 
@@ -411,7 +433,7 @@
        datos.obtenerValoresReceta();
        datos.obtenerCaloriasConsumidas();
        datos.checkValores();
-
+       datos.checkValoresHorario();
 
 
        console.log(datos.obtenerCaloriasAConsumir());

@@ -74,37 +74,37 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         
                 <div class="select-container">
                     <select name="comidaLunes" class="dieta" id="comidaLunes">
-                        <option value="Comida">Comida del Lunes</option>
+                        <option value="">Comida del Lunes</option>
                     </select>
                 </div>
                 <div class="select-container">
                     <select name="comidaMartes" class="dieta" id="comidaMartes">
-                        <option value="Comida">Comida del Martes</option>
+                        <option value="">Comida del Martes</option>
                     </select>
                 </div>
                 <div class="select-container">
                     <select name="comidaMiercoles" class="dieta" id="comidaMiercoles">
-                        <option value="Comida">Comida del Miercoles</option>
+                        <option value="">Comida del Miercoles</option>
                     </select>
                 </div>
                 <div class="select-container">
                     <select name="comidaJueves" class="dieta" id="comidaJueves">
-                        <option value="Comida">Comida del Jueves</option>
+                        <option value="">Comida del Jueves</option>
                     </select>
                 </div>
                 <div class="select-container">
                     <select name="comidaViernes" class="dieta" id="comidaViernes">
-                        <option value="Comida">Comida del Viernes</option>
+                        <option value="">Comida del Viernes</option>
                     </select>
                 </div>
                 <div class="select-container">
                     <select name="comidaSabado" class="dieta" id="comidaSabado">
-                        <option value="Comida">Comida del Sabado</option>
+                        <option value="">Comida del Sabado</option>
                     </select>
                 </div>
                 <div class="select-container">
                     <select name="comidaDomingo" class="dieta" id="comidaDomingo">
-                        <option value="Comida">Comida del Domingo</option>
+                        <option value="">Comida del Domingo</option>
                     </select>
                 </div>
 
@@ -175,6 +175,18 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
             </div>
             <div class="toast-body">
                 No se pudo crear la tabla de entrenamientos.
+            </div>
+        </div>
+
+
+        <div id="myToast4" class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Error</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close">
+                </button>
+            </div>
+            <div class="toast-body">
+                No te saltes ningun dia de dieta
             </div>
         </div>
 

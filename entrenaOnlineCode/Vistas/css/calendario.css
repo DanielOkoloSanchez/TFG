@@ -5,7 +5,16 @@ body {
     background-color: red;
 }
 
-
+a {
+    text-decoration: none !important; /* Elimina la decoración de subrayado */
+   
+  }
+  
+  
+  a:hover {
+    text-decoration: none; /* Elimina la decoración de subrayado al pasar el mouse */
+    color: inherit; /* Hereda el color del texto al pasar el mouse */
+  } 
 
 h1 , h2 {
     text-align: center;
@@ -26,6 +35,8 @@ h1 , h2 {
    bottom: 10px;
   }
 
+ 
+  
 
 .dia {
     text-align: center;
@@ -288,6 +299,8 @@ tr {
     transform: translate(5px, -50%);
     white-space: nowrap;
 }
+
+
 
 .add-button:hover .tooltip {
     opacity: 1;

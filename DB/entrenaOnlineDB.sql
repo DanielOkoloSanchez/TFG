@@ -31,23 +31,34 @@ CREATE TABLE entrenamientos (
   parteCuerpo ENUM('pierna', 'brazo', 'pecho', 'espalda') NOT NULL
 );
 
-CREATE TABLE ListaEntrenoDia (
+
+CREATE TABLE ListaEntrenos (
   id INT PRIMARY KEY AUTO_INCREMENT,
   nombre VARCHAR(255) NOT NULL,
   entrenamiento1 INT NOT NULL,
   entrenamiento2 INT NOT NULL,
   entrenamiento3 INT NOT NULL,
   entrenamiento4 INT NOT NULL,
-  entrenamiento5 INT NOT NULL,
-  diaSemana ENUM('Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes') NOT NULL,
-  clienteId INT NOT NULL,
+  entrenamiento5 INT NOT NULL,  
   FOREIGN KEY (entrenamiento1) REFERENCES entrenamientos(id),
   FOREIGN KEY (entrenamiento2) REFERENCES entrenamientos(id),
   FOREIGN KEY (entrenamiento3) REFERENCES entrenamientos(id),
   FOREIGN KEY (entrenamiento4) REFERENCES entrenamientos(id),
-  FOREIGN KEY (entrenamiento5) REFERENCES entrenamientos(id),
+  FOREIGN KEY (entrenamiento5) REFERENCES entrenamientos(id)
+);
+
+
+CREATE TABLE ListaEntrenoDia (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  diaSemana ENUM('Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes') NOT NULL,
+  clienteId INT NOT NULL,
+  listaEntrenosId int not null,
+  FOREIGN KEY (listaEntrenosId) REFERENCES ListaEntrenos(id),
   FOREIGN KEY (clienteId) REFERENCES cliente(id)
 );
+
+
+
 
 CREATE TABLE empleado (
   id INT PRIMARY KEY AUTO_INCREMENT,

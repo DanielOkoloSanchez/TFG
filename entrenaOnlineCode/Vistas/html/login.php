@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         if($rango==="client"){
         header("Location: personalInfoVista.php");
     }else{
-       // header("Location: listaTorneosVistaJugador.php");
+        header("Location: AdminVista.php");
     }
     }
     else

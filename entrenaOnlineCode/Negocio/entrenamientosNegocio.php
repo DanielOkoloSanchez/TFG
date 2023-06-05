@@ -95,20 +95,37 @@ class entrenamientosReglasNegocio
         
     }
 
-    function createTablaEntrenamientos($nombre,$diaSemana,$ejerUno,$ejerDos, $ejerTres, $ejerCuatro, $ejerCinco)
+    function createTablaEntrenamientos($nombre,$ejerUno,$ejerDos, $ejerTres, $ejerCuatro, $ejerCinco)
     {   
         
 
-        $ClienteDAL = new ClienteAccesoDatos();
-        $cliente = $ClienteDAL->obtenerClienteInfo($_COOKIE["IdClienteCookie"]);
-        
+        // $ClienteDAL = new ClienteAccesoDatos();
+        // $cliente = $ClienteDAL->obtenerClienteInfo($_COOKIE["IdClienteCookie"]);
+        //$cliente["id"]      
         
         $EntrenamientosAccesoDatos = new enterenamientoAccesoDatos();
-        $EntrenamientosAccesoDatos->createTablaEntrenamientos($nombre,$diaSemana,$ejerUno,$ejerDos, $ejerTres, $ejerCuatro, $ejerCinco,$cliente["id"]);
+        $EntrenamientosAccesoDatos->createTablaEntrenamientos($nombre,$ejerUno,$ejerDos, $ejerTres, $ejerCuatro, $ejerCinco);
        
        
     }
 
+    function createEntrenamiento($nombre,$descripcion,$parteCuerpo)
+    {   
+        
+        $EntrenamientosAccesoDatos = new enterenamientoAccesoDatos();
+        $EntrenamientosAccesoDatos->createEntrenamiento($nombre,$descripcion,$parteCuerpo);
+       
+       
+    }
+
+    function deleteEntrenamiento($id)
+    {   
+        
+        $EntrenamientosAccesoDatos = new enterenamientoAccesoDatos();
+        $EntrenamientosAccesoDatos->deleteEntrenamiento($id);
+       
+       
+    }
     
 }
 
