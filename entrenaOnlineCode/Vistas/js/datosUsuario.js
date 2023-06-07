@@ -121,6 +121,31 @@ class GestionDatosUsuario {
         });
       }
 
+      generarClave() {
+        
+       
+        var caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()";
+        var clave = "";
+        
+      
+        var mayuscula = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+        clave += mayuscula;
+        
+       
+        for (var i = 0; i < 6; i++) {
+          var caracter = caracteres[Math.floor(Math.random() * caracteres.length)];
+          clave += caracter;
+        }
+        
+       
+        var especial = caracteres[Math.floor(Math.random() * 14) + 26];
+        clave += especial;
+        
+        $(".clave").val(clave);
+      
+       
+      }
+    
       
 
       
@@ -129,9 +154,9 @@ class GestionDatosUsuario {
 
 $(document).ready(function () {
     let datos = new GestionDatosUsuario();
-    
-   
-    datos.obtenerValoresUsuario();
-   
+       datos.generarClave(); 
+       datos.obtenerValoresUsuario();
+       
+  
    
 });

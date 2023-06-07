@@ -160,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
             </div>
         </div>
 
-
+<!-- 
         <div id="myToast5" class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
                 <strong class="me-auto">Error</strong>
@@ -170,7 +170,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
             <div class="toast-body">
                 La comida no esta lista , vuelva mas tarde...  .
             </div>
-        </div>
+        </div> -->
 
 
         <div id="myToast4" class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">

@@ -184,7 +184,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 
 
 <div class="desc">
-    <p>Crea los Ejercicios para usuarios</p>
+    <p>Borrar  los Ejercicios para usuarios</p>
 </div>
 
 <form id="formularioEjercicios" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">

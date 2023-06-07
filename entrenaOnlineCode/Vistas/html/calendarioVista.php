@@ -174,7 +174,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
                 </button>
             </div>
             <div class="toast-body">
-                No se pudo crear la tabla de entrenamientos.
+                No se pudo crear el horario.
             </div>
         </div>
 

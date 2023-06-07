@@ -1,0 +1,238 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+h1,
+h2 {
+    text-align: left;
+    color: #333;
+}
+
+.title-div {
+    margin-top: 90px;
+}
+
+.select-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.select-row {
+    display: flex;
+    align-items: center;
+}
+
+.select-container {
+    margin-right: 10px;
+}
+
+.create-button {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 5px;
+}
+
+td {
+    padding: 10px;
+}
+
+th {
+    background-color: #333333;
+    color: white;
+    padding: 10px;
+}
+
+.nav-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.nav-item {
+    float: left;
+}
+
+.nav-item a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.nav-item a:hover {
+    background-color: #111;
+}
+
+.nav-item.right {
+    float: right;
+}
+
+.select-partecuerpo {
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    margin: 10px;
+}
+
+.select-container select,
+.select-container input[type="text"] {
+    width: 200px;
+    padding: 8px;
+    font-size: 14px;
+}
+
+.reset-button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 4px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 2px;
+    margin-left: 10px;
+}
+
+.desc {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+form {
+    margin: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="password"],
+form select {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+form input[type="submit"] {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 14px;
+}
+
+.toast-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.toast {
+    position: relative;
+    max-width: 300px;
+    margin-bottom: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.toast.show {
+    opacity: 1;
+}
+
+.toast-header {
+    padding: 6px 8px;
+    background-color: #dc3545;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.toast-body {
+    padding: 8px 10px;
+    background-color: white;
+    color: #333;
+    font-size: 14px;
+}
+
+.toast .btn-close {
+    padding: 0;
+    color: white;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    opacity: 0.8;
+    font-size: 16px;
+}
+
+.toast .btn-close:hover {
+    opacity: 1;
+}
+
+.barra-navegacion {
+    background-color: #333;
+    overflow: hidden;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.nav-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.nav-item {
+    float: left;
+}
+
+.nav-item a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.nav-item a:hover {
+    background-color: #111;
+}
+
+.nav-item.right {
+    float: right;
+}
+
+

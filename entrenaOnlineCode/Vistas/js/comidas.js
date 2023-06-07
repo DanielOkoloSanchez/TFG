@@ -63,8 +63,7 @@
 
                });
              } else {
-               $('#myToast5').toast('show');
-             }
+                           }
            },
            error: function (xhr, status, error) {
              $('#myToast4').toast('show');
@@ -411,6 +410,7 @@
                });
              } else {
                $('#myToast5').toast('show');
+               console.log("paraguy")
              }
            },
            error: function (xhr, status, error) {
