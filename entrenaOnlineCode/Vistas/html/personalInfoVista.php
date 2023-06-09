@@ -40,6 +40,14 @@
 <div class="container">
     <div class="title">
         <h1>Estadísticas Personales</h1>
+        <?php 
+        require_once("../../AccesoDatos/clienteAccesoDatos.php");        
+        var_dump($_COOKIE["IdClienteCookie"]);
+            $ClienteDAL = new ClienteAccesoDatos();
+             $cliente = $ClienteDAL->obtenerClienteInfo($_COOKIE["IdClienteCookie"]);
+            var_dump($cliente["id"])
+             
+             ?>
     </div>
 
     <div class="card-container">

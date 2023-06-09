@@ -65,10 +65,10 @@ class comidasReglasNegocio
 
     function obtenerRecetas()
     {
-        $ClienteDAL = new ClienteAccesoDatos();
-        $cliente = $ClienteDAL->obtenerClienteInfo($_COOKIE["IdClienteCookie"]);
+        
+        $idCliente = $_COOKIE["IdClienteCookie"];
         $comidasDAL = new comidasAccesoDatos();
-        $rs = $comidasDAL->obtenerRecetas($cliente["id"]);
+        $rs = $comidasDAL->obtenerRecetas($idCliente);
         $listaRecetas =  array();
        
 

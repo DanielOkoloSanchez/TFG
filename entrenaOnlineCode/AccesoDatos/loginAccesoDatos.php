@@ -7,22 +7,7 @@ class LoginAccesoDatos
     {
     }
 
-	function insertar($usuario,$rango,$clave)
-	{
-		$conexion = mysqli_connect('localhost','root','1234');
-		if (mysqli_connect_errno())
-		{
-				echo "Error al conectar a MySQL: ". mysqli_connect_error();
-		}
- 		
-        mysqli_select_db($conexion, 'entrenaOnlineDB');
-		$consulta = mysqli_prepare($conexion, "insert into usuario(nombre,clave,rango) values (?,?,?);");
-        $hash = password_hash($clave, PASSWORD_DEFAULT);
-        $consulta->bind_param("sss", $usuario,$hash,$rango);
-        $res = $consulta->execute();
-        
-		return $res;
-	}
+
 
     function verificar($usuario,$clave)
     {

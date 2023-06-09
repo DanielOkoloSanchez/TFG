@@ -262,15 +262,6 @@
 
 
 
-       $(".ejer").on("change", function () {
-         var valorSeleccionado = $(this).val();
-         console.log(valorSeleccionado)
-       });
-
-       $("#ejerDos").on("change", function () {
-         var valorSeleccionado = $(this).val();
-         console.log(valorSeleccionado)
-       });
-
+   
 
      });

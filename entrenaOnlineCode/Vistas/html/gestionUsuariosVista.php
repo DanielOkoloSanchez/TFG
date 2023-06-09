@@ -1,29 +1,29 @@
 <?php
-require ("../../Negocio/entrenamientosNegocio.php");
+require ("../../Negocio/usuarioNegocio.php");
+require_once ("../../Negocio/clienteNegocio.php");
 if ($_SERVER["REQUEST_METHOD"]=="POST")
 {
     
     
-    if (isset($_POST['ejercicioUno'])) {
-        // Procesar la primera sección del formulario (creación de tabla de entrenamientos)
-        $EntrenamientosReglasNegocio = new entrenamientosReglasNegocio();
-        $EntrenamientosReglasNegocio->createTablaEntrenamientos($_POST['nombreTabla'],$_POST['ejercicioUno'],$_POST['ejercicioDos'],$_POST['ejercicioTres'],$_POST['ejercicioCuatro'],$_POST['ejercicioCinco']);
 
-        header("Location: " . $_SERVER['PHP_SELF']);
-    } elseif (isset($_POST['parte-cuerpo-Creacion'])) {
-        $EntrenamientosReglasNegocio = new entrenamientosReglasNegocio();
-        $EntrenamientosReglasNegocio->createEntrenamiento($_POST['nombreTabla'], $_POST['parte-cuerpo-Creacion'], $_POST['descripcion']);
-        
-        
-        header("Location: " . $_SERVER['PHP_SELF']);
-    }elseif (isset($_POST['borrarEjer'])) {
+
+    if (isset($_POST['borrarEjer'])) {
         $EntrenamientosReglasNegocio = new entrenamientosReglasNegocio();
         $EntrenamientosReglasNegocio->deleteEntrenamiento($_POST['borrarEjer']);
         
         
         header("Location: " . $_SERVER['PHP_SELF']);
+    }else {
+        $UsuarioReglasNegocio = new usuarioReglasNegocio();
+        $UsuarioReglasNegocio->insertarCliente($_POST['nick'],$_POST['clave']);
+
+        $ClienteBL = new clienteReglasNegocio();
+        $cliente = $ClienteBL->createCliente($_POST['nombre'],$_POST['primerApellido'],$_POST['segundoApellido'],$_POST['sexo'],$_POST['fechaNacimiento'],$_POST['altura'],$_POST['peso'],$_POST['complexion'],$_POST['objetivo']);
+        
     }
-    
+
+
+
 }
 ?>
 
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 <body>
     <?php
 
-    require_once ("../../Negocio/clienteNegocio.php");
+   
    
         session_start(); // reanudamos la sesión
         if (!isset($_SESSION['usuario']))
@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 
 
 
-    <form action="insertar_usuario.php" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <form  method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <label for=" nombre">Nick:</label>
         <input type="text" name="nick" required>
 
@@ -95,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 
 
 
-        <form action="insertar_cliente.php" method="POST">
+       
             <label for="nombre">Nombre:</label>
             <input type="text" name="nombre" required>
 

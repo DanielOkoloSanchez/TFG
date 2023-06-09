@@ -43,7 +43,6 @@ class comidasAccesoDatos
 				echo "Error al conectar a MySQL: ". mysqli_connect_error();
 		}
  		mysqli_select_db($conexion, 'entrenaOnlineDB');
-		
 		$consulta = mysqli_prepare($conexion, "
 		select id,nombre,desayuno,meriendaMedioDia,comida,meriendaTarde,cena from  alimentacionDelDia
 		WHERE usuario_id =".$idCliente." ;" );
@@ -68,7 +67,7 @@ class comidasAccesoDatos
             echo "Error al conectar a MySQL: " . mysqli_connect_error();
         }
         mysqli_select_db($conexion, 'entrenaOnlineDB');
-		$sanetizedNombre = mysqli_real_escape_string($conexion, $nombre);
+		$sanetizedNombre = mysqli_real_escape_string($nombre,$conexion );
         $consulta = mysqli_prepare($conexion, "INSERT INTO  alimentacionDelDia (nombre,desayuno, meriendaMedioDia, comida, meriendaTarde, cena,usuario_id)
         VALUES (?, ?, ?, ?,?,?,?);");
        

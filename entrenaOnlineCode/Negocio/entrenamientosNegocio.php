@@ -1,8 +1,7 @@
 <?php
 
 require_once("../../AccesoDatos/entrenamientosAcessoDatos.php");
-require_once("../../AccesoDatos/clienteAccesoDatos.php");
-require_once ("../../Negocio/clienteNegocio.php");
+
 
 
 class entrenamientosReglasNegocio
@@ -99,9 +98,10 @@ class entrenamientosReglasNegocio
     {   
         
 
-        // $ClienteDAL = new ClienteAccesoDatos();
+    // $ClienteDAL = new ClienteAccesoDatos();
         // $cliente = $ClienteDAL->obtenerClienteInfo($_COOKIE["IdClienteCookie"]);
         //$cliente["id"]      
+        
         
         $EntrenamientosAccesoDatos = new enterenamientoAccesoDatos();
         $EntrenamientosAccesoDatos->createTablaEntrenamientos($nombre,$ejerUno,$ejerDos, $ejerTres, $ejerCuatro, $ejerCinco);

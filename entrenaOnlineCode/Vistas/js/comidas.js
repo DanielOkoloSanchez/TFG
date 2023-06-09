@@ -35,7 +35,7 @@
 
 
        obtenerValoresReceta() {
-
+        
          $.ajax({
            url: 'enlaceDatos.php',
            type: 'POST',
@@ -48,7 +48,7 @@
                console.log(data);
                $.each(data, function (index, receta) {
 
-
+                console.log(data);
 
                  if (receta.momentoComida === "cena" || receta.momentoComida === "comida") {
                    $("#recetaComida").append("<option value='" + receta.id + "'>" + receta.nombre + "</option>");
@@ -62,8 +62,7 @@
 
 
                });
-             } else {
-                           }
+             } else {}
            },
            error: function (xhr, status, error) {
              $('#myToast4').toast('show');
@@ -225,13 +224,12 @@
            var selectId = $(this).attr("id");
            var comidaSeleccionada = $(this).val();
 
-           // Verificar si la comida seleccionada ha cambiado en el mismo select
+           
            if (recetasSeleccionadas.hasOwnProperty(selectId)) {
              var comidaAnterior = recetasSeleccionadas[selectId];
 
-             // Verificar si el valor de la comida seleccionada ha cambiado
              if (comidaSeleccionada !== comidaAnterior) {
-               // Restar las calorías de la comida anterior
+              
                self.obtenerCaloriasComida(comidaAnterior)
                  .then(function (calorias) {
                    self.caloriasConsumidasTotal -= parseInt(calorias);
@@ -243,10 +241,10 @@
              }
            }
 
-           // Guardar la nueva comida seleccionada en el mismo select
+          
            recetasSeleccionadas[selectId] = comidaSeleccionada;
 
-           // Sumar las calorías de la comida seleccionada
+          
            self.obtenerCaloriasComida(comidaSeleccionada)
              .then(function (calorias) {
                self.caloriasConsumidasTotal += parseInt(calorias);
@@ -428,9 +426,9 @@
      $(document).ready(function () {
        let datos = new GestionDatosComidas();
        datos.checkCalorias();
+       datos.obtenerValoresReceta();
        datos.obtenerDietas();
        datos.obtenerHorarios();
-       datos.obtenerValoresReceta();
        datos.obtenerCaloriasConsumidas();
        datos.checkValores();
        datos.checkValoresHorario();

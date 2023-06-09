@@ -92,7 +92,13 @@ class clienteReglasNegocio
        
     }
 
-
+    
+    function createCliente($nombre, $primerApellido,$segundoApellido,$sexo,$fechaNacimiento, $altura, $peso, $complexion, $objetivo)
+    {
+        $ClienteDAL = new ClienteAccesoDatos();
+        $ClienteDAL->createCliente($nombre, $primerApellido,$segundoApellido,$sexo,$fechaNacimiento, $altura, $peso, $complexion, $objetivo);
+       
+    }
 }
 
 
