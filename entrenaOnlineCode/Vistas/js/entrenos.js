@@ -18,7 +18,10 @@
              if (data && data.length > 0) {
                console.log(data);
                $.each(data, function (index, entrenamiento) {
-                 $(".ejer").append("<option value='" + entrenamiento.id + "'>" + entrenamiento.nombre + "</option>");
+              
+                $(".ejer").append("<option value='" + entrenamiento.id + "'>" + entrenamiento.nombre + "</option>");
+                $(".borrarEjer").append("<option value='" + entrenamiento.id + "'>" + entrenamiento.nombre + "</option>");
+                 
                });
              } else {
                console.log("La respuesta del servidor no contiene datos JSON válidos.");
@@ -29,6 +32,8 @@
            }
          });
        }
+
+    
 
       
       
@@ -166,7 +171,7 @@
          var ejercicios = $('.ejer');
 
          valores.push($('#nombre').val());
-         valores.push($('#dias-semana').val());
+        
 
          ejercicios.each(function () {
            var valor = $(this).val();
@@ -257,7 +262,7 @@
        datos.checkFiltroValor();
        datos.obtenerValoresTabla();
        datos.reiniciarFiltro();
-       datos.obtenerValoresSelect();
+       datos.obtenerValoresSelect();    
        datos.recibirFiltroCuerpo();
 
 

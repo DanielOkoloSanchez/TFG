@@ -93,24 +93,31 @@ class enterenamientoAccesoDatos
     }
 	
 	function deleteEntrenamiento($id)
+{
+    $conexion = mysqli_connect('localhost', 'root', '1234');
+    if (mysqli_connect_errno())
     {
-		
-        $conexion = mysqli_connect('localhost', 'root', '1234');
-        if (mysqli_connect_errno())
-        {
-            echo "Error al conectar a MySQL: " . mysqli_connect_error();
-        }
-        mysqli_select_db($conexion, 'entrenaOnlineDB');
-        
-        $consulta = mysqli_prepare($conexion, "DELETE FROM entrenamientos WHERE id =".$id.
-        ";");
-        
-       
-        
-		$consulta->execute();
+        echo "Error al conectar a MySQL: " . mysqli_connect_error();
     }
+    mysqli_select_db($conexion, 'entrenaOnlineDB');
+
+    $consulta = "
+        DELETE FROM ListaEntrenos WHERE entrenamiento1 = $id OR entrenamiento2 = $id OR entrenamiento3 = $id OR entrenamiento4 = $id OR entrenamiento5 = $id;
+        DELETE FROM entrenamientos WHERE id = $id;
+    ";
+
+    if (mysqli_multi_query($conexion, $consulta)) {
+        
+        echo "Entrenamiento eliminado exitosamente.";
+    } else {
+        echo "Error al eliminar el entrenamiento: " . mysqli_error($conexion);
+    }
+
+    mysqli_close($conexion);
 
 
 
 	}
+
+}
 	

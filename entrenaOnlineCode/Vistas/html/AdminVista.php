@@ -8,22 +8,23 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         // Procesar la primera sección del formulario (creación de tabla de entrenamientos)
         $EntrenamientosReglasNegocio = new entrenamientosReglasNegocio();
         $EntrenamientosReglasNegocio->createTablaEntrenamientos($_POST['nombreTabla'],$_POST['ejercicioUno'],$_POST['ejercicioDos'],$_POST['ejercicioTres'],$_POST['ejercicioCuatro'],$_POST['ejercicioCinco']);
-
-        header("Location: " . $_SERVER['PHP_SELF']);
-    } elseif (isset($_POST['parte-cuerpo-Creacion'])) {
-        $EntrenamientosReglasNegocio = new entrenamientosReglasNegocio();
-        $EntrenamientosReglasNegocio->createEntrenamiento($_POST['nombreTabla'], $_POST['parte-cuerpo-Creacion'], $_POST['descripcion']);
-        
-        
-        header("Location: " . $_SERVER['PHP_SELF']);
-    }elseif (isset($_POST['borrarEjer'])) {
-        $EntrenamientosReglasNegocio = new entrenamientosReglasNegocio();
-        $EntrenamientosReglasNegocio->deleteEntrenamiento($_POST['borrarEjer']);
-        
-        
-        header("Location: " . $_SERVER['PHP_SELF']);
-    }
     
+        header("Location: " . $_SERVER['PHP_SELF']);
+    
+            } elseif (isset($_POST['parte-cuerpo-Creacion'])) {
+                $EntrenamientosReglasNegocio = new entrenamientosReglasNegocio();
+                $EntrenamientosReglasNegocio->createEntrenamiento($_POST['nombreEjer'], $_POST['parte-cuerpo-Creacion'], $_POST['descripcion']);
+                
+                
+                header("Location: " . $_SERVER['PHP_SELF']);
+            }elseif (isset($_POST['borrarEjer'])) {
+                $EntrenamientosReglasNegocio = new entrenamientosReglasNegocio();
+                $EntrenamientosReglasNegocio->deleteEntrenamiento($_POST['borrarEjer']);
+                
+                
+                header("Location: " . $_SERVER['PHP_SELF']);
+            }
+            
 }
 ?>
 
@@ -33,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 <html>
 
 <head>
-    <title>Rutinas</title>
+    <title>Gestion Entrenamientos</title>
     <script src="../js/jquery.js"></script>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../css/bts-css/css/bootstrap.min.css">
@@ -112,27 +113,27 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 
 
                 <div class="select-container">
-                    <select name="ejercicioUno" class="ejer" id="ejer1">
+                    <select name="ejercicioUno" class="ejer"  class="ejercicioSelected" id="ejer1">
                         <option value="" selected>Ejercicio</option>
                     </select>
                 </div>
                 <div class="select-container">
-                    <select name="ejercicioDos" class="ejer" id="ejer2">
+                    <select name="ejercicioDos" class="ejer" class="ejercicioSelected" id="ejer2">
                         <option value="" selected>Ejercicio</option>
                     </select>
                 </div>
                 <div class="select-container">
-                    <select name="ejercicioTres" class="ejer" id="ejer3">
+                    <select name="ejercicioTres" class="ejer" class="ejercicioSelected" id="ejer3">
                         <option value="" selected>Ejercicio</option>
                     </select>
                 </div>
                 <div class="select-container">
-                    <select name="ejercicioCuatro" class="ejer" id="ejer4">
+                    <select name="ejercicioCuatro" class="ejer" class="ejercicioSelected" id="ejer4">
                         <option value="" selected>Ejercicio</option>
                     </select>
                 </div>
                 <div class="select-container">
-                    <select name="ejercicioCinco" class="ejer" id="ejer5">
+                    <select name="ejercicioCinco" class="ejer" class="ejercicioSelected" id="ejer5">
                         <option value="" selected>Ejercicio</option>
                     </select>
                 </div>
@@ -152,12 +153,9 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         <div class="select-wrapper">
             <div class="select-row">
                 <div class="select-container">
-                    <input id="nombre" name="nombreTabla" required type="text" placeholder="Nombre">
+                    <input id="nombreEjer" name="nombreEjer" required type="text" placeholder="Nombre">
                 </div>
 
-
-      
-             
                 <div class="select-container">
                 <select id="parte-cuerpo-Creacion" name="parte-cuerpo-Creacion">
                 <option value="def">Parte del Cuerpo</option>
@@ -187,13 +185,13 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
     <p>Borrar  los Ejercicios para usuarios</p>
 </div>
 
-<form id="formularioEjercicios" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+<form id="formularioBorrarEjercicio" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
     <div class="select-wrapper">
         <div class="select-row">
           
 
         <div class="select-container">
-                    <select name="borrarEjer" class="ejer" id="borrarEjer">
+                    <select name="borrarEjer"  class="borrarEjer"  id="borrarEjer">
                         <option value="" selected>Ejercicio</option>
                     </select>
                 </div>
