@@ -145,6 +145,35 @@ class GestionDatosUsuario {
       
        
       }
+
+      obtenerUsuariosCliente() {
+        $.ajax({
+          url: 'enlaceDatos.php',
+          type: 'POST',
+          data: {
+            action: 'obtenerUsuariosCliente'
+          },
+          dataType: 'json',
+          success: function (data) {
+            if (data && data.length > 0) {
+              console.log(data);
+              $.each(data, function (index, cliente) {
+             
+               $(".usr").append("<option value='" + cliente.id + "'>" + cliente.nombre + "</option>");
+               
+                
+              });
+            } else {
+              console.log("La respuesta del servidor no contiene datos JSON válidos.");
+            }
+          },
+          error: function (xhr, status, error) {
+            console.log("Error en la petición AJAX: " + error);
+          }
+        });
+      }
+
+      
     
       
 
@@ -156,6 +185,7 @@ $(document).ready(function () {
     let datos = new GestionDatosUsuario();
        datos.generarClave(); 
        datos.obtenerValoresUsuario();
+       datos.obtenerUsuariosCliente();
        
   
    

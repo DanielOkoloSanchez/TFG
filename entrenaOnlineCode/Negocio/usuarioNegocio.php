@@ -6,6 +6,7 @@ require_once("../../AccesoDatos/usuarioAccesoDatos.php");
 class usuarioReglasNegocio
 {
     private $_userId;
+    private $_nombre;
 
 	function __construct()
     {
@@ -17,6 +18,43 @@ class usuarioReglasNegocio
 
     function getUserId(){
         return $this->_userId;
+    }
+
+    function getNombre(){
+        return $this->_nombre;
+    }
+
+    function initUsuario($id,$nombre)
+    {
+        
+        $this->_userId = $id;
+        $this->_nombre = $nombre;
+        
+    }
+
+
+
+    function obtenerUsuarios()
+    {
+        $usuarioDAL = new usuarioAccesoDatos();
+        $rs = $usuarioDAL->obtenerUsuarios();
+
+        $usuarios =  array();
+       
+        foreach ($rs as $usuario)
+        {
+          
+            $UsuarioBL = new usuarioReglasNegocio();
+            $UsuarioBL->initUsuario($usuario['id'], $usuario['nombre'] );
+            array_push($usuarios,$UsuarioBL);
+            
+        }
+       
+        return $usuarios;
+        
+        
+        
+       
     }
 
     function insertarCliente($usuario,$clave)
@@ -49,7 +87,11 @@ class usuarioReglasNegocio
         return $rs;
         
     }
+
+
 }
+
+
 
 
 

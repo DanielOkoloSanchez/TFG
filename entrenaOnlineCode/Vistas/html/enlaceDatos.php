@@ -5,6 +5,8 @@ require_once("../../Negocio/TablasEntrenamientosNegocio.php");
 require_once("../../Negocio/comidaNegocio.php");
 require_once("../../Negocio/dietaNegocio.php");
 require_once("../../Negocio/horarioNegocio.php");
+require_once ("../../Negocio/usuarioNegocio.php");
+
 
 
 
@@ -38,7 +40,61 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }elseif ($action === 'obtenerHorarios') 
     {
         obtenerHorarioComidas();
+    }elseif ($action === 'obtenerUsuariosCliente') {
+        obtenerUsuariosCliente();
+    }elseif ($action === 'obtenerUsuarios') {
+        obtenerUsuarios();
     }
+}
+
+
+
+
+
+function obtenerUsuarios(){
+    $valor = new usuarioReglasNegocio();
+    $listas = $valor->obtenerUsuarios();
+
+    $data = array();
+
+    foreach ($listas as $lista) {
+       
+        $usuario = array(
+            "id" => $lista->getUserId(),
+            "nombre" => $lista->getNombre()
+        );
+
+       
+      
+        $data[] = $usuario;
+        
+    }
+    header('Content-Type: application/json');
+    echo json_encode($data);
+}
+
+
+function obtenerUsuariosCliente(){
+    $valor = new clienteReglasNegocio();
+    $listas = $valor->obtenerUsuariosCliente();
+
+    $data = array();
+
+    foreach ($listas as $lista) {
+       
+        $cliente = array(
+            "id" => $lista->getClientId(),
+            "nombre" => $lista->getNombre()
+        );
+
+       
+        
+        $data[] = $cliente;
+    }
+
+   
+    header('Content-Type: application/json');
+    echo json_encode($data);
 }
 
     
@@ -253,9 +309,5 @@ function obtenerValoresUsuario()
     header('Content-Type: application/json');
     echo json_encode($data);
 }
-
-
-
-
 
 ?>

@@ -1,6 +1,7 @@
 <?php
 
 require_once("../../AccesoDatos/clienteAccesoDatos.php");
+require_once("../../AccesoDatos/usuarioAccesoDatos.php");
 
 class clienteReglasNegocio
 {
@@ -63,6 +64,8 @@ class clienteReglasNegocio
         return $this->_objetivo;
     }
 
+    
+
     function init($id,$nombre,$apellido,$sexo,$fechaNacimiento,$altura,$peso,$complexion,$objetivo)
     {
         
@@ -77,6 +80,13 @@ class clienteReglasNegocio
         $this->_objetivo = $objetivo;
     }
 
+    function initUsuario($id,$nombre)
+    {
+        
+        $this->_clientId = $id;
+        $this->_nombre = $nombre;
+        
+    }
    
 
     function obtenerClienteInfo()
@@ -92,14 +102,52 @@ class clienteReglasNegocio
        
     }
 
+   
     
+    function obtenerUsuariosCliente()
+    {
+        $usuarioDAL = new usuarioAccesoDatos();
+        $rs = $usuarioDAL->obtenerClientes();
+
+        $clientes =  array();
+       
+        foreach ($rs as $cliente)
+        {
+          
+            $ClienteBL = new clienteReglasNegocio();
+            $ClienteBL->initUsuario($cliente['id'], $cliente['nombre']);
+            array_push($clientes,$ClienteBL);
+            
+        }
+       
+        return $clientes;
+        
+        
+        
+       
+    }
+
+
+
     function createCliente($nombre, $primerApellido,$segundoApellido,$sexo,$fechaNacimiento, $altura, $peso, $complexion, $objetivo)
     {
         $ClienteDAL = new ClienteAccesoDatos();
         $ClienteDAL->createCliente($nombre, $primerApellido,$segundoApellido,$sexo,$fechaNacimiento, $altura, $peso, $complexion, $objetivo);
        
     }
+
+    function deleteCliente($id)
+    {   
+        
+        $usuarioDAL = new usuarioAccesoDatos();
+        $usuarioDAL->deleteUsuarioCliente($id);
+       
+       
+    }
 }
+
+
+
 
 
 ?>

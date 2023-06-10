@@ -68,6 +68,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
             <li class="nav-item"><a href="gestionUsuariosVista.php">Gestión de usuarios</a></li>
             <li class="nav-item"><a href="GestionAnunciosVista.php">Gestion Anuncios</a></li>
             <li class="nav-item"><a href="AdminVista.php">Gestion Entrenamientos</a></li>
+            <li class="nav-item"><a href="GestionRecetasVista.php">Gestion Recetas</a></li>
 
 
             <li class="nav-item right"><a href="logout.php">Cerrar Sesión</a></li>
@@ -182,7 +183,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 
 
 <div class="desc">
-    <p>Borrar  los Ejercicios para usuarios</p>
+    <p>Borrar  los Ejercicios para usuarios se borraran las tablas con este ejercicio</p>
 </div>
 
 <form id="formularioBorrarEjercicio" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">

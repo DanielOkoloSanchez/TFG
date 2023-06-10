@@ -1,5 +1,5 @@
 <?php
-require ("../../Negocio/usuarioNegocio.php");
+require_once ("../../Negocio/usuarioNegocio.php");
 require_once ("../../Negocio/clienteNegocio.php");
 if ($_SERVER["REQUEST_METHOD"]=="POST")
 {
@@ -7,12 +7,12 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
     
 
 
-    if (isset($_POST['borrarEjer'])) {
-        $EntrenamientosReglasNegocio = new entrenamientosReglasNegocio();
-        $EntrenamientosReglasNegocio->deleteEntrenamiento($_POST['borrarEjer']);
-        
+    if (isset($_POST['borrarUsr'])) {
+        $clienteReglasNegocio = new clienteReglasNegocio();
+        $clienteReglasNegocio->deleteCliente($_POST['borrarUsr']);
         
         header("Location: " . $_SERVER['PHP_SELF']);
+
     }else {
         $UsuarioReglasNegocio = new usuarioReglasNegocio();
         $UsuarioReglasNegocio->insertarCliente($_POST['nick'],$_POST['clave']);
@@ -20,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         $ClienteBL = new clienteReglasNegocio();
         $cliente = $ClienteBL->createCliente($_POST['nombre'],$_POST['primerApellido'],$_POST['segundoApellido'],$_POST['sexo'],$_POST['fechaNacimiento'],$_POST['altura'],$_POST['peso'],$_POST['complexion'],$_POST['objetivo']);
         
+        header("Location: " . $_SERVER['PHP_SELF']);
     }
 
 
@@ -33,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 <html>
 
 <head>
-    <title>Rutinas</title>
+    <title>Gestión Usuario</title>
     <script src="../js/jquery.js"></script>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../css/bts-css/css/bootstrap.min.css">
@@ -58,12 +59,14 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
     ?>
 
     <script src="../js/datosUsuario.js"></script>
+    <script src="../js/formularioUsuario.js"></script>
 
     <nav class="barra-navegacion">
         <ul class="nav-list">
             <li class="nav-item"><a href="gestionUsuariosVista.php">Gestión de usuarios</a></li>
             <li class="nav-item"><a href="GestionAnunciosVista.php">Gestion Anuncios</a></li>
             <li class="nav-item"><a href="AdminVista.php">Gestion Entrenamientos</a></li>
+            <li class="nav-item"><a href="GestionRecetasVista.php">Gestion Recetas</a></li>
 
 
             <li class="nav-item right"><a href="logout.php">Cerrar Sesión</a></li>
@@ -144,17 +147,15 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 
 
         <div class="desc">
-            <p>Borrar los Ejercicios para usuarios</p>
+            <p>Borrar los usuarios cliente del sistema</p>
         </div>
 
-        <form id="formularioEjercicios" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <form id="formularioBorrarUser" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <div class="select-wrapper">
                 <div class="select-row">
-
-
                     <div class="select-container">
-                        <select name="borrarEjer" class="ejer" id="borrarEjer">
-                            <option value="" selected>Ejercicio</option>
+                        <select name="borrarUsr" class="usr" id="borrarUsr">
+                            <option value="" selected>Usuario</option>
                         </select>
                     </div>
                 </div>
@@ -173,51 +174,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 
         <div id="myToastContainer" class="toast-container top-0 end-0 p-3">
 
-            <div id="myToast1" class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
-
-
-                <div class="toast-header">
-                    <strong class="me-auto">Error</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    El nombre de la tabla debe contener entre 3 y 15 letras.
-                </div>
-            </div>
-
-
-            <div id="myToast2" class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <strong class="me-auto">Error</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    Existen caracteres especiales o espacios en el nombre de la Tabla.
-                </div>
-            </div>
-
-
-
-            <div id="myToast3" class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <strong class="me-auto">Error</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    No se puede dejar ningún campo null.
-                </div>
-            </div>
-
-
-            <div id="myToast4" class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <strong class="me-auto">Error</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    No puedes repetir ejercicios en una misma tabla.
-                </div>
-            </div>
+        </div>
 
 
 
