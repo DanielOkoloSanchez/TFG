@@ -1,5 +1,5 @@
 <?php
-require ("../../Negocio/comidaNegocio.php");
+require_once ("../../Negocio/comidaNegocio.php");
 if ($_SERVER["REQUEST_METHOD"]=="POST")
 {
     $comidasReglasNegocio = new comidasReglasNegocio();

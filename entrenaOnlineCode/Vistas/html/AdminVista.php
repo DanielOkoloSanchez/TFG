@@ -1,5 +1,5 @@
 <?php
-require ("../../Negocio/entrenamientosNegocio.php");
+require_once ("../../Negocio/entrenamientosNegocio.php");
 if ($_SERVER["REQUEST_METHOD"]=="POST")
 {
     

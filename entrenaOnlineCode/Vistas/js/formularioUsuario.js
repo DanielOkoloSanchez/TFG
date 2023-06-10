@@ -4,7 +4,7 @@ class Formulario {
   }
 
   bindEvents() {
-    $('form').submit(async (event) => {
+    $('#crearUsuarios').submit(async (event) => {
       event.preventDefault();
       if (await this.validarFormulario()) {
         event.currentTarget.submit();

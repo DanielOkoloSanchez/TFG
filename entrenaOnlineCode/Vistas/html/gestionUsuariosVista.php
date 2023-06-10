@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 
 
 
-    <form  method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <form id = "crearUsuarios" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <label for=" nombre">Nick:</label>
         <input type="text" name="nick" required>
 

@@ -60,7 +60,28 @@ class comidasReglasNegocio
     }
 
 
-   
+    function obtenerAllRecetas()
+    {
+        
+        
+        $comidasDAL = new comidasAccesoDatos();
+        $rs = $comidasDAL->obtenerAllRecetas();
+        $listaRecetas =  array();
+       
+
+        foreach ($rs as $receta)
+        {
+          
+            $comidasReglasNegocio = new comidasReglasNegocio();
+            $comidasReglasNegocio->Init($receta['id'],$receta['nombre'],$receta['descripcion'],$receta['calorias'],$receta['tipo'],$receta['momentoComida']);
+            array_push($listaRecetas,$comidasReglasNegocio);
+            
+
+        }
+       
+        return $listaRecetas;
+        
+    }
    
 
     function obtenerRecetas()
@@ -109,6 +130,22 @@ class comidasReglasNegocio
     
      }
 
+     function createReceta($nombre,$descripcion,$calorias,$tipo,$momentoComida)
+     {   
+        
+         $comidasAccesoDatos = new comidasAccesoDatos();
+         $comidasAccesoDatos->createReceta($nombre,$descripcion,$calorias,$tipo,$momentoComida);
+    
+     }
+
+     function deleteReceta($id)
+     {   
+         
+        $comidasAccesoDatos = new comidasAccesoDatos();
+        $comidasAccesoDatos->deleteReceta($id);
+        
+        
+     }
     
 }
 

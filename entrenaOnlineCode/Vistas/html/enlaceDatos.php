@@ -44,6 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         obtenerUsuariosCliente();
     }elseif ($action === 'obtenerUsuarios') {
         obtenerUsuarios();
+    }elseif ($action === 'obtenerAllRecetas') {
+        obtenerAllRecetas();
     }
 }
 
@@ -260,6 +262,34 @@ function obtenerValoresRecetas() {
     echo json_encode($data);
 }
 
+function obtenerAllRecetas() {
+    $valor = new comidasReglasNegocio();
+    $listas = $valor->obtenerAllRecetas();
+
+   
+    $data = array();
+
+    foreach ($listas as $lista) {
+       
+        $recetas = array(
+            "id" => $lista->getID(),
+            "nombre" => $lista->getNombre(),
+            "descripcion" => $lista->getDescripcion(),
+            "calorias" => $lista->getCalorias(),
+            "tipo"=>$lista->getTipo(),
+            "momentoComida"=>$lista->getMomentoComida()
+        );
+
+        
+        $data[] = $recetas;
+    }
+    
+   
+    header('Content-Type: application/json');
+    
+    echo json_encode($data);
+}
+
 function obtenerValoresSelectFiltrado($parteCuerpo) {
     $entrenamientosBL = new entrenamientosReglasNegocio();
     $entrenamientos = $entrenamientosBL->obtenerEntrenamientosFiltrados($parteCuerpo);
@@ -309,5 +339,7 @@ function obtenerValoresUsuario()
     header('Content-Type: application/json');
     echo json_encode($data);
 }
+
+
 
 ?>

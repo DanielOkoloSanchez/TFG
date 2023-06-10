@@ -35,6 +35,30 @@ class comidasAccesoDatos
 	}
 
 
+	function obtenerAllRecetas()
+	{
+		$conexion = mysqli_connect('localhost','root','1234');
+		if (mysqli_connect_errno())
+		{
+				echo "Error al conectar a MySQL: ". mysqli_connect_error();
+		}
+ 		mysqli_select_db($conexion, 'entrenaOnlineDB');
+		
+		$consulta = mysqli_prepare($conexion, "
+		SELECT recetas.id, recetas.nombre, recetas.descripcion, recetas.calorias, recetas.tipo, recetas.momentoComida
+		FROM recetas;" );
+        $consulta->execute();
+        $result = $consulta->get_result();
+        $recetas = array();
+       	while($myrow = $result->fetch_assoc())
+		{
+			array_push($recetas,$myrow);
+	   	};
+		
+		return $recetas;
+	
+	}
+
 	 function obtenerDietasUsuario($idCliente)
 	{
 		$conexion = mysqli_connect('localhost','root','1234');
@@ -90,6 +114,25 @@ class comidasAccesoDatos
         VALUES (?, ?, ?, ?,?,?,?,?,?);");
        
         mysqli_stmt_bind_param($consulta, "siiiiiiii", $sanetizedNombre, $comidaLunes, $comidaMartes, $comidaMiercoles, $comidaJueves, $comidaViernes ,$comidaSabado,$comidaDomingo,$idCliente);
+        
+		$consulta->execute();
+    }
+
+	function createReceta($nombre,$descripcion,$calorias,$tipo,$momentoComida)
+    {
+		
+        $conexion = mysqli_connect('localhost', 'root', '1234');
+        if (mysqli_connect_errno())
+        {
+            echo "Error al conectar a MySQL: " . mysqli_connect_error();
+        }
+        mysqli_select_db($conexion, 'entrenaOnlineDB');
+		$sanetizedNombre = mysqli_real_escape_string($conexion, $nombre);
+		$sanetizedDescripcion = mysqli_real_escape_string($conexion, $descripcion);
+        $consulta = mysqli_prepare($conexion, "INSERT INTO recetas (nombre, descripcion, calorias, tipo, momentoComida)
+        VALUES (?, ?, ?, ?,?);");
+       
+        mysqli_stmt_bind_param($consulta, "ssiss", $sanetizedNombre, $sanetizedDescripcion, $calorias,$tipo,$momentoComida);
         
 		$consulta->execute();
     }
@@ -152,8 +195,35 @@ class comidasAccesoDatos
 
 
 	
+	function deleteReceta($id)
+{
+    $conexion = mysqli_connect('localhost', 'root', '1234');
+    if (mysqli_connect_errno())
+    {
+        echo "Error al conectar a MySQL: " . mysqli_connect_error();
+    }
+    mysqli_select_db($conexion, 'entrenaOnlineDB');
 
+    $consulta = "
+        
+        DELETE FROM recetas WHERE id = $id;
+    ";
+
+    if (mysqli_multi_query($conexion, $consulta)) {
+        
+        echo "Entrenamiento eliminado exitosamente.";
+    } else {
+        echo "Error al eliminar el entrenamiento: " . mysqli_error($conexion);
+    }
+
+    mysqli_close($conexion);
+
+
+
+	}
 	
 
 	}
+
+	
 	
