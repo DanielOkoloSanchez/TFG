@@ -1,10 +1,10 @@
-class FormularioComidaValidador {
+class FormularioAnuncioValidador {
   constructor() {
     this.bindEvents();
   }
 
   bindEvents() {
-    $("#crearReceta").submit((event) => {
+    $("#crearAnuncio").submit((event) => {
       event.preventDefault();
       if (this.validarFormulario()) {
         event.currentTarget.submit();
@@ -15,8 +15,8 @@ class FormularioComidaValidador {
   validarFormulario() {
     const nombre = $('input[name="nombre"]').val();
     const descripcion = $('textarea[name="descripcion"]').val();
-    const calorias = parseInt($('input[name="calorias"]').val());
-
+   
+    
     if (!this.validarNombre(nombre)) {
       this.mostrarToast('El campo Nombre es inválido.');
       return false;
@@ -27,12 +27,8 @@ class FormularioComidaValidador {
       return false;
     }
 
-    if (!this.validarCalorias(calorias)) {
-      this.mostrarToast('El campo Calorías es inválido.');
-      return false;
-    }
-
     return true;
+   
   }
 
   validarNombre(nombre) {
@@ -40,7 +36,7 @@ class FormularioComidaValidador {
       return false;
     }
 
-    const regex = /^[a-zA-Z\s]+$/;
+    const regex = /^[a-zA-Z\s-]+$/;
     return regex.test(nombre);
   }
 
@@ -53,46 +49,43 @@ class FormularioComidaValidador {
     return regex.test(descripcion);
   }
 
-  validarCalorias(calorias) {
-    return calorias <= 800;
-  }
 
   mostrarToast(mensaje) {
-
     var toastContainer = $('#myToastContainer');
-
+  
     toastContainer.empty();
-    
+  
     const toast = `
       <div class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-body">${mensaje}</div>
       </div>
     `;
-
+  
     $('#myToastContainer').append(toast);
     $('.toast').toast('show');
   }
+  
 
 
 
 
-  obtenerAllReceta() {
+  obtenerAnuncio() {
         
     $.ajax({
       url: 'enlaceDatos.php',
       type: 'POST',
       data: {
-        action: 'obtenerAllRecetas'
+        action: 'obtenerAnuncio'
       },
       dataType: 'json',
       success: function (data) {
         if (data && data.length > 0) {
           console.log(data);
-          $.each(data, function (index, receta) {
+          $.each(data, function (index, anuncio) {
 
            console.log(data);
 
-              $("#recetaBorrar").append("<option value='" + receta.id + "'>" + receta.nombre + "</option>");
+              $("#anuncioBorrar").append("<option value='" + anuncio.id + "'>" + anuncio.nombre + "</option>");
             
           });
         } else {}
@@ -107,6 +100,6 @@ class FormularioComidaValidador {
 }
 
 $(document).ready(function () {
-  var formulario = new FormularioComidaValidador();
-  formulario.obtenerAllReceta()
+  var formulario = new FormularioAnuncioValidador();
+  formulario.obtenerAnuncio();
 });

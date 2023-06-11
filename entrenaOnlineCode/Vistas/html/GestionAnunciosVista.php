@@ -1,19 +1,19 @@
 <?php
-require_once ("../../Negocio/comidaNegocio.php");
+require_once ("../../Negocio/anunciosNegocio.php");
 if ($_SERVER["REQUEST_METHOD"]=="POST")
 {
     
     
-    if (isset($_POST['recetaBorrar'])) {
-        $comidaReglasNegocio = new comidasReglasNegocio();
-        $comidaReglasNegocio->deleteReceta($_POST['recetaBorrar']);
+    if (isset($_POST['anuncioBorrar'])) {
+        $comidaReglasNegocio = new anunciosReglasNegocio();
+        $comidaReglasNegocio->deleteAnuncio($_POST['anuncioBorrar']);
         
         
         header("Location: " . $_SERVER['PHP_SELF']);
         
             }else  {
-                $comidaReglasNegocio = new comidasReglasNegocio();
-                $comidaReglasNegocio->createReceta($_POST['nombre'],$_POST['descripcion'],$_POST['calorias'],$_POST['tipo'],$_POST['momentoComida']);
+                $comidaReglasNegocio = new anunciosReglasNegocio();
+                $comidaReglasNegocio->createAnuncio($_POST['nombre'],$_POST['descripcion']);
             
                 header("Location: " . $_SERVER['PHP_SELF']);
             }
@@ -27,16 +27,12 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 <html>
 
 <head>
-    <title>Gestion Recetas</title>
+    <title>Gestion Anuncios</title>
     <script src="../js/jquery.js"></script>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../css/bts-css/css/bootstrap.min.css">
     <script src="../js/bts-js/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/gestion.css">
-
-
-
-
 </head>
 
 <body>
@@ -53,8 +49,9 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
        
         
     ?>
-    <script src="../js/formularioComida.js"></script>
-    <script src="../js/datosUsuario.js"></script>
+     <script src="../js/formularioAnuncios.js"></script>
+   <script src="../js/datosUsuario.js"></script>
+   
 
     <nav class="barra-navegacion">
         <ul class="nav-list">
@@ -74,49 +71,37 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 
     <div class="title-div">
         <h1>Hola Admin <span class="nombreCliente"></span></h1>
-        <h2>Gestor de recetas</h2>
+        <h2>Gestor de Anuncios</h2>
     </div>
 
    
 
     <div class="desc">
-        <p>Crea las Recetas para usuarios</p>
+        <p>Crea los Anuncios que veran los usuarios</p>
     </div>
 
-    <form id="crearReceta" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" required><br><br>
-
-    <label for="descripcion">Descripción:</label>
+   
+    <form id="crearAnuncio" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+  <label for="nombre">Nombre:</label>
+  <input type="text" id="nombre" name="nombre" required>
+  <br>
+  
+  <label for="descripcion">Descripción:</label>
     <textarea id="descripcion" name="descripcion" rows="4" cols="50" required></textarea><br><br>
-
-
-    <label for="calorias">Calorías:</label>
-    <input type="number" id="calorias" name="calorias" required><br><br>
-
-    <label for="tipo">Tipo:</label>
-    <select id="tipo" name="tipo" required>
-      <option value="mantenimiento">Mantenimiento</option>
-      <option value="volumen">Volumen</option>
-      <option value="definicion">Definición</option>
-    </select><br><br>
-
-    <label for="momentoComida">Momento de Comida:</label>
-    <select id="momentoComida" name="momentoComida" required>
-      <option value="desayuno">Desayuno</option>
-      <option value="merienda">Merienda</option>
-      <option value="comida">Comida</option>
-      <option value="cena">Cena</option>
-    </select><br><br>
-
-    <input type="submit" value="Insertar Receta">
-  </form>
+  
+  
+  
+  <br>
+  <br>
+  
+  <input type="submit" value="Enviar">
+</form>
 
    
 
 
 <div class="desc">
-    <p>Borrar  las Recetas que no quieres que dispongan los usuarios se borraran los horarios con esta receta</p>
+    <p>Borrar los Anuncios que veran los usuarios </p>
 </div>
 
 <form id="formularioBorrarReceta" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
@@ -125,8 +110,8 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
           
 
         <div class="select-container">
-                    <select name="recetaBorrar"  class="borrarReceta"  id="recetaBorrar">
-                        <option value="" selected>Recetas</option>
+                    <select name="anuncioBorrar"  class="borrarAnuncio"  id="anuncioBorrar">
+                        <option value="" selected>Anuncios</option>
                     </select>
                 </div>
             </div>

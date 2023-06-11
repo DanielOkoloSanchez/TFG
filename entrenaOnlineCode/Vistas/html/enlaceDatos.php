@@ -6,12 +6,7 @@ require_once("../../Negocio/comidaNegocio.php");
 require_once("../../Negocio/dietaNegocio.php");
 require_once("../../Negocio/horarioNegocio.php");
 require_once ("../../Negocio/usuarioNegocio.php");
-
-
-
-
-
-
+require_once ("../../Negocio/anunciosNegocio.php");
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -46,11 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         obtenerUsuarios();
     }elseif ($action === 'obtenerAllRecetas') {
         obtenerAllRecetas();
+    }elseif ($action === 'obtenerAnuncio') {
+        obtenerAnuncios();
     }
 }
-
-
-
 
 
 function obtenerUsuarios(){
@@ -71,6 +65,28 @@ function obtenerUsuarios(){
         $data[] = $usuario;
         
     }
+    header('Content-Type: application/json');
+    echo json_encode($data);
+}
+
+
+
+function obtenerAnuncios(){
+    $valor = new anunciosReglasNegocio();
+    $listas = $valor->obtenerAnuncios();
+
+    $data = array();
+
+    foreach ($listas as $lista) {
+       
+        $anuncio = array(
+            "id" => $lista->getID(),
+            "nombre" => $lista->getNombre()
+        );
+
+        $data[] = $anuncio;
+    }
+
     header('Content-Type: application/json');
     echo json_encode($data);
 }

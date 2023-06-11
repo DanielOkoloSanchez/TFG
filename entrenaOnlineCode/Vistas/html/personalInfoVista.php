@@ -14,7 +14,6 @@
 
 
     <?php
-    //TODO (hacer que peso y edad los calcule el programa) 
     require_once ("../../Negocio/clienteNegocio.php");
     session_start(); // reanudamos la sesión
     if (!isset($_SESSION['usuario'])) {
@@ -40,14 +39,6 @@
 <div class="container">
     <div class="title">
         <h1>Estadísticas Personales</h1>
-        <?php 
-        require_once("../../AccesoDatos/clienteAccesoDatos.php");        
-        var_dump($_COOKIE["IdClienteCookie"]);
-            $ClienteDAL = new ClienteAccesoDatos();
-             $cliente = $ClienteDAL->obtenerClienteInfo($_COOKIE["IdClienteCookie"]);
-            var_dump($cliente["id"])
-             
-             ?>
     </div>
 
     <div class="card-container">

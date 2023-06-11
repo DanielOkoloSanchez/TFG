@@ -32,6 +32,54 @@ class anunciosAccesoDatos
 		return $anuncios;
 	
 	}
+
+	function createAnuncio($nombre,$descripcion,$fecha,$idEmpleado)
+    {
+		
+        $conexion = mysqli_connect('localhost', 'root', '1234');
+        if (mysqli_connect_errno())
+        {
+            echo "Error al conectar a MySQL: " . mysqli_connect_error();
+        }
+        mysqli_select_db($conexion, 'entrenaOnlineDB');
+		$sanetizedNombre = mysqli_real_escape_string($conexion, $nombre);
+		$sanetizedDescripcion = mysqli_real_escape_string($conexion, $descripcion);
+        $consulta = mysqli_prepare($conexion, "INSERT INTO anuncios (nombre, descripcion, fecha, empleado_id)
+        VALUES (?, ?, ?, ?);");
+       
+        mysqli_stmt_bind_param($consulta, "sssi", $sanetizedNombre, $sanetizedDescripcion, $fecha,$idEmpleado);
+        
+		$consulta->execute();
+    }
+
+	function deleteAnuncio($id)
+{
+    $conexion = mysqli_connect('localhost', 'root', '1234');
+    if (mysqli_connect_errno())
+    {
+        echo "Error al conectar a MySQL: " . mysqli_connect_error();
+    }
+    mysqli_select_db($conexion, 'entrenaOnlineDB');
+
+    $consulta = "
+        
+        DELETE FROM anuncios WHERE id = $id;
+    ";
+
+    if (mysqli_multi_query($conexion, $consulta)) {
+        
+        echo "Entrenamiento eliminado exitosamente.";
+    } else {
+        echo "Error al eliminar el entrenamiento: " . mysqli_error($conexion);
+    }
+
+    mysqli_close($conexion);
+
+
+
+	}
+	
+
 	
 
 	}

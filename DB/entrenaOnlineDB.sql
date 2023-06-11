@@ -72,7 +72,7 @@ CREATE TABLE empleado (
 );
 
 CREATE TABLE recetas (
-  id INT PRIMARY KEY,
+  id INT PRIMARY KEY auto_increment,
   nombre VARCHAR(25) NOT NULL,
   descripcion VARCHAR(255) NOT NULL,
   calorias INT NOT NULL,

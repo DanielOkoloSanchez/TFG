@@ -27,7 +27,7 @@ class anunciosReglasNegocio
 
     function getID()
     {
-        return $this->_id;
+        return $this->_anuncioId;
     }
 
     function getNombre()
@@ -70,6 +70,23 @@ class anunciosReglasNegocio
         return $listaAnuncios;
         
     }
+
+    function createAnuncio($nombre,$descripcion)
+     {   
+        
+         $anunciosAccesoDatos = new anunciosAccesoDatos();
+         $anunciosAccesoDatos->createAnuncio($nombre,$descripcion,date("Y-m-d"),$_COOKIE["IdClienteCookie"]);
+    
+     }
+
+     function deleteAnuncio($id)
+     {   
+         
+        $anunciosAccesoDatos = new anunciosAccesoDatos();
+        $anunciosAccesoDatos->deleteAnuncio($id);
+        
+        
+     }
         
     }
 

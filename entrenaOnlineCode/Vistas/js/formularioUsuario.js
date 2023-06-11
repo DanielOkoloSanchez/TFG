@@ -51,7 +51,7 @@ class Formulario {
       return false;
     }
 
-    if (altura > 2 || isNaN(altura) || !decimalRegex.test(altura) || parseFloat(altura) <= 0) {
+    if (parseFloat(altura) > 3 || isNaN(altura) || !decimalRegex.test(altura) || parseFloat(altura) <= 0) {
       this.mostrarToast("El campo Altura es inválido.");
       return false;
     }
