@@ -126,7 +126,7 @@ class comidasReglasNegocio
      {   
         
          $comidasAccesoDatos = new comidasAccesoDatos();
-         $comidasAccesoDatos->createAlimentacionDelDia($nombre,$desayuno,$merienda,$comida,$meriendaDos, $cena);
+         $comidasAccesoDatos->createAlimentacionDelDia($nombre,$desayuno,$merienda,$comida,$meriendaDos, $cena,$_COOKIE["IdClienteCookie"]);
     
      }
 

@@ -14,7 +14,6 @@
 
 
     <?php
-    //TODO (hacer que peso y edad los calcule el programa) 
     require_once ("../../Negocio/clienteNegocio.php");
     session_start(); // reanudamos la sesión
     if (!isset($_SESSION['usuario'])) {

@@ -1,272 +1,257 @@
-     class GestionDatosEntreno {
-       constructor() {
+class GestionDatosEntreno {
+  constructor() {}
 
-
-       }
-
-
-
-       obtenerValoresSelect() {
-         $.ajax({
-           url: 'enlaceDatos.php',
-           type: 'POST',
-           data: {
-             action: 'obtenerValoresSelect'
-           },
-           dataType: 'json',
-           success: function (data) {
-             if (data && data.length > 0) {
-               console.log(data);
-               $.each(data, function (index, entrenamiento) {
-              
-                $(".ejer").append("<option value='" + entrenamiento.id + "'>" + entrenamiento.nombre + "</option>");
-                $(".borrarEjer").append("<option value='" + entrenamiento.id + "'>" + entrenamiento.nombre + "</option>");
-                 
-               });
-             } else {
-               console.log("La respuesta del servidor no contiene datos JSON válidos.");
-             }
-           },
-           error: function (xhr, status, error) {
-             console.log("Error en la petición AJAX: " + error);
-           }
-         });
-       }
-
-    
-
-      
-      
-      
-       
-        obtenerValoresTabla() {
-        $.ajax({
-          url: 'enlaceDatos.php',
-          type: 'POST',
-          data: {
-            action: 'obtenerValoresTabla'
-          },
-          dataType: 'json',
-          success: function(data) {
-            if (data && data.length > 0) {
-              console.log(data);
-      
-              $.each(data, function(index, entrenamiento) {
-            
-                if (entrenamiento.diaSemana == "Lunes") {
-                  $(".lista-lunes").append("<a href= entrenoVista.php?EjerciciosId=" + entrenamiento.id +">" + "<li>"+entrenamiento.nombre+"</li>" + "</a>")
-                  
-                 }else if(entrenamiento.diaSemana == "Martes"){
-                  $(".lista-Martes").append("<a href= entrenoVista.php?EjerciciosId=" + entrenamiento.id +">"+"<li>"+entrenamiento.nombre+"</li>"+ "</a>")
-                 }else if(entrenamiento.diaSemana == "Miercoles"){
-                  $(".lista-Miercoles").append("<a href= entrenoVista.php?EjerciciosId=" + entrenamiento.id +">"+"<li>"+entrenamiento.nombre+"</li>"+ "</a>")
-                 }else if(entrenamiento.diaSemana == "Jueves"){
-                  $(".lista-Jueves").append("<a href= entrenoVista.php?EjerciciosId=" + entrenamiento.id +">"+"<li>"+entrenamiento.nombre+"</li>"+ "</a>")
-                 }else{
-                  $(".lista-Viernes").append("<a href= entrenoVista.php?EjerciciosId=" + entrenamiento.id +">"+"<li>"+entrenamiento.nombre+"</li>"+ "</a>")
-                 }
-              
-              });
-      
-            } else {
-              console.log("La respuesta del servidor no contiene datos JSON válidos.");
-            }
-          },
-          error: function(xhr, status, error) {
-            console.log("Error en la petición AJAX: " + error);
-          }
-        });
+  obtenerValoresSelect() {
+    $.ajax({
+      url: 'enlaceDatos.php',
+      type: 'POST',
+      data: {
+        action: 'obtenerValoresSelect'
+      },
+      dataType: 'json',
+      success: function (data) {
+        if (data && data.length > 0) {
+          console.log(data);
+          $.each(data, function (index, entrenamiento) {
+            $(".ejer").append("<option value='" + entrenamiento.id + "'>" + entrenamiento.nombre + "</option>");
+            $(".borrarEjer").append("<option value='" + entrenamiento.id + "'>" + entrenamiento.nombre + "</option>");
+          });
+        } else {
+          console.log("La respuesta del servidor no contiene datos JSON válidos.");
+        }
+      },
+      error: function (xhr, status, error) {
+        console.log("Error en la petición AJAX: " + error);
       }
-      
-      
-      
-      
-      
+    });
+  }
 
-       reiniciarFiltro() {
-         $(".reset-button").on("click", () => {
-           $('#parte-cuerpo')[0].selectedIndex = 0;
-           $(".reset-button").prop('disabled', true);
-           var selectEjercicios = $(".ejer");
-           var valorSeleccionado = selectEjercicios.val();
-           selectEjercicios.find("option:not(:selected)").remove();
-           $.ajax({
-             url: 'enlaceDatos.php',
-             type: 'POST',
-             data: {
-               action: 'obtenerValoresSelect'
-             },
-             dataType: 'json',
-             success: function (data) {
-               if (data && data.length > 0) {
-                 console.log(data);
-                 $.each(data, function (index, entrenamiento) {
-                   if (entrenamiento.id !== valorSeleccionado) {
-                     selectEjercicios.append("<option value='" + entrenamiento.id + "'>" + entrenamiento.nombre + "</option>");
-                   }
-                 });
-               } else {
-                 console.log("La respuesta del servidor no contiene datos JSON válidos.");
-               }
-             },
-             error: function (xhr, status, error) {
-               console.log("Error en la petición AJAX: " + error);
-             }
-           });
-         });
+  obtenerValoresTabla() {
+    $.ajax({
+      url: 'enlaceDatos.php',
+      type: 'POST',
+      data: {
+        action: 'obtenerValoresTabla'
+      },
+      dataType: 'json',
+      success: function (data) {
+        if (data && data.length > 0) {
+          console.log(data);
 
-       }
+          $.each(data, function (index, entrenamiento) {
+            if (entrenamiento.diaSemana == "Lunes") {
+              $(".lista-lunes").append("<a href= entrenoVista.php?EjerciciosId=" + entrenamiento.listaEntrenosid + "&Id=" + entrenamiento.id + ">" + "<li>" + entrenamiento.nombre + "</li>" + "</a>")
+            } else if (entrenamiento.diaSemana == "Martes") {
+              $(".lista-Martes").append("<a href= entrenoVista.php?EjerciciosId=" + entrenamiento.listaEntrenosid + "&Id=" + entrenamiento.id + ">" + "<li>" + entrenamiento.nombre + "</li>" + "</a>")
+            } else if (entrenamiento.diaSemana == "Miercoles") {
+              $(".lista-Miercoles").append("<a href= entrenoVista.php?EjerciciosId=" + entrenamiento.listaEntrenosid + "&Id=" + entrenamiento.id + ">" + "<li>" + entrenamiento.nombre + "</li>" + "</a>")
+            } else if (entrenamiento.diaSemana == "Jueves") {
+              $(".lista-Jueves").append("<a href= entrenoVista.php?EjerciciosId=" + entrenamiento.listaEntrenosid + "&Id=" + entrenamiento.id + ">" + "<li>" + entrenamiento.nombre + "</li>" + "</a>")
+            } else {
+              $(".lista-Viernes").append("<a href= entrenoVista.php?EjerciciosId=" + entrenamiento.listaEntrenosid + "&Id=" + entrenamiento.id + ">" + "<li>" + entrenamiento.nombre + "</li>" + "</a>")
+            }
+          });
 
+        } else {
+          console.log("La respuesta del servidor no contiene datos JSON válidos.");
+        }
+      },
+      error: function (xhr, status, error) {
+        console.log("Error en la petición AJAX: " + error);
+      }
+    });
+  }
 
-       recibirFiltroCuerpo() {
-         $("#parte-cuerpo").on("change", function () {
-           var parteCuerpo = $(this).val();
-           $.ajax({
-             url: 'enlaceDatos.php',
-             type: 'POST',
-             data: {
-               action: 'obtenerValoresSelectFiltrado',
-               parteCuerpo: parteCuerpo
-             },
-             dataType: 'json',
-             success: function (data) {
-               if (data && data.length > 0) {
-                 console.log(data);
-                 var selectEjercicios = $(".ejer");
-                 var valorSeleccionado = selectEjercicios.val();
-                 selectEjercicios.find("option:not(:selected)").remove();
+  rellenarSelectTablasEntrenaminto() {
+    $.ajax({
+      url: 'enlaceDatos.php',
+      type: 'POST',
+      data: {
+        action: 'obtenerListaEntrenos'
+      },
+      dataType: 'json',
+      success: function (data) {
+        if (data && data.length > 0) {
+          console.log(data);
 
-                 $.each(data, function (index, entrenamiento) {
-                   if (entrenamiento.id !== valorSeleccionado) {
-                     selectEjercicios.append("<option value='" + entrenamiento.id + "'>" + entrenamiento.nombre + "</option>");
-                   }
-                 });
-               } else {
-                 console.log("La respuesta del servidor no contiene datos JSON válidos.");
-               }
-             },
-             error: function (xhr, status, error) {
-               console.log("Error en la petición AJAX: " + error);
-             }
-           });
-         });
-       }
+          $.each(data, function (index, entrenamiento) {
+            $("#listaEntrenoId").append("<option value='" + entrenamiento.id + "'>" + entrenamiento.nombre + "</option>");
+            console.log(entrenamiento.id)
+          });
 
+        } else {
+          console.log("La respuesta del servidor no contiene datos JSON válidos.");
+        }
+      },
+      error: function (xhr, status, error) {
+        console.log("Error en la petición AJAX: " + error);
+      }
+    });
+  }
 
-       checkFiltroValor() {
-         $('#parte-cuerpo').on('input', function () {
-           console.log()
-           if ($(this).val() !== "def") {
-             $(".reset-button").prop('disabled', false);
-           } else {
-             $(".reset-button").prop('disabled', true);
-           }
+  reiniciarFiltro() {
+    $(".reset-button").on("click", () => {
+      $('#parte-cuerpo')[0].selectedIndex = 0;
+      $(".reset-button").prop('disabled', true);
+      var selectEjercicios = $(".ejer");
+      var valorSeleccionado = selectEjercicios.val();
+      selectEjercicios.find("option:not(:selected)").remove();
+      this.obtenerValoresSelect();
+    });
+  }
 
-         });
-       }
+  recibirFiltroCuerpo() {
+    $("#parte-cuerpo").on("change", () => {
+      var parteCuerpo = $(this).val();
+      $.ajax({
+        url: 'enlaceDatos.php',
+        type: 'POST',
+        data: {
+          action: 'obtenerValoresSelectFiltrado',
+          parteCuerpo: parteCuerpo
+        },
+        dataType: 'json',
+        success: function (data) {
+          if (data && data.length > 0) {
+            console.log(data);
+            var selectEjercicios = $(".ejer");
+            var valorSeleccionado = selectEjercicios.val();
+            selectEjercicios.find("option:not(:selected)").remove();
 
-       obtenerValoresFormulario() {
-         var valores = [];
-         var formulario = $('#formulario')[0];
-         var ejercicios = $('.ejer');
+            $.each(data, function (index, entrenamiento) {
+              if (entrenamiento.id !== valorSeleccionado) {
+                selectEjercicios.append("<option value='" + entrenamiento.id + "'>" + entrenamiento.nombre + "</option>");
+              }
+            });
+          } else {
+            console.log("La respuesta del servidor no contiene datos JSON válidos.");
+          }
+        },
+        error: function (xhr, status, error) {
+          console.log("Error en la petición AJAX: " + error);
+        }
+      });
+    });
+  }
 
-         valores.push($('#nombre').val());
-        
+  checkFiltroValor() {
+    $('#parte-cuerpo').on('input', function () {
+      if ($(this).val() !== "def") {
+        $(".reset-button").prop('disabled', false);
+      } else {
+        $(".reset-button").prop('disabled', true);
+      }
+    });
+  }
 
-         ejercicios.each(function () {
-           var valor = $(this).val();
+  obtenerValoresFormulario() {
+    var valores = [];
+    var formulario = $('#formulario')[0];
+    var ejercicios = $('.ejer');
 
-           valores.push(valor);
+    valores.push($('#nombre').val());
 
-         });
+    ejercicios.each(function () {
+      var valor = $(this).val();
+      valores.push(valor);
+    });
 
-         return valores;
-       }
+    return valores;
+  }
 
-       comprobarValoresRepetidos(valores) {
-         var valoresRepetidos = false;
+  comprobarValoresRepetidos(valores) {
+    var valoresRepetidos = false;
 
-         for (var i = 0; i < valores.length; i++) {
-           for (var j = i + 1; j < valores.length; j++) {
-             if (valores[i] === valores[j]) {
-               valoresRepetidos = true;
-               break;
-             }
-           }
-           if (valoresRepetidos) {
-             break;
-           }
-         }
+    for (var i = 0; i < valores.length; i++) {
+      for (var j = i + 1; j < valores.length; j++) {
+        if (valores[i] === valores[j]) {
+          valoresRepetidos = true;
+          break;
+        }
+      }
+      if (valoresRepetidos) {
+        break;
+      }
+    }
 
-         return valoresRepetidos;
-       }
+    return valoresRepetidos;
+  }
 
+  comprobarValoresNulos(valores) {
+    var valoresNulos = false;
 
+    for (var i = 0; i < valores.length; i++) {
+      if (valores[i] === null || valores[i] === '') {
+        valoresNulos = true;
+        break;
+      }
+    }
 
-       comprobarValoresNulos(valores) {
-         var valoresNulos = false;
+    return valoresNulos;
+  }
 
-         for (var i = 0; i < valores.length; i++) {
-           if (valores[i] === null || valores[i] === '') {
-             valoresNulos = true;
-             break;
-           }
-         }
+  checkValores() {
+    var self = this;
 
-         return valoresNulos;
-       }
+    $('#formulario').on('submit', function (event) {
+      event.preventDefault();
+      var nombre = $('#nombre').val();
+      var regex = /^[a-zA-Z0-9]+$/;
+      var formulario = $('#formulario')[0];
+      var valoresFormulario = self.obtenerValoresFormulario();
 
-       checkValores() {
+      console.log(valoresFormulario);
+      if (nombre.length > 15 || nombre.length < 3) {
+        $('#myToast1').toast('show');
+        formulario.reset();
+        return;
+      } else if (!regex.test(nombre)) {
+        $('#myToast2').toast('show');
+        return;
+      }
 
-         var self = this;
-         $('#formulario').on('submit', function (event) {
-           event.preventDefault();
-           var nombre = $('#nombre').val();
-           var regex = /^[a-zA-Z0-9]+$/;
-           var formulario = $('#formulario')[0];
-           var valoresFormulario = self.obtenerValoresFormulario();
+      if (self.comprobarValoresNulos(valoresFormulario)) {
+        $('#myToast3').toast('show');
+        return;
+      }
 
-           console.log(valoresFormulario)
-           if (nombre.length > 15 || nombre.length < 3) {
-             $('#myToast1').toast('show');
-             formulario.reset();
-             return;
-           } else if (!regex.test(nombre)) {
-             $('#myToast2').toast('show');
-             return;
+      if (self.comprobarValoresRepetidos(valoresFormulario)) {
+        $('#myToast4').toast('show');
+        return;
+      }
 
-           }
+      this.submit();
+      formulario.reset();
+    });
+  }
 
-           if (self.comprobarValoresNulos(valoresFormulario)) {
-             $('#myToast3').toast('show');
-
-             return;
-           }
-
-           if (self.comprobarValoresRepetidos(valoresFormulario)) {
-             $('#myToast4').toast('show');
-             return;
-           }
-
-           this.submit();
-           formulario.reset();
-
-         });
-       }
-
-     }
-
-     $(document).ready(function () {
-       let datos = new GestionDatosEntreno();
-       datos.checkValores();
-       datos.checkFiltroValor();
-       datos.obtenerValoresTabla();
-       datos.reiniciarFiltro();
-       datos.obtenerValoresSelect();    
-       datos.recibirFiltroCuerpo();
-
-
-
+   validarFormularioCliente() {
+    $('#formularioListaEntrenosDia').submit(function(e) {
+      var diaSemana = $('#dias-semana').val();
+      var listaEntrenoId = $('#listaEntrenoId').val();
+  
+      if (diaSemana === '' || listaEntrenoId === '') {
+        $('#myToast3').toast('show');
+        e.preventDefault(); // Evita que se envíe el formulario si hay campos vacíos
+        return false;
+      }
+  
+      this.submit();
+      formulario.reset();
+    });
+  }
    
+}
 
-     });
+$(document).ready(function () {
+  
+  let datos = new GestionDatosEntreno();
+  datos.checkValores();
+  datos.checkFiltroValor();
+  datos.validarFormularioCliente();
+  datos.rellenarSelectTablasEntrenaminto();
+  datos.obtenerValoresTabla();
+  datos.reiniciarFiltro();
+  datos.obtenerValoresSelect();
+  datos.recibirFiltroCuerpo();
+});

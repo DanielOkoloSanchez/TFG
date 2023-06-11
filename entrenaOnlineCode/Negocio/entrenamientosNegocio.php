@@ -126,6 +126,15 @@ class entrenamientosReglasNegocio
        
        
     }
+
+    function createListaEntrenoDia($dia,$listaEntreno)
+    {   
+        
+        $EntrenamientosAccesoDatos = new enterenamientoAccesoDatos();
+        $EntrenamientosAccesoDatos->InsertlistaEntreno($dia,$_COOKIE["IdClienteCookie"],$listaEntreno);
+       
+       
+    }
     
 }
 

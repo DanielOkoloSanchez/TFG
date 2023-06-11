@@ -132,14 +132,14 @@
            var formulario = $('#formulario')[0];
            var valoresFormulario = self.obtenerValoresFormulario();
 
-           console.log(valoresFormulario)
-           if (nombre.length > 15 || nombre.length < 3) {
+          
+           if (nombre.length >= 15 || nombre.length < 3) {
              $('#myToast1').toast('show');
-             formulario.reset();
+            
              return;
            } else if (!regex.test(nombre)) {
              $('#myToast2').toast('show');
-             formulario.reset();
+            
              return;
 
            }
@@ -426,13 +426,13 @@
      $(document).ready(function () {
        let datos = new GestionDatosComidas();
        datos.checkCalorias();
+       datos.checkValores();
+       datos.checkValoresHorario();
        datos.obtenerValoresReceta();
        datos.obtenerDietas();
        datos.obtenerHorarios();
        datos.obtenerCaloriasConsumidas();
-       datos.checkValores();
-       datos.checkValoresHorario();
-
+      
 
        console.log(datos.obtenerCaloriasAConsumir());
 

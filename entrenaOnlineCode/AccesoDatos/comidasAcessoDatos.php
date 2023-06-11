@@ -91,7 +91,7 @@ class comidasAccesoDatos
             echo "Error al conectar a MySQL: " . mysqli_connect_error();
         }
         mysqli_select_db($conexion, 'entrenaOnlineDB');
-		$sanetizedNombre = mysqli_real_escape_string($nombre,$conexion );
+		$sanetizedNombre = mysqli_real_escape_string($conexion,$nombre );
         $consulta = mysqli_prepare($conexion, "INSERT INTO  alimentacionDelDia (nombre,desayuno, meriendaMedioDia, comida, meriendaTarde, cena,usuario_id)
         VALUES (?, ?, ?, ?,?,?,?);");
        
