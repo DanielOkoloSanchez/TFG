@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
     $idCliente = $loginBL->obtenerUserId($_POST['usuario']);
     
    
-    if ($rango==="admin" || $rango==="client")
+    if ($rango==="admin" || $rango==="client" || $rango==="superAdmin")
     {
        
         session_start(); //inicia o reinicia una sesión
@@ -28,15 +28,19 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         if($rango==="client"){
             
         header("Location: personalInfoVista.php");
+    }else if ($rango==="admin") {
+        header("Location: gestionUsuariosVista.php");
     }else{
-        header("Location: AdminVista.php");
+        header("Location: gestionUsuariosAdmimVista.php");
     }
+    
+       
+    
     }
-    else
-    {
+   
         $error = true;
     }
-}
+
 ?>
 <!DOCTYPE html>
 <html>

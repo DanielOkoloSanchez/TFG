@@ -408,7 +408,7 @@
                });
              } else {
                $('#myToast5').toast('show');
-               console.log("paraguy")
+              
              }
            },
            error: function (xhr, status, error) {
@@ -442,15 +442,6 @@
 
 
 
-       $(".ejer").on("change", function () {
-         var valorSeleccionado = $(this).val();
-         console.log(valorSeleccionado)
-       });
-
-       $("#ejerDos").on("change", function () {
-         var valorSeleccionado = $(this).val();
-         console.log(valorSeleccionado)
-       });
-
+    
 
      });

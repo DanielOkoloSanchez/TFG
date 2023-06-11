@@ -144,6 +144,25 @@ class clienteReglasNegocio
        
        
     }
+
+    function updateObjetivo($objetivo)
+    {   
+        $idCliente = $_COOKIE["IdClienteCookie"];
+        $usuarioDAL = new usuarioAccesoDatos();
+        $usuarioDAL->updateObjetivo($objetivo,$idCliente);
+       
+       
+    }
+
+    function updateUsuario($objetivo,$peso)
+    {   
+        
+        $idCliente = $_COOKIE["IdClienteCookie"];
+        $usuarioDAL = new usuarioAccesoDatos();
+        $usuarioDAL->updateUsuarioCliente($objetivo,$peso,$idCliente);
+       
+       
+    }
 }
 
 

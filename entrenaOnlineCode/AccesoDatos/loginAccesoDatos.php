@@ -46,10 +46,7 @@ class LoginAccesoDatos
             return 'NOT_FOUND';
         }
 
-        if ($res->num_rows>1) //El nombre de usuario debería ser único.
-        {
-            return 'NOT_FOUND';
-        }
+        
 
         $myrow = $res->fetch_assoc();
         $x = $myrow['clave'];
@@ -79,7 +76,12 @@ class LoginAccesoDatos
         $result = $consulta->get_result();
         
         $myrow = $result->fetch_assoc();
-        $x = $myrow['id'];
+        
+     
+            // Acceder al elemento del arreglo
+            $valor = $arreglo[$indice];
+         
+       
 		
 		return $x;
 	}

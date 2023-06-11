@@ -66,6 +66,15 @@ class usuarioReglasNegocio
 		
 	}
 
+    function insertarAdmin($usuario,$clave)
+	{
+		
+        $usuarioDAL = new usuarioAccesoDatos();
+        $usuario = $usuarioDAL->insertar($usuario,"admin",$clave);
+        
+		
+	}
+
 
     function verificar($usuario, $clave)
     {

@@ -74,6 +74,66 @@ class usuarioAccesoDatos
 	
 	}
 
+
+
+	function updateUsuarioCliente($objetivo, $peso, $idCliente)
+{
+    $conexion = mysqli_connect('localhost', 'root', '1234');
+    if (mysqli_connect_errno()) {
+        echo "Error al conectar a MySQL: " . mysqli_connect_error();
+    }
+    mysqli_select_db($conexion, 'entrenaOnlineDB');
+
+    $objetivo = mysqli_real_escape_string($conexion, $objetivo);
+    $peso = mysqli_real_escape_string($conexion, $peso);
+    $idCliente = mysqli_real_escape_string($conexion, $idCliente);
+
+    $consulta = "
+        UPDATE cliente
+        SET peso = '$peso',
+            objetivo = '$objetivo'
+        WHERE id = '$idCliente';
+    ";
+
+    if (mysqli_multi_query($conexion, $consulta)) {
+        echo "Entrenamiento actualizado exitosamente.";
+    } else {
+        echo "Error al actualizar el entrenamiento: " . mysqli_error($conexion);
+    }
+
+    mysqli_close($conexion);
+}
+
+
+
+function updateObjetivo($objetivo, $idCliente)
+{
+    $conexion = mysqli_connect('localhost', 'root', '1234');
+    if (mysqli_connect_errno()) {
+        echo "Error al conectar a MySQL: " . mysqli_connect_error();
+    }
+    mysqli_select_db($conexion, 'entrenaOnlineDB');
+
+    $objetivo = mysqli_real_escape_string($conexion, $objetivo);
+    $idCliente = mysqli_real_escape_string($conexion, $idCliente);
+
+    $consulta = "
+        UPDATE cliente
+        SET objetivo = '$objetivo'
+        WHERE id = '$idCliente';
+    ";
+
+    if (mysqli_multi_query($conexion, $consulta)) {
+        echo "Objetivo actualizado exitosamente.";
+    } else {
+        echo "Error al actualizar el objetivo: " . mysqli_error($conexion);
+    }
+
+    mysqli_close($conexion);
+}
+
+
+
 	function  deleteUsuarioCliente($id)
 	{
 		$conexion = mysqli_connect('localhost', 'root', '1234');

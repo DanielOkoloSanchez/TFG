@@ -53,7 +53,7 @@
     </div>
 </div>
 
-<a href="personalInfoVista(edicionMode).html">
+<a href="personalInfoVista(edicionMode).php">
     <div class="edit-button">Editar valores</div>
 </a>
 </body>

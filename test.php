@@ -10,9 +10,10 @@ require("./entrenaOnlineCode/AccesoDatos/loginAccesoDatos.php");
 function test_alta_usuario()
 {
     $u = new loginAccesoDatos();
-     $u->insertar('admin','admin','admin123');
-     $u->insertar('jose','client','jose123');
-     $u->insertar('maria','client','maria123');
+    $u->insertar('superdmin','superAdmin','admin123');
+    //  $u->insertar('admin','admin','admin123');
+    //  $u->insertar('jose','client','jose123');
+    //  $u->insertar('maria','client','maria123');
 }
 
 // function test_verificar_usuario_encontrado()
