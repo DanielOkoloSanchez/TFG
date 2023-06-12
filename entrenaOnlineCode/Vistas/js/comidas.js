@@ -375,13 +375,13 @@
 
                  var row = '<tr>';
                  row += '<td>' + horario.nombreHorario + '</td>';
-                 row += '<td><a href="horarioDia.php?id=' + horario.HorarioLunesId + '">' + horario.HorarioLunes + '</a></td>';
-                 row += '<td><a href="horarioDia.php?id=' + horario.HorarioMartesId + '">' + horario.HorarioMartes + '</a></td>';
-                 row += '<td><a href="horarioDia.php?id=' + horario.HorarioMiercolesId + '">' + horario.HorarioMiercoles + '</a></td>';
-                 row += '<td><a href="horarioDia.php?id=' + horario.HorarioJuevesId + '">' + horario.HorarioJueves + '</a></td>';
-                 row += '<td><a href="horarioDia.php?id=' + horario.HorarioViernesId + '">' + horario.HorarioViernes + '</a></td>';
-                 row += '<td><a href="horarioDia.php?id=' + horario.HorarioSabadoId + '">' + horario.HorarioSabado + '</a></td>';
-                 row += '<td><a href="horarioDia.php?id=' + horario.HorarioDomingoId + '">' + horario.HorarioDomingo + '</a></td>';
+                 row += '<td><a href="alimentacionDiaVista.php?id=' + horario.HorarioLunesId + '&' + "horarioId="+horario.id + '">' + horario.HorarioLunes + '</a></td>';
+                 row += '<td><a href="alimentacionDiaVista.php?id=' + horario.HorarioMartesId + '">' + horario.HorarioMartes + '</a></td>';
+                 row += '<td><a href="alimentacionDiaVista.php?id=' + horario.HorarioMiercolesId + '">' + horario.HorarioMiercoles + '</a></td>';
+                 row += '<td><a href="alimentacionDiaVista.php?id=' + horario.HorarioJuevesId + '">' + horario.HorarioJueves + '</a></td>';
+                 row += '<td><<a href="alimentacionDiaVista.php?id=' + horario.HorarioViernesId + '">' + horario.HorarioViernes + '</a></td>';
+                 row += '<td><a href="alimentacionDiaVista.php?id=' + horario.HorarioSabadoId + '">' + horario.HorarioSabado + '</a></td>';
+                 row += '<td><a href="alimentacionDiaVista.php?id=' + horario.HorarioDomingoId + '">' + horario.HorarioDomingo + '</a></td>';
                  row += '</tr>';
                  $(".horario tbody").append(row);
 

@@ -12,14 +12,20 @@
 </head>
 
 <?php
-require_once ("../../Negocio/anunciosNegocio.php");
 require_once("../../Negocio/comidaNegocio.php");
+require_once("../../Negocio/horarioNegocio.php");
 ?>
 
 <?php
    
+   if (isset($_POST['horarioId'])) {
+    $id = $_POST['horarioId'];
+    $horarioReglasNegocio = new horarioReglasNegocio();
+    $datos = $horarioReglasNegocio->deleteHorario($id);
+    header("Location: calendarioVista.php");
+}
 
-
+    $horarioId = $_GET['horarioId'];
     $id = $_GET['id'];
     $comidasReglasNegocio = new comidasReglasNegocio();
     $datos=$comidasReglasNegocio->obtenerAlimentacionDiaById($id);
@@ -124,6 +130,9 @@ if (!isset($_SESSION['usuario'])) {
       </div>
     
   </div>
+  <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+      <button type="submit" class="edit-button" name="horarioId" value="<?php echo $horarioId; ?>">Borrar Horario</button>
+    </form>
 </body>
 
 </html>
