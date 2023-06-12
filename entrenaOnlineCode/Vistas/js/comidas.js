@@ -130,7 +130,7 @@
            }
 
            if (self.comprobarValoresNulos(valoresFormulario)) {
-           
+            $('#myToast4').toast('show');
             
              return;
            }
@@ -333,6 +333,32 @@
        }
 
 
+       checkValoresHorario(){
+        $('#formularioHorario').submit(function(event) {
+          event.preventDefault();
+      
+          var nombreTabla = $('#nombre').val();
+          var comidaLunes = $('#comidaLunes').val();
+          var comidaMartes = $('#comidaMartes').val();
+          var comidaMiercoles = $('#comidaMiercoles').val();
+          var comidaJueves = $('#comidaJueves').val();
+          var comidaViernes = $('#comidaViernes').val();
+          var comidaSabado = $('#comidaSabado').val();
+          var comidaDomingo = $('#comidaDomingo').val();
+      
+          // Validar el campo nombre
+          var nombreValido = /^[a-zA-Z0-9\s]{3,15}$/.test(nombreTabla);
+      
+          if (nombreTabla === '' || !nombreValido || comidaLunes === '' || comidaMartes === '' ||
+              comidaMiercoles === '' || comidaJueves === '' || comidaViernes === '' || comidaSabado === '' || comidaDomingo === '') {
+                $('#myToast3').toast('show');
+          } else {
+            this.submit();
+          }
+        });
+       }
+
+
        obtenerHorarios() {
 
          $.ajax({
@@ -382,6 +408,7 @@
      $(document).ready(function () {
        let datos = new GestionDatosComidas();
        datos.checkCalorias();
+       datos.checkValoresHorario();
        datos.checkValores();
        datos.obtenerValoresReceta();
        datos.obtenerDietas();
