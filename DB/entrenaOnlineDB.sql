@@ -89,7 +89,12 @@ CREATE TABLE alimentacionDelDia (
   meriendaTarde INT NOT NULL,
   cena INT NOT NULL,
   usuario_id int not null,
-   FOREIGN KEY (usuario_id) REFERENCES usuario(id)
+   FOREIGN KEY (usuario_id) REFERENCES usuario(id),
+  FOREIGN KEY (desayuno) REFERENCES recetas(id),
+  FOREIGN KEY (meriendaMedioDia) REFERENCES recetas(id),
+  FOREIGN KEY (comida) REFERENCES recetas(id),
+  FOREIGN KEY (meriendaTarde) REFERENCES recetas(id),
+  FOREIGN KEY (cena) REFERENCES recetas(id)
   
 );
 
@@ -117,14 +122,6 @@ CREATE TABLE horarioAlimentos (
 );
 
 
-
-CREATE TABLE recetas_alimentacionDelDia (
-  id_receta INT,
-  id_alimentacion INT,
-  FOREIGN KEY (id_receta) REFERENCES recetas(id),
-  FOREIGN KEY (id_alimentacion) REFERENCES alimentacionDelDia(id),
-  PRIMARY KEY (id_receta, id_alimentacion)
-);
 
 CREATE TABLE anuncios (
   id INT PRIMARY KEY AUTO_INCREMENT,

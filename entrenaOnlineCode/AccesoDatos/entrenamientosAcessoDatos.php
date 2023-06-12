@@ -187,6 +187,7 @@ class enterenamientoAccesoDatos
     $consulta = "
         DELETE FROM ListaEntrenos WHERE entrenamiento1 = $id OR entrenamiento2 = $id OR entrenamiento3 = $id OR entrenamiento4 = $id OR entrenamiento5 = $id;
         DELETE FROM entrenamientos WHERE id = $id;
+        DELETE FROM ListaEntrenoDia WHERE listaEntrenosId = $id;
     ";
 
     if (mysqli_multi_query($conexion, $consulta)) {

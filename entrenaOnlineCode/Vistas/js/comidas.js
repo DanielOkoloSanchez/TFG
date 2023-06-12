@@ -90,22 +90,7 @@
          return valores;
        }
 
-       obtenerValoresFormularioHorario() {
-        var valores = [];
-        var formulario = $('#formularioHorario')[0];
-        var dietas = $('.dieta');
-
-        valores.push($('#formularioHorario').val());
-
-        dietas.each(function () {
-          var valor = $(this).val();
-
-          valores.push(valor);
-
-        });
-
-        return valores;
-      }
+      
 
 
 
@@ -146,7 +131,7 @@
 
            if (self.comprobarValoresNulos(valoresFormulario)) {
            
-             formulario.reset();
+            
              return;
            }
 
@@ -161,36 +146,7 @@
          });
        }
 
-       checkValoresHorario() {
-
-         var self = this;
-         $('#formularioHorario').on('submit', function (event) {
-           event.preventDefault();
-           var nombre = $('#nombre').val();
-           var regex = /^[a-zA-Z0-9]+$/;
-           var formulario = $('#formularioHorario')[0];
-           var valoresFormulario = self.obtenerValoresFormularioHorario();
-
-           console.log(valoresFormulario)
-           if (nombre.length > 15 || nombre.length < 3) {
-             $('#myToast1').toast('show');
-            
-             return;
-           } else if (!regex.test(nombre)) {
-             $('#myToast2').toast('show');
-             
-             return;
-
-           
-            }
-            if (self.comprobarValoresNulos(valoresFormulario)) {
-              $('#myToast4').toast('show');
-              formulario.reset();
-              return;
-           }
-          }
-         );
-       }
+    
 
        obtenerCaloriasComida(comidaSeleccionada) {
          return new Promise(function (resolve, reject) {
@@ -427,7 +383,6 @@
        let datos = new GestionDatosComidas();
        datos.checkCalorias();
        datos.checkValores();
-       datos.checkValoresHorario();
        datos.obtenerValoresReceta();
        datos.obtenerDietas();
        datos.obtenerHorarios();

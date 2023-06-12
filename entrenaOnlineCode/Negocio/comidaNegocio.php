@@ -82,6 +82,15 @@ class comidasReglasNegocio
         return $listaRecetas;
         
     }
+
+    function obtenerAlimentacionDiaById($id)
+    {
+        
+        $comidasDAL = new comidasAccesoDatos();
+        $rs = $comidasDAL->obtenerAlimentacionDiaById($id);  
+        return $rs;
+        
+    }
    
 
     function obtenerRecetas()

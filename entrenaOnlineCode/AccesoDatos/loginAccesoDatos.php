@@ -7,24 +7,22 @@ class LoginAccesoDatos
     {
     }
 
-
-    function insertar($usuario,$rango,$clave)
+	function insertar($usuario,$rango,$clave)
 	{
 		$conexion = mysqli_connect('localhost','root','1234');
 		if (mysqli_connect_errno())
 		{
 				echo "Error al conectar a MySQL: ". mysqli_connect_error();
 		}
-
+ 		
         mysqli_select_db($conexion, 'entrenaOnlineDB');
 		$consulta = mysqli_prepare($conexion, "insert into usuario(nombre,clave,rango) values (?,?,?);");
         $hash = password_hash($clave, PASSWORD_DEFAULT);
         $consulta->bind_param("sss", $usuario,$hash,$rango);
         $res = $consulta->execute();
-
+        
 		return $res;
 	}
-
 
     function verificar($usuario,$clave)
     {
@@ -46,7 +44,10 @@ class LoginAccesoDatos
             return 'NOT_FOUND';
         }
 
-        
+        if ($res->num_rows>1) //El nombre de usuario debería ser único.
+        {
+            return 'NOT_FOUND';
+        }
 
         $myrow = $res->fetch_assoc();
         $x = $myrow['clave'];
@@ -76,12 +77,7 @@ class LoginAccesoDatos
         $result = $consulta->get_result();
         
         $myrow = $result->fetch_assoc();
-        
-     
-            // Acceder al elemento del arreglo
-            $valor = $arreglo[$indice];
-         
-       
+        $x = $myrow['id'];
 		
 		return $x;
 	}
@@ -91,3 +87,5 @@ class LoginAccesoDatos
 
  
 
+
+    

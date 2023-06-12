@@ -98,10 +98,7 @@ class entrenamientosReglasNegocio
     {   
         
 
-    // $ClienteDAL = new ClienteAccesoDatos();
-        // $cliente = $ClienteDAL->obtenerClienteInfo($_COOKIE["IdClienteCookie"]);
-        //$cliente["id"]      
-        
+    
         
         $EntrenamientosAccesoDatos = new enterenamientoAccesoDatos();
         $EntrenamientosAccesoDatos->createTablaEntrenamientos($nombre,$ejerUno,$ejerDos, $ejerTres, $ejerCuatro, $ejerCinco);

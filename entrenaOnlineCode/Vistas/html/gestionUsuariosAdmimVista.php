@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 <html>
 
 <head>
-    <title>Gestión Usuario</title>
+    <title>Gestión Admins</title>
     <script src="../js/jquery.js"></script>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../css/bts-css/css/bootstrap.min.css">
@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
     </div>
 
     <div class="title-div">
-        <h1>SuperAdmin <span class="nombreCliente"></span></h1>
+        <h1>Hola SuperAdmin</h1>
         <h2>Gestión de Empleados</h2>
     </div>
 

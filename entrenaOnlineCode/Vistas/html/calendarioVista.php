@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
             
             <div class="select-row">
                 <div class="select-container">
-                    <input id = "nombre" name="nombreTabla" required type="text" placeholder="Nombre">
+                    <input id = "nombre" name="nombreTabla"  required type="text" placeholder="Nombre">
                 </div>
         
                 <div class="select-container">

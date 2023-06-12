@@ -156,6 +156,16 @@ class horarioReglasNegocio
         return $horarios;
         
     }
+
+
+    function obtenerHorarioComidaById($id)
+    {
+      
+        $comidasDAL = new comidasAccesoDatos();
+        $rs = $comidasDAL->obtenerHorarioComidaById($id);
+        return $rs;
+        
+    }
         
     function createHorarioComidas($nombre,$comidaLunes,$comidaMartes,$comidaMiercoles,$comidaJueves, $comidaViernes,$comidaSabado,$comidaDomingo)
     {   
@@ -167,6 +177,15 @@ class horarioReglasNegocio
         $comidasAccesoDatos = new comidasAccesoDatos();
         $comidasAccesoDatos->createHorarioComidas($nombre,$comidaLunes,$comidaMartes,$comidaMiercoles,$comidaJueves, $comidaViernes,$comidaSabado,$comidaDomingo,$cliente["id"]);
    
+    }
+
+    function deleteHorario($id)
+    {   
+        
+        $comidasAccesoDatos = new comidasAccesoDatos();
+        $comidasAccesoDatos->deleteHorario($id);
+       
+       
     }
 
     
