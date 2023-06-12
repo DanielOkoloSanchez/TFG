@@ -1,24 +1,25 @@
 <?php
 require_once ("../../Negocio/usuarioNegocio.php");
 require_once ("../../Negocio/clienteNegocio.php");
+require_once ("../../Negocio/adminNegocio.php");
 if ($_SERVER["REQUEST_METHOD"]=="POST")
 {
     
     
 
 
-    if (isset($_POST['borrarUsr'])) {
-        $clienteReglasNegocio = new clienteReglasNegocio();
-        $clienteReglasNegocio->deleteCliente($_POST['borrarUsr']);
+    if (isset($_POST['borrarAdmin'])) {
+        $AdminBL = new adminReglasNegocio();
+        $Admin = $AdminBL->deleteAdmin($_POST['borrarAdmin']);
         
         header("Location: " . $_SERVER['PHP_SELF']);
 
     }else {
         $UsuarioReglasNegocio = new usuarioReglasNegocio();
-        $UsuarioReglasNegocio->insertarCliente($_POST['nick'],$_POST['clave']);
+        $UsuarioReglasNegocio->insertarAdmin($_POST['nick'],$_POST['clave']);
 
-        $ClienteBL = new clienteReglasNegocio();
-        $cliente = $ClienteBL->createCliente($_POST['nombre'],$_POST['primerApellido'],$_POST['segundoApellido'],$_POST['sexo'],$_POST['fechaNacimiento'],$_POST['altura'],$_POST['peso'],$_POST['complexion'],$_POST['objetivo']);
+        $AdminBL = new adminReglasNegocio();
+        $Admin = $AdminBL->createAdmin($_POST['nombre'],$_POST['primerApellido'],$_POST['segundoApellido'],$_POST['fechaNacimiento'],$_POST['cargo']);
         
         header("Location: " . $_SERVER['PHP_SELF']);
     }
@@ -59,10 +60,17 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
     ?>
 
     <script src="../js/datosUsuario.js"></script>
-    <script src="../js/formularioUsuario.js"></script>
+    <script src="../js/formularioAdmin.js"></script>
 
    
+    <nav class="barra-navegacion">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="gestionUsuariosAdminVista.php">Gestión de Admins</a></li>
+            
 
+            <li class="nav-item right"><a href="logout.php">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
 
 
 
@@ -83,10 +91,6 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 
         <label for="clave">Clave:</label>
         <input class="clave" type="text" name="clave" required readonly>
-
-
-
-
 
        
             <label for="nombre">Nombre:</label>

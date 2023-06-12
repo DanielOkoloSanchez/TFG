@@ -74,6 +74,27 @@ class usuarioAccesoDatos
 	
 	}
 
+	function obtenerAdmins()
+	{
+		$conexion = mysqli_connect('localhost','root','1234');
+		if (mysqli_connect_errno())
+		{
+				echo "Error al conectar a MySQL: ". mysqli_connect_error();
+		}
+ 		mysqli_select_db($conexion, 'entrenaOnlineDB');
+		
+		$consulta = mysqli_prepare($conexion, "select id,nombre,rango from usuario where rango = 'admin' ;" );
+        $consulta->execute();
+        $result = $consulta->get_result();
+        $admins = array();
+       	while($myrow = $result->fetch_assoc())
+		{
+			array_push($admins,$myrow);
+	   	};
+
+		return $admins;
+	
+	}
 
 
 	function updateUsuarioCliente($objetivo, $peso, $idCliente)
@@ -134,7 +155,7 @@ function updateObjetivo($objetivo, $idCliente)
 
 
 
-	function  deleteUsuarioCliente($id)
+	function  deleteUsuario($id)
 	{
 		$conexion = mysqli_connect('localhost', 'root', '1234');
 		if (mysqli_connect_errno())
@@ -156,6 +177,8 @@ function updateObjetivo($objetivo, $idCliente)
 	
 		mysqli_close($conexion);
 	}
+	
+	
 	
 
 

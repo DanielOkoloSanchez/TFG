@@ -174,7 +174,32 @@ class GestionDatosUsuario {
       }
 
       
-    
+      obtenerUsuariosAdmin() {
+        $.ajax({
+          url: 'enlaceDatos.php',
+          type: 'POST',
+          data: {
+            action: 'obtenerUsuariosAdmin'
+          },
+          dataType: 'json',
+          success: function (data) {
+            if (data && data.length > 0) {
+              console.log(data);
+              $.each(data, function (index, admin) {
+             
+               $(".admin").append("<option value='" + admin.id + "'>" + admin.nombre + "</option>");
+               
+                
+              });
+            } else {
+              console.log("La respuesta del servidor no contiene datos JSON válidos.");
+            }
+          },
+          error: function (xhr, status, error) {
+            console.log("Error en la petición AJAX: " + error);
+          }
+        });
+      }
       
 
       
@@ -186,6 +211,7 @@ $(document).ready(function () {
        datos.generarClave(); 
        datos.obtenerValoresUsuario();
        datos.obtenerUsuariosCliente();
+       datos.obtenerUsuariosAdmin();
        
   
    

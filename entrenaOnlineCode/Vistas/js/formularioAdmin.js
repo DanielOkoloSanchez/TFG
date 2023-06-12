@@ -1,15 +1,6 @@
-class Formulario {
+class FormularioAdmins {
   constructor() {
     this.bindEvents();
-  }
-
-  bindEvents() {
-    $('#crearUsuarios').submit(async (event) => {
-      event.preventDefault();
-      if (await this.validarFormulario()) {
-        event.currentTarget.submit();
-      }
-    });
   }
 
   bindEvents() {
@@ -21,16 +12,15 @@ class Formulario {
     });
   }
 
+ 
+
   async validarFormulario() {
     var regex = /^[a-zA-Z]+$/;
     var regexNick = /^[a-zA-Z0-9]{1,15}$/;
-    var decimalRegex = /^\d+(\.\d{2})?$/;
     var nick = $('input[name="nick"]').val();
     var nombre = $('input[name="nombre"]').val();
     var primerApellido = $('input[name="primerApellido"]').val();
     var segundoApellido = $('input[name="segundoApellido"]').val();
-    var altura = parseFloat($('input[name="altura"]').val());
-    var peso = parseFloat($('input[name="peso"]').val());
     var fechaNacimiento = $('input[name="fechaNacimiento"]').val();
     var fechaActual = new Date();
     var fechaNac = new Date(fechaNacimiento);
@@ -57,16 +47,6 @@ class Formulario {
 
     if (!regex.test(segundoApellido)) {
       this.mostrarToast("El campo Segundo Apellido es inválido.");
-      return false;
-    }
-
-    if (parseFloat(altura) > 3 || isNaN(altura) || !decimalRegex.test(altura) || parseFloat(altura) <= 0) {
-      this.mostrarToast("El campo Altura es inválido.");
-      return false;
-    }
-
-    if (isNaN(peso) || peso <= 0 || peso.toFixed(1).split(".")[1].length > 1) {
-      this.mostrarToast("El campo Peso es inválido.");
       return false;
     }
 
@@ -136,5 +116,5 @@ class Formulario {
 }
 
 $(document).ready(function () {
-  var formulario = new Formulario();
+  var formulario = new FormularioAdmins();
 });

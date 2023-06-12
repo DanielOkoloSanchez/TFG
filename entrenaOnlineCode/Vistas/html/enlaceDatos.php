@@ -7,6 +7,7 @@ require_once("../../Negocio/dietaNegocio.php");
 require_once("../../Negocio/horarioNegocio.php");
 require_once ("../../Negocio/usuarioNegocio.php");
 require_once ("../../Negocio/anunciosNegocio.php");
+require_once ("../../Negocio/adminNegocio.php");
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -45,9 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         obtenerAnuncios();
     }elseif ($action === 'obtenerListaEntrenos') {
         obtenerListaEntrenos();
-    }
+    }elseif ($action === 'obtenerUsuariosAdmin') {
+        obtenerUsuariosAdmin();
 }
-
+}
 
 function obtenerUsuarios(){
     $valor = new usuarioReglasNegocio();
@@ -92,6 +94,32 @@ function obtenerAnuncios(){
     header('Content-Type: application/json');
     echo json_encode($data);
 }
+
+
+
+function obtenerUsuariosAdmin(){
+    $valor = new adminReglasNegocio();
+    $listas = $valor->obtenerAdmins();
+
+    $data = array();
+
+    foreach ($listas as $lista) {
+       
+        $admin = array(
+            "id" => $lista->getAdminId(),
+            "nombre" => $lista->getNombre()
+        );
+
+       
+        
+        $data[] = $admin;
+    }
+
+   
+    header('Content-Type: application/json');
+    echo json_encode($data);
+}
+
 
 
 function obtenerUsuariosCliente(){
@@ -378,6 +406,6 @@ function obtenerValoresUsuario()
     echo json_encode($data);
 }
 
-//var_dump(obtenerListaEntrenos());
+// var_dump( obtenerUsuariosAdmin());
 
 ?>

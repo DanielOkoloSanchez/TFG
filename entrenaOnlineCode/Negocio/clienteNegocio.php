@@ -127,6 +127,7 @@ class clienteReglasNegocio
        
     }
 
+   
 
 
     function createCliente($nombre, $primerApellido,$segundoApellido,$sexo,$fechaNacimiento, $altura, $peso, $complexion, $objetivo)
@@ -136,11 +137,13 @@ class clienteReglasNegocio
        
     }
 
+  
+
     function deleteCliente($id)
     {   
         
         $usuarioDAL = new usuarioAccesoDatos();
-        $usuarioDAL->deleteUsuarioCliente($id);
+        $usuarioDAL->deleteUsuario($id);
        
        
     }
