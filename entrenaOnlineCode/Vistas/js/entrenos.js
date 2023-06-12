@@ -100,9 +100,9 @@ class GestionDatosEntreno {
     });
   }
 
-  recibirFiltroCuerpo() {
-    $("#parte-cuerpo").on("change", () => {
-      var parteCuerpo = $(this).val();
+   recibirFiltroCuerpo() {
+    $("#parte-cuerpo").on("change", function() {
+      var parteCuerpo = $("#parte-cuerpo").val();
       $.ajax({
         url: 'enlaceDatos.php',
         type: 'POST',
@@ -111,14 +111,14 @@ class GestionDatosEntreno {
           parteCuerpo: parteCuerpo
         },
         dataType: 'json',
-        success: function (data) {
+        success: function(data) {
           if (data && data.length > 0) {
             console.log(data);
             var selectEjercicios = $(".ejer");
             var valorSeleccionado = selectEjercicios.val();
             selectEjercicios.find("option:not(:selected)").remove();
-
-            $.each(data, function (index, entrenamiento) {
+  
+            $.each(data, function(index, entrenamiento) {
               if (entrenamiento.id !== valorSeleccionado) {
                 selectEjercicios.append("<option value='" + entrenamiento.id + "'>" + entrenamiento.nombre + "</option>");
               }
@@ -127,12 +127,13 @@ class GestionDatosEntreno {
             console.log("La respuesta del servidor no contiene datos JSON válidos.");
           }
         },
-        error: function (xhr, status, error) {
+        error: function(xhr, status, error) {
           console.log("Error en la petición AJAX: " + error);
         }
       });
     });
   }
+  
 
   checkFiltroValor() {
     $('#parte-cuerpo').on('input', function () {
@@ -249,9 +250,10 @@ $(document).ready(function () {
   datos.checkValores();
   datos.checkFiltroValor();
   datos.validarFormularioCliente();
+  datos.recibirFiltroCuerpo();
   datos.rellenarSelectTablasEntrenaminto();
   datos.obtenerValoresTabla();
   datos.reiniciarFiltro();
   datos.obtenerValoresSelect();
-  datos.recibirFiltroCuerpo();
+  
 });
