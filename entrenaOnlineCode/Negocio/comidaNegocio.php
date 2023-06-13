@@ -133,9 +133,12 @@ class comidasReglasNegocio
 
      function createAlimentacionDelDia($nombre,$desayuno,$merienda,$comida,$meriendaDos, $cena)
      {   
+        $ClienteDAL = new ClienteAccesoDatos();
+        $cliente = $ClienteDAL->obtenerClienteInfo($_COOKIE["IdClienteCookie"]);
+        $id= $cliente["id"];
         
          $comidasAccesoDatos = new comidasAccesoDatos();
-         $comidasAccesoDatos->createAlimentacionDelDia($nombre,$desayuno,$merienda,$comida,$meriendaDos, $cena,$_COOKIE["IdClienteCookie"]);
+         $comidasAccesoDatos->createAlimentacionDelDia($nombre,$desayuno,$merienda,$comida,$meriendaDos, $cena,$id);
     
      }
 

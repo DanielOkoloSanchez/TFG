@@ -12,19 +12,11 @@ class Formulario {
     });
   }
 
-  bindEvents() {
-    $('#crearAdmins').submit(async (event) => {
-      event.preventDefault();
-      if (await this.validarFormulario()) {
-        event.currentTarget.submit();
-      }
-    });
-  }
 
   async validarFormulario() {
     var regex = /^[a-zA-Z]+$/;
     var regexNick = /^[a-zA-Z0-9]{1,15}$/;
-    var decimalRegex = /^\d+(\.\d{2})?$/;
+    var decimalRegex = /^\d+(\.\d{1,2})?$/;  
     var nick = $('input[name="nick"]').val();
     var nombre = $('input[name="nombre"]').val();
     var primerApellido = $('input[name="primerApellido"]').val();
@@ -34,49 +26,51 @@ class Formulario {
     var fechaNacimiento = $('input[name="fechaNacimiento"]').val();
     var fechaActual = new Date();
     var fechaNac = new Date(fechaNacimiento);
-
+  
     if (await this.verificarNick(nick) === true) {
       this.mostrarToast("El NICK ya existe.");
       return false;
     }
-
+  
     if (!regexNick.test(nick)) {
       this.mostrarToast("El campo Nick es inválido.");
       return false;
     }
-
-    if (!regex.test(nombre)) {
-      this.mostrarToast("El campo Nombre es inválido.");
+  
+    if (!regex.test(nombre) || nombre.length > 25) {
+      this.mostrarToast("El campo Nombre es inválido o excede los 25 caracteres.");
       return false;
     }
-
-    if (!regex.test(primerApellido)) {
-      this.mostrarToast("El campo Primer Apellido es inválido.");
+  
+    if (!regex.test(primerApellido) || primerApellido.length > 25) {
+      this.mostrarToast("El campo Primer Apellido es inválido o excede los 25 caracteres.");
       return false;
     }
-
-    if (!regex.test(segundoApellido)) {
-      this.mostrarToast("El campo Segundo Apellido es inválido.");
+  
+    if (!regex.test(segundoApellido) || segundoApellido.length > 25) {
+      this.mostrarToast("El campo Segundo Apellido es inválido o excede los 25 caracteres.");
       return false;
     }
-
-    if (parseFloat(altura) > 3 || isNaN(altura) || !decimalRegex.test(altura) || parseFloat(altura) <= 0) {
+  
+    if (isNaN(altura) || altura > 3 || altura <= 0 || !decimalRegex.test(altura.toFixed(2))) {
       this.mostrarToast("El campo Altura es inválido.");
       return false;
     }
-
-    if (isNaN(peso) || peso <= 0 || peso.toFixed(1).split(".")[1].length > 1) {
-      this.mostrarToast("El campo Peso es inválido.");
+  
+    if (isNaN(peso) || peso < -999.9 || peso > 999.9 || peso.toFixed(1).split(".")[1].length > 1 || !decimalRegex.test(peso.toFixed(1))) {
+      this.mostrarToast("El campo Peso es inválido o está fuera de rango.");
       return false;
     }
-
+  
     if (fechaNac >= fechaActual) {
       this.mostrarToast("La fecha de nacimiento no puede ser futura o actual.");
       return false;
     }
-
+  
     return true;
   }
+  
+  
 
   mostrarToast(mensaje) {
     var toastContainer = $('#myToastContainer');

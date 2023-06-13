@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 <html>
 
 <head>
-    <title>Comidas</title>
+    <title>Horario</title>
     <link rel="stylesheet" href="../css/calendario.css">
     <script src="../js/jquery.js"></script>
     <meta charset="utf-8">
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         
     ?>
   
-    <script src="../js/comidas.js"></script>
+    <script src="../js/horarioComidas.js"></script>
     <script src="../js/datosUsuario.js"></script>
     
 

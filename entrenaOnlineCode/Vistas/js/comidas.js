@@ -8,25 +8,7 @@
        }
 
 
-       checkCalorias() {
-         $('#formulario').on('submit', (event) => {
-           const caloriasConsumidasTotal = parseFloat(this.caloriasConsumidasTotal);
-           const caloriasAConsumir = parseFloat(this.caloriasAConsumir);
-
-           if (isNaN(caloriasConsumidasTotal) || isNaN(caloriasAConsumir)) {
-             $('#myToast4').toast('show');
-             return;
-           }
-
-           if (caloriasConsumidasTotal < caloriasAConsumir && this.objetivo === "volumen") {
-             $('#myToast8').toast('show');
-           } else if (caloriasConsumidasTotal > caloriasAConsumir && (this.objetivo === "mantenimiento" || this.objetivo === "definicion")) {
-             $('#myToast9').toast('show');
-           } else {
-             event.target.submit();
-           }
-         });
-       }
+     
 
 
 
@@ -72,79 +54,75 @@
 
 
 
+  checkCalorias() {
+        
+           const caloriasConsumidasTotal = parseFloat(this.caloriasConsumidasTotal);
+           const caloriasAConsumir = parseFloat(this.caloriasAConsumir);
 
-       obtenerValoresFormulario() {
-         var valores = [];
-         var formulario = $('#formulario')[0];
-         var recetas = $('.receta');
-
-         valores.push($('#nombre').val());
-
-         recetas.each(function () {
-           var valor = $(this).val();
-
-           valores.push(valor);
-
-         });
-
-         return valores;
-       }
-
-      
-
-
-
-       comprobarValoresNulos(valores) {
-         var valoresNulos = false;
-
-         for (var i = 0; i < valores.length; i++) {
-           if (valores[i] === null || valores[i] === '' || valores[i] === 0 || valores[i] === "" ) {
-             valoresNulos = true;
-             break;
+           if (isNaN(caloriasConsumidasTotal) || isNaN(caloriasAConsumir)) {
+             $('#myToast4').toast('show');
+             return;
            }
-         }
 
-         return valoresNulos;
+           if (caloriasConsumidasTotal < caloriasAConsumir && this.objetivo === "volumen") {
+             $('#myToast8').toast('show');
+             return
+           } else if (caloriasConsumidasTotal > caloriasAConsumir && (this.objetivo === "mantenimiento" || this.objetivo === "definicion")) {
+             $('#myToast9').toast('show');
+             return
+           } else {
+            
+           }
+         
        }
+
 
        checkValores() {
+        var self = this; 
+        $('#formulario').submit(function(event) {
+          event.preventDefault(); 
+      
+    
+          var nombreDieta = $('#nombre').val();
+          var recetaDesayuno = $('#recetaDesayuno').val();
+          var recetaMerienda = $('#recetaMerienda').val();
+          var recetaComida = $('#recetaComida').val();
+          var recetaMeriendaDos = $('#recetaMeriendaDos').val();
+          var recetaCena = $('#recetaCena').val();
+      
+          self.checkCalorias();
 
-         var self = this;
-         $('#formulario').on('submit', function (event) {
-           event.preventDefault();
-           var nombre = $('#nombre').val();
-           var regex = /^[a-zA-Z0-9]+$/;
-           var formulario = $('#formulario')[0];
-           var valoresFormulario = self.obtenerValoresFormulario();
+       
+          if ($.trim(nombreDieta) === '') {
+            $('#myToast6').toast('show'); 
+            return;
+          }
+      
+          if (/^\s/.test(nombreDieta) || /[^\w\s]/.test(nombreDieta)) {
+            $('#myToast2').toast('show'); 
+            return; 
+          }
+      
+          if (nombreDieta.length < 3 || nombreDieta.length > 15) {
+            $('#myToast1').toast('show'); 
+            return; 
+          }
+      
+          // Validación de las recetas
+          if (recetaComida === recetaCena || recetaMerienda === recetaMeriendaDos) {
+            $('#myToast7').toast('show'); 
+            return; 
+          }
+      
+          
 
           
-           if (nombre.length >= 15 || nombre.length < 3) {
-             $('#myToast1').toast('show');
-            
-             return;
-           } else if (!regex.test(nombre)) {
-             $('#myToast2').toast('show');
-            
-             return;
 
-           }
-
-           if (self.comprobarValoresNulos(valoresFormulario)) {
-            $('#myToast4').toast('show');
-            
-             return;
-           }
-
-           if ($('#recetaComida').val() == $('#recetaCena').val() || $('#recetaMerienda').val() == $('#recetaMeriendaDos').val()) {
-             $('#myToast7').toast('show');
-           
-             return;
-           }
-
-           this.submit();
-
-         });
-       }
+          event.target.submit();
+        });
+      
+      }
+      
 
     
 
@@ -407,16 +385,10 @@
 
      $(document).ready(function () {
        let datos = new GestionDatosComidas();
-       datos.checkCalorias();
-       datos.checkValoresHorario();
        datos.checkValores();
-       datos.obtenerValoresReceta();
-       datos.obtenerDietas();
-       datos.obtenerHorarios();
+        datos.obtenerValoresReceta();
        datos.obtenerCaloriasConsumidas();
-      
-
-       console.log(datos.obtenerCaloriasAConsumir());
+      datos.obtenerCaloriasAConsumir();
 
 
 
