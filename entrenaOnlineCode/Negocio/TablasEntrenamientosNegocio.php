@@ -1,5 +1,4 @@
 <?php
-
 require_once("../../AccesoDatos/entrenamientosAcessoDatos.php");
 require_once("../../AccesoDatos/clienteAccesoDatos.php");
 require_once ("../../Negocio/clienteNegocio.php");
@@ -133,11 +132,11 @@ class tablasEntrenamientosReglasNegocio
         
 
        
-        $id = $_COOKIE["IdClienteCookie"];
-
-
+        $ClienteDAL = new ClienteAccesoDatos();
+        $cliente = $ClienteDAL->obtenerClienteInfo($_COOKIE["IdClienteCookie"]);
+        $comidasDAL = new comidasAccesoDatos();
         $EntrenamientosDAL = new enterenamientoAccesoDatos();
-        $rs = $EntrenamientosDAL->obtenerTablaEntrenamientos($id);
+        $rs = $EntrenamientosDAL->obtenerTablaEntrenamientos($cliente["id"]);
         $listaTablaEntrenamientos =  array();
 
        

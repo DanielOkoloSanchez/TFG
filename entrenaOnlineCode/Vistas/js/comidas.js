@@ -346,7 +346,7 @@
           var comidaSabado = $('#comidaSabado').val();
           var comidaDomingo = $('#comidaDomingo').val();
       
-          // Validar el campo nombre
+          
           var nombreValido = /^[a-zA-Z0-9\s]{3,15}$/.test(nombreTabla);
       
           if (nombreTabla === '' || !nombreValido || comidaLunes === '' || comidaMartes === '' ||
@@ -379,7 +379,7 @@
                  row += '<td><a href="alimentacionDiaVista.php?id=' + horario.HorarioMartesId + '&' + "horarioId="+horario.id + '">' + horario.HorarioMartes + '</a></td>';
                  row += '<td><a href="alimentacionDiaVista.php?id=' + horario.HorarioMiercolesId + '&' + "horarioId="+horario.id + '">' + horario.HorarioMiercoles + '</a></td>';
                  row += '<td><a href="alimentacionDiaVista.php?id=' + horario.HorarioJuevesId + '&' + "horarioId="+horario.id + '">' + horario.HorarioJueves + '</a></td>';
-                 row += '<td><<a href="alimentacionDiaVista.php?id=' + horario.HorarioViernesId + '&' + "horarioId="+horario.id + '">' + horario.HorarioViernes + '</a></td>';
+                 row += '<td><a href="alimentacionDiaVista.php?id=' + horario.HorarioViernesId + '&' + "horarioId="+horario.id + '">' + horario.HorarioViernes + '</a></td>';
                  row += '<td><a href="alimentacionDiaVista.php?id=' + horario.HorarioSabadoId + '&' + "horarioId="+horario.id + '">' + horario.HorarioSabado + '</a></td>';
                  row += '<td><a href="alimentacionDiaVista.php?id=' + horario.HorarioDomingoId + '&' + "horarioId="+horario.id + '">' + horario.HorarioDomingo + '</a></td>';
                  row += '</tr>';

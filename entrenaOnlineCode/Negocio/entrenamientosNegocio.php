@@ -1,7 +1,7 @@
 <?php
 
 require_once("../../AccesoDatos/entrenamientosAcessoDatos.php");
-
+require_once("../../AccesoDatos/clienteAccesoDatos.php");
 
 
 class entrenamientosReglasNegocio
@@ -126,9 +126,11 @@ class entrenamientosReglasNegocio
 
     function createListaEntrenoDia($dia,$listaEntreno)
     {   
+        $ClienteDAL = new ClienteAccesoDatos();
+        $rs = $ClienteDAL->obtenerClienteInfo($_COOKIE["IdClienteCookie"]);
         
         $EntrenamientosAccesoDatos = new enterenamientoAccesoDatos();
-        $EntrenamientosAccesoDatos->InsertlistaEntreno($dia,$_COOKIE["IdClienteCookie"],$listaEntreno);
+        $EntrenamientosAccesoDatos->InsertlistaEntreno($dia,$rs['id'],$listaEntreno);
        
        
     }

@@ -113,7 +113,7 @@ class usuarioAccesoDatos
         UPDATE cliente
         SET peso = '$peso',
             objetivo = '$objetivo'
-        WHERE id = '$idCliente';
+        WHERE usuario_id = '$idCliente';
     ";
 
     if (mysqli_multi_query($conexion, $consulta)) {
@@ -141,7 +141,7 @@ function updateObjetivo($objetivo, $idCliente)
     $consulta = "
         UPDATE cliente
         SET objetivo = '$objetivo'
-        WHERE id = '$idCliente';
+		WHERE usuario_id = '$idCliente';
     ";
 
     if (mysqli_multi_query($conexion, $consulta)) {

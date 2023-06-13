@@ -69,7 +69,7 @@ class comidasAccesoDatos
  		mysqli_select_db($conexion, 'entrenaOnlineDB');
 		$consulta = mysqli_prepare($conexion, "
 		select id,nombre,desayuno,meriendaMedioDia,comida,meriendaTarde,cena from  alimentacionDelDia
-		WHERE usuario_id =".$idCliente." ;" );
+		WHERE cliente_id =".$idCliente." ;" );
         $consulta->execute();
         $result = $consulta->get_result();
         $dietas = array();
@@ -92,7 +92,7 @@ class comidasAccesoDatos
         }
         mysqli_select_db($conexion, 'entrenaOnlineDB');
 		$sanetizedNombre = mysqli_real_escape_string($conexion,$nombre );
-        $consulta = mysqli_prepare($conexion, "INSERT INTO  alimentacionDelDia (nombre,desayuno, meriendaMedioDia, comida, meriendaTarde, cena,usuario_id)
+        $consulta = mysqli_prepare($conexion, "INSERT INTO  alimentacionDelDia (nombre,desayuno, meriendaMedioDia, comida, meriendaTarde, cena,cliente_id)
         VALUES (?, ?, ?, ?,?,?,?);");
        
         mysqli_stmt_bind_param($consulta, "siiiiii", $sanetizedNombre, $desayuno, $meriendaMedioDia, $comida, $meriendaTarde, $cena,$idCliente);
@@ -287,7 +287,7 @@ class comidasAccesoDatos
     }
     mysqli_select_db($conexion, 'entrenaOnlineDB');
 
-    // Eliminar registros de horarioAlimentos que hacen referencia a alimentacionDelDia
+  
     $consultaHorario = "
         DELETE FROM horarioAlimentos
         WHERE
@@ -299,10 +299,10 @@ class comidasAccesoDatos
     ";
 
     if (mysqli_query($conexion, $consultaHorario)) {
-        // Eliminar la fila de alimentacionDelDia
+       
         $consultaAlimentacion = "DELETE FROM alimentacionDelDia WHERE desayuno = $id";
         if (mysqli_query($conexion, $consultaAlimentacion)) {
-            // Eliminar la receta
+          
             $consultaReceta = "DELETE FROM recetas WHERE id = $id";
             if (mysqli_query($conexion, $consultaReceta)) {
                 echo "Receta eliminada exitosamente.";
