@@ -80,27 +80,27 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
               
                 <div class="select-container">
                     <select name="recetaDesayuno" class="receta" id="recetaDesayuno">
-                        <option value="0" selected>Desayuno</option>
+                        <option value="" selected>Desayuno</option>
                     </select>
                 </div>
                 <div class="select-container">
                     <select name="recetaMerienda" class="receta" id="recetaMerienda">
-                        <option value="0" selected>Merienda</option>
+                        <option value="" selected>Merienda</option>
                     </select>
                 </div>
                 <div class="select-container">
                     <select name="recetaComida" class="receta" id="recetaComida">
-                        <option value="0" selected>Comida</option>
+                        <option value="" selected>Comida</option>
                     </select>
                 </div>
                 <div class="select-container">
                     <select name="recetaMeriendaDos" class="receta" id="recetaMeriendaDos">
-                        <option value="0" selected>Merienda</option>
+                        <option value="" selected>Merienda</option>
                     </select>
                 </div>
                 <div class="select-container">
                     <select name="recetaCena" class="receta" id="recetaCena">
-                        <option value="0" selected>Cena</option>
+                        <option value="" selected>Cena</option>
                     </select>
                 </div>
             </div>
@@ -191,7 +191,7 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
                 </button>
             </div>
             <div class="toast-body">
-                Error Campos sin rellenar encontrados;
+                Error Campos sin rellenar encontrados
             </div>
         </div>
 

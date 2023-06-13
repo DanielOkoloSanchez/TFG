@@ -8,6 +8,9 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 
 
     if (isset($_POST['borrarUsr'])) {
+        if ($_POST['borrarUsr']=="") {
+            header("Location: " . $_SERVER['PHP_SELF']);
+        }
         $clienteReglasNegocio = new clienteReglasNegocio();
         $clienteReglasNegocio->deleteCliente($_POST['borrarUsr']);
         

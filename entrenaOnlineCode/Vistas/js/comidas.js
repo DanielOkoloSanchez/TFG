@@ -97,6 +97,9 @@
             $('#myToast6').toast('show'); 
             return;
           }
+         
+      
+    
       
           if (/^\s/.test(nombreDieta) || /[^\w\s]/.test(nombreDieta)) {
             $('#myToast2').toast('show'); 
@@ -114,7 +117,10 @@
             return; 
           }
       
-          
+          if (recetaDesayuno === '' || recetaMerienda === '' || recetaComida === '' || recetaMeriendaDos === '' || recetaCena === '') {
+            $('#myToast6').toast('show'); 
+            return; 
+          }
 
           
 

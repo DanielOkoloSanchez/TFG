@@ -36,7 +36,7 @@ class FormularioComidaValidador {
   }
 
   validarNombre(nombre) {
-    if (nombre.trim() === '') {
+    if (nombre.trim() === ''|| nombre.length < 3 || nombre.length > 15) {
       return false;
     }
 
@@ -45,7 +45,7 @@ class FormularioComidaValidador {
   }
 
   validarDescripcion(descripcion) {
-    if (descripcion.trim() === '') {
+    if (descripcion.trim() === ''||descripcion.length > 255) {
       return false;
     }
 
@@ -54,7 +54,7 @@ class FormularioComidaValidador {
   }
 
   validarCalorias(calorias) {
-    return calorias <= 800;
+    return calorias > 0 && calorias <= 800;
   }
 
   mostrarToast(mensaje) {

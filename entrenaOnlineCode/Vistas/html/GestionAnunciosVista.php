@@ -5,6 +5,9 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
     
     
     if (isset($_POST['anuncioBorrar'])) {
+        if ($_POST['anuncioBorrar']=="") {
+            header("Location: " . $_SERVER['PHP_SELF']);
+        }
         $comidaReglasNegocio = new anunciosReglasNegocio();
         $comidaReglasNegocio->deleteAnuncio($_POST['anuncioBorrar']);
         

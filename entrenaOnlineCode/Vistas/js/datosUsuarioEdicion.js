@@ -75,23 +75,38 @@ class GestionDatosUsuarioEdicion {
 
     }
 
-    checkValorPeso(){
+   checkValorPeso() {
       $('#ActualizarUsuarios').submit(function (event) {
-        event.preventDefault(); // Prevenir el envío del formulario
-
-        // Obtener el valor del campo de número
+        event.preventDefault();
+    
         var peso = $('input[name="peso"]').val();
-
-        // Comprobar si el campo está vacío o es nulo
+    
         if (peso === null || peso === "") {
           $('#myToast3').toast('show');
-            return;
+          return;
         }
-
-        // Si el campo tiene un valor válido, enviar el formulario
+    
+     
+        if (!$.isNumeric(peso)) {
+       
+          $('#myToast4').toast('show');
+          return;
+        }
+    
+        var pesoDecimal = parseFloat(peso);
+    
+       
+        if (pesoDecimal < 0 || pesoDecimal < 0.0 || pesoDecimal > 999.9) {
+         
+          $('#myToast5').toast('show');
+          return;
+        }
+    
+       
         $(this).unbind('submit').submit();
-    });
+      });
     }
+    
 
     obtenerValoresUsuario() {
       const self = this;
@@ -109,7 +124,7 @@ class GestionDatosUsuarioEdicion {
   
                   card.find(".card-header").append("<h4>" + data.nombre + " " + data.primerApellido + "</h4>");
   
-                  card.find(".list-group").append("<li class='list-group-item'>Peso: <input type='number' name='peso' value='" + data.peso + "'></li>");
+                  card.find(".list-group").append("<li class='list-group-item'>Peso: <input type='number'  step='0.1' name='peso' value='" + data.peso + "'></li>");
                   card.find(".list-group").append("<li class='list-group-item'>Altura: " + data.altura + " cm</li>");
                   card.find(".list-group").append("<li class='list-group-item'>Objetivo: <select name='objetivo' required>" +
                       "<option value='mantenimiento'>Mantenimiento</option>" +
@@ -137,57 +152,9 @@ class GestionDatosUsuarioEdicion {
       });
   }
   
-      generarClave() {
-        
-       
-        var caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()";
-        var clave = "";
-        
-      
-        var mayuscula = String.fromCharCode(65 + Math.floor(Math.random() * 26));
-        clave += mayuscula;
-        
-       
-        for (var i = 0; i < 6; i++) {
-          var caracter = caracteres[Math.floor(Math.random() * caracteres.length)];
-          clave += caracter;
-        }
-        
-       
-        var especial = caracteres[Math.floor(Math.random() * 14) + 26];
-        clave += especial;
-        
-        $(".clave").val(clave);
-      
-       
-      }
+    
 
-      obtenerUsuariosCliente() {
-        $.ajax({
-          url: 'enlaceDatos.php',
-          type: 'POST',
-          data: {
-            action: 'obtenerUsuariosCliente'
-          },
-          dataType: 'json',
-          success: function (data) {
-            if (data && data.length > 0) {
-              console.log(data);
-              $.each(data, function (index, cliente) {
-             
-               $(".usr").append("<option value='" + cliente.id + "'>" + cliente.nombre + "</option>");
-               
-                
-              });
-            } else {
-              console.log("La respuesta del servidor no contiene datos JSON válidos.");
-            }
-          },
-          error: function (xhr, status, error) {
-            console.log("Error en la petición AJAX: " + error);
-          }
-        });
-      }
+     
 
       
     
@@ -200,9 +167,8 @@ class GestionDatosUsuarioEdicion {
 $(document).ready(function () {
     let datos = new GestionDatosUsuarioEdicion();
     datos.checkValorPeso();
-       datos.generarClave(); 
-       datos.obtenerValoresUsuario();
-       datos.obtenerUsuariosCliente();
+    datos.obtenerValoresUsuario();
+       
        
   
    

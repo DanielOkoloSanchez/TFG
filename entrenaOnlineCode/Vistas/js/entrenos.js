@@ -241,6 +241,44 @@ class GestionDatosEntreno {
       formulario.reset();
     });
   }
+
+  validarCreadorEjer(){
+    $('#formularioEjercicios').submit(function(event) {
+      var nombreEjer = $('#nombreEjer').val();
+      var descripcion = $('#descripcion').val();
+      var regex = /^[a-zA-Z0-9\s\-\|.,?!]+$/; 
+      var regexNombre = /^[a-zA-Z0-9\s]+$/; 
+      var maxDescripcionLength = 255;
+    
+
+      if (nombreEjer.trim() === '' || descripcion.trim() === '') {
+        $('#myToast6').toast('show');
+        event.preventDefault();
+      }
+  
+      if (!regexNombre.test(nombreEjer) || !regex.test(descripcion)) {
+        $('#myToast6').toast('show');
+        event.preventDefault(); 
+      }
+  
+      if (nombreEjer.startsWith(' ') || descripcion.startsWith(' ')) {
+        $('#myToast6').toast('show');
+        event.preventDefault();
+      }
+
+      if (nombreEjer.length < 3 || nombreEjer.length > 15  || !/[a-zA-Z]{3,}/.test(nombreEjer)) {
+        $('#myToast6').toast('show');
+        event.preventDefault();
+      }
+
+      if (descripcion.length > maxDescripcionLength) {
+        $('#myToast6').toast('show');
+        event.preventDefault();
+      }
+      
+    });
+  
+  }
    
 }
 
@@ -250,6 +288,7 @@ $(document).ready(function () {
   datos.checkValores();
   datos.checkFiltroValor();
   datos.validarFormularioCliente();
+  datos.validarCreadorEjer();
   datos.recibirFiltroCuerpo();
   datos.rellenarSelectTablasEntrenaminto();
   datos.obtenerValoresTabla();

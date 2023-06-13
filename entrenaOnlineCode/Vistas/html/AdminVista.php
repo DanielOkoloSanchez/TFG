@@ -18,6 +18,10 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
                 
                 header("Location: " . $_SERVER['PHP_SELF']);
             }elseif (isset($_POST['borrarEjer'])) {
+                if ($_POST['borrarEjer']=="") {
+                    header("Location: " . $_SERVER['PHP_SELF']);
+                }
+
                 $EntrenamientosReglasNegocio = new entrenamientosReglasNegocio();
                 $EntrenamientosReglasNegocio->deleteEntrenamiento($_POST['borrarEjer']);
                 
@@ -198,10 +202,6 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
                 </div>
             </div>
 
-          
-
-
-
         </div>
         <input type="submit" value="borrar" id="create-buton" class="create-button"></input>
     </div>
@@ -258,6 +258,30 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
             </div>
         </div>
 
+        <div id="myToast5" class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+                <strong class="me-auto">Error</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                No puedes poner mas de 255 caracteres en la descripcion 
+            </div>
+        </div>
+
+        
+        <div id="myToast6" class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+                <strong class="me-auto">Error</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+               Error campos erroneos 
+            </div>
+        </div>
+
+
+
+    </div>
 
 
 

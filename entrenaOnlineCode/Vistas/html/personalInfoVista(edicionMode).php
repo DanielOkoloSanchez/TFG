@@ -24,7 +24,6 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 <head>
     <title>Estadísticas Personales</title>
     <link rel="stylesheet" href="../css/personalInfo.css">
-    <link rel="stylesheet" href="../css/navBar.css">
     <meta charset="utf-8">
     <script src="../js/jquery.js"></script>
     <link rel="stylesheet" href="../css/bts-css/css/bootstrap.min.css">

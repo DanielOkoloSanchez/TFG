@@ -62,13 +62,16 @@ class Formulario {
       return false;
     }
   
-    if (fechaNac >= fechaActual) {
+    if (fechaNac >= fechaActual ) {
       this.mostrarToast("La fecha de nacimiento no puede ser futura o actual.");
       return false;
     }
   
     return true;
   }
+
+  
+ 
   
   
 
@@ -78,9 +81,9 @@ class Formulario {
     toastContainer.empty();
 
     var toast = `
-      <div class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-body">${mensaje}</div>
-      </div>
+    <div class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true" style="opacity: 1; z-index: 9999; top: 80px; margin-top: 20px;">
+    <div class="toast-body">${mensaje}</div>
+  </div>
     `;
 
     $('#myToastContainer').append(toast);
@@ -131,4 +134,5 @@ class Formulario {
 
 $(document).ready(function () {
   var formulario = new Formulario();
+  
 });
