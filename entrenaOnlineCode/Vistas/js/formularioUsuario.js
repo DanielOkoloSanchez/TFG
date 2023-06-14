@@ -26,7 +26,8 @@ class Formulario {
     var fechaNacimiento = $('input[name="fechaNacimiento"]').val();
     var fechaActual = new Date();
     var fechaNac = new Date(fechaNacimiento);
-  
+    var edad = fechaActual.getFullYear() - fechaNac.getFullYear();
+
     if (await this.verificarNick(nick) === true) {
       this.mostrarToast("El NICK ya existe.");
       return false;
@@ -64,6 +65,11 @@ class Formulario {
   
     if (fechaNac >= fechaActual ) {
       this.mostrarToast("La fecha de nacimiento no puede ser futura o actual.");
+      return false;
+    }
+
+    if (edad < 11 || edad > 100) {
+      this.mostrarToast("La edad debe estar entre 11 y 100 años.");
       return false;
     }
   

@@ -9,6 +9,9 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 
 
     if (isset($_POST['borrarAdmin'])) {
+        if ($_POST['borrarAdmin']=="") {
+            header("Location: " . $_SERVER['PHP_SELF']);
+        }
         $AdminBL = new adminReglasNegocio();
         $Admin = $AdminBL->deleteAdmin($_POST['borrarAdmin']);
         
@@ -21,7 +24,14 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         $AdminBL = new adminReglasNegocio();
         $Admin = $AdminBL->createAdmin($_POST['nombre'],$_POST['primerApellido'],$_POST['segundoApellido'],$_POST['fechaNacimiento'],$_POST['cargo']);
         
-        header("Location: " . $_SERVER['PHP_SELF']);
+        if ($Admin === false) {
+          
+            header("Location: error.php");
+        } else {
+            
+            header("Location: " . $_SERVER['PHP_SELF']);
+        }
+       
     }
 
 
@@ -101,7 +111,8 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
 
             <label for="segundoApellido">Segundo Apellido:</label>
             <input type="text" name="segundoApellido" required>
-
+            
+           
            
             <label for="fechaNacimiento">Fecha de Nacimiento:</label>
             <input type="date" name="fechaNacimiento" required>

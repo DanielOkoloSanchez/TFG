@@ -12,7 +12,7 @@ class FormularioAdmins {
     });
   }
 
- 
+
 
   async validarFormulario() {
     var regex = /^[a-zA-Z]+$/;
@@ -24,6 +24,7 @@ class FormularioAdmins {
     var fechaNacimiento = $('input[name="fechaNacimiento"]').val();
     var fechaActual = new Date();
     var fechaNac = new Date(fechaNacimiento);
+    var edad = fechaActual.getFullYear() - fechaNac.getFullYear();
 
     if (await this.verificarNick(nick) === true) {
       this.mostrarToast("El NICK ya existe.");
@@ -55,6 +56,15 @@ class FormularioAdmins {
       return false;
     }
 
+    if (edad < 16 || edad > 85) {
+      this.mostrarToast("La edad debe estar entre 16 y 85 años.");
+      return false;
+    }
+
+    
+
+
+   
     return true;
   }
 
