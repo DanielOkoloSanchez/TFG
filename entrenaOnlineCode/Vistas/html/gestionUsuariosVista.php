@@ -17,17 +17,26 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         header("Location: " . $_SERVER['PHP_SELF']);
 
     }else {
+
+        
+
         $UsuarioReglasNegocio = new usuarioReglasNegocio();
         $UsuarioReglasNegocio->insertarCliente($_POST['nick'],$_POST['clave']);
 
         $ClienteBL = new clienteReglasNegocio();
         $cliente = $ClienteBL->createCliente($_POST['nombre'],$_POST['primerApellido'],$_POST['segundoApellido'],$_POST['sexo'],$_POST['fechaNacimiento'],$_POST['altura'],$_POST['peso'],$_POST['complexion'],$_POST['objetivo']);
         
-        header("Location: " . $_SERVER['PHP_SELF']);
-    }
+        if ($cliente === false) {
+          
+            header("Location: error.php");
+        } else {
+            
+            header("Location: " . $_SERVER['PHP_SELF']);
+        }
 
 
 
+}
 }
 ?>
 

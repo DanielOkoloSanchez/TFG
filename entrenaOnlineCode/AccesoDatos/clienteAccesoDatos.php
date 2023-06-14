@@ -43,7 +43,7 @@ class ClienteAccesoDatos
 		$sanetizedSegundoApellido = mysqli_real_escape_string($conexion, $segundoApellido);
         $consulta->bind_param("sssssddssi", $sanetizedNombre,$sanetizedPrimerApellido,$sanetizedSegundoApellido,$sexo,$fechaNacimiento, $altura, $peso, $complexion, $objetivo , $_COOKIE["IdUsuarioCookie"] );
         $res = $consulta->execute();
-		unset($_COOKIE['IdUsuarioCookie']);
+		
         
 		
 	}
