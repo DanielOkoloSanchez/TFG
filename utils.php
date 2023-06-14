@@ -10,9 +10,9 @@ require("./entrenaOnlineCode/AccesoDatos/loginAccesoDatos.php");
 function InicializarSuperAdmin()
 {
     $u = new loginAccesoDatos();
-    $u->insertar('superdmin','superAdmin','admin123');
+    $u->insertar('superAdmin','superAdmin','admin123');
      $u->insertar('admin','admin','admin123');
-     $u->insertar('jose','client','jose123');
+     $u->insertar('jose','client','jose1234');
      $u->insertar('maria','client','maria123');
 }
 
