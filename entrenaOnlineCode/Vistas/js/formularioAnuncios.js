@@ -32,19 +32,19 @@ class FormularioAnuncioValidador {
   }
 
   validarNombre(nombre) {
-    if (nombre.trim() === '') {
+    if (nombre.trim() === '' || nombre.length < 3 || nombre.length > 20 || nombre.startsWith(' ')) {
       return false;
     }
-
+  
     const regex = /^[a-zA-Z\s-]+$/;
     return regex.test(nombre);
   }
-
+  
   validarDescripcion(descripcion) {
-    if (descripcion.trim() === '') {
+    if (descripcion.trim() === '' || descripcion.length < 10 || descripcion.length > 255 || descripcion.startsWith(' ')) {
       return false;
     }
-
+  
     const regex = /^[a-zA-Z0-9\s\-,.;:]+$/;
     return regex.test(descripcion);
   }

@@ -45,9 +45,10 @@ class FormularioComidaValidador {
   }
 
   validarDescripcion(descripcion) {
-    if (descripcion.trim() === ''||descripcion.length > 255) {
+    if (descripcion.trim() === '' || descripcion.length < 10 || descripcion.length > 255 || descripcion.startsWith(' ')) {
       return false;
     }
+  
 
     const regex = /^[a-zA-Z0-9\s\-,.;:]+$/;
     return regex.test(descripcion);

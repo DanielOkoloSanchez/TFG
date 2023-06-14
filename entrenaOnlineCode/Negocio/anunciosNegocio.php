@@ -1,6 +1,7 @@
 <?php
 
 require_once("../../AccesoDatos/anunciosAccesoDatos.php");
+require_once("../../AccesoDatos/adminAccesoDatos.php");
 
 class anunciosReglasNegocio
 {
@@ -74,8 +75,12 @@ class anunciosReglasNegocio
     function createAnuncio($nombre,$descripcion)
      {   
         
+        $EmpleadoDAL = new adminAccesoDatos();
+        $empleado = $EmpleadoDAL->obtenerAdminInfo($_COOKIE["IdClienteCookie"]);
+        $id= $empleado["id"];
+
          $anunciosAccesoDatos = new anunciosAccesoDatos();
-         $anunciosAccesoDatos->createAnuncio($nombre,$descripcion,date("Y-m-d"),$_COOKIE["IdClienteCookie"]);
+         $anunciosAccesoDatos->createAnuncio($nombre,$descripcion,date("Y-m-d"),$id);
     
      }
 

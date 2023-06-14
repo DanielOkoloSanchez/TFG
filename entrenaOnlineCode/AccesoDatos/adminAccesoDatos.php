@@ -8,6 +8,24 @@ class adminAccesoDatos
     }
 
 
+	function obtenerAdminInfo($idUsuario)
+	{
+		$conexion = mysqli_connect('localhost','root','1234');
+		if (mysqli_connect_errno())
+		{
+				echo "Error al conectar a MySQL: ". mysqli_connect_error();
+		}
+ 		mysqli_select_db($conexion, 'entrenaOnlineDB');
+		
+		$consulta = mysqli_prepare($conexion, "SELECT id , nombre , primerApellido , cargo from empleado where usuario_id = ? ;" );
+        $consulta->bind_param("i", $idUsuario);
+        $consulta->execute();
+        $result = $consulta->get_result();
+        
+        $empleado = $result->fetch_assoc();
+
+		return $empleado;
+	}
    
 
 	

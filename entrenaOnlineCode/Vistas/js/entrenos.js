@@ -248,7 +248,7 @@ class GestionDatosEntreno {
       var descripcion = $('#descripcion').val();
       var regex = /^[a-zA-Z0-9\s\-\|.,?!]+$/; 
       var regexNombre = /^[a-zA-Z0-9\s]+$/; 
-      var maxDescripcionLength = 255;
+      
     
 
       if (nombreEjer.trim() === '' || descripcion.trim() === '') {
@@ -271,7 +271,7 @@ class GestionDatosEntreno {
         event.preventDefault();
       }
 
-      if (descripcion.length > maxDescripcionLength) {
+      if (descripcion.length < 10 || descripcion.length > 255) {
         $('#myToast6').toast('show');
         event.preventDefault();
       }
