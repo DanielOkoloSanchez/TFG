@@ -132,9 +132,16 @@ class clienteReglasNegocio
 
     function createCliente($nombre, $primerApellido,$segundoApellido,$sexo,$fechaNacimiento, $altura, $peso, $complexion, $objetivo)
     {
-        $ClienteDAL = new ClienteAccesoDatos();
-        $ClienteDAL->createCliente($nombre, $primerApellido,$segundoApellido,$sexo,$fechaNacimiento, $altura, $peso, $complexion, $objetivo);
-       
+      
+        try {
+            $ClienteDAL = new ClienteAccesoDatos();
+            $ClienteDAL->createCliente($nombre, $primerApellido,$segundoApellido,$sexo,$fechaNacimiento, $altura, $peso, $complexion, $objetivo);
+        
+        } catch (Exception $e) {
+            
+            throw new Exception("Error en el negocio: " . $e->getMessage());
+            
+        }
     }
 
   

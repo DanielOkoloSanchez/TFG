@@ -31,7 +31,10 @@ class adminAccesoDatos
 	
 	function createAdmin( $nombre, $primerApellido,$segundoApellido,$fechaNacimiento,$cargo)
 	{
-		$conexion = mysqli_connect('localhost','root','1234');
+		
+		
+		try {
+			$conexion = mysqli_connect('localhost','root','1234');
 		if (mysqli_connect_errno())
 		{
 				echo "Error al conectar a MySQL: ". mysqli_connect_error();
@@ -44,7 +47,12 @@ class adminAccesoDatos
 		$sanetizedSegundoApellido = mysqli_real_escape_string($conexion, $segundoApellido);
         $consulta->bind_param("sssssi", $sanetizedNombre,$sanetizedPrimerApellido,$sanetizedSegundoApellido,$fechaNacimiento,$cargo, $_COOKIE["IdUsuarioCookie"] );
         $res = $consulta->execute();
-		unset($_COOKIE['IdUsuarioCookie']);
+		
+		} catch (mysqli_sql_exception $e) {
+			
+			throw new Exception("Error al ejecutar la consulta: " . $e->getMessage());
+			
+		}
         
 		
 	}

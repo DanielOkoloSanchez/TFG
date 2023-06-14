@@ -10,7 +10,11 @@ class usuarioAccesoDatos
 
 	function insertar($usuario,$rango,$clave)
 	{
-		$conexion = mysqli_connect('localhost','root','1234');
+		
+
+		try {
+			
+			$conexion = mysqli_connect('localhost','root','1234');
 		if (mysqli_connect_errno())
 		{
 				echo "Error al conectar a MySQL: ". mysqli_connect_error();
@@ -22,11 +26,18 @@ class usuarioAccesoDatos
 		$sanetizedNombre = mysqli_real_escape_string($conexion, $usuario);
         $consulta->bind_param("sss", $sanetizedNombre,$hash,$rango);
         $res = $consulta->execute();
-        
+		
 		$idUsuario = mysqli_insert_id($conexion);
 
        
         setcookie("IdUsuarioCookie", $idUsuario + 1);
+		
+		} catch (mysqli_sql_exception $e) {
+			
+			throw new Exception("Error al ejecutar la consulta: " . $e->getMessage());
+			
+		}
+		
 	}
 
 
@@ -111,21 +122,24 @@ class usuarioAccesoDatos
 
     $consulta = "
         UPDATE cliente
-        SET peso = '$peso',
-            objetivo = '$objetivo'
-        WHERE usuario_id = '$idCliente';
+        SET peso = ?,
+            objetivo = ?
+        WHERE usuario_id = ?;
     ";
 
-    if (mysqli_multi_query($conexion, $consulta)) {
+  
+    $stmt = mysqli_prepare($conexion, $consulta);
+    mysqli_stmt_bind_param($stmt, "dsi", $peso, $objetivo, $idCliente);
+
+    if (mysqli_stmt_execute($stmt)) {
         echo "Entrenamiento actualizado exitosamente.";
     } else {
         echo "Error al actualizar el entrenamiento: " . mysqli_error($conexion);
     }
 
+    mysqli_stmt_close($stmt);
     mysqli_close($conexion);
 }
-
-
 
 function updateObjetivo($objetivo, $idCliente)
 {
@@ -140,18 +154,24 @@ function updateObjetivo($objetivo, $idCliente)
 
     $consulta = "
         UPDATE cliente
-        SET objetivo = '$objetivo'
-		WHERE usuario_id = '$idCliente';
+        SET objetivo = ?
+        WHERE usuario_id = ?;
     ";
 
-    if (mysqli_multi_query($conexion, $consulta)) {
+    
+    $stmt = mysqli_prepare($conexion, $consulta);
+    mysqli_stmt_bind_param($stmt, "si", $objetivo, $idCliente);
+
+    if (mysqli_stmt_execute($stmt)) {
         echo "Objetivo actualizado exitosamente.";
     } else {
         echo "Error al actualizar el objetivo: " . mysqli_error($conexion);
     }
 
+    mysqli_stmt_close($stmt);
     mysqli_close($conexion);
 }
+
 
 
 

@@ -93,8 +93,15 @@ class adminReglasNegocio
 
     function createAdmin($nombre, $primerApellido,$segundoApellido,$fechaNacimiento,$cargo)
     {
-        $AdminDAL = new adminAccesoDatos();
-        $AdminDAL->createAdmin($nombre, $primerApellido,$segundoApellido,$fechaNacimiento,$cargo);
+
+        try {
+            $AdminDAL = new adminAccesoDatos();
+            $AdminDAL->createAdmin($nombre, $primerApellido,$segundoApellido,$fechaNacimiento,$cargo);
+        } catch (Exception $e) {
+            throw new Exception("Error en el negocio: " . $e->getMessage());
+            
+        }
+       
        
     }
 

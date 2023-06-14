@@ -18,19 +18,23 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         header("Location: " . $_SERVER['PHP_SELF']);
 
     }else {
-        $UsuarioReglasNegocio = new usuarioReglasNegocio();
-        $UsuarioReglasNegocio->insertarAdmin($_POST['nick'],$_POST['clave']);
-
-        $AdminBL = new adminReglasNegocio();
-        $Admin = $AdminBL->createAdmin($_POST['nombre'],$_POST['primerApellido'],$_POST['segundoApellido'],$_POST['fechaNacimiento'],$_POST['cargo']);
-        
-        if ($Admin === false) {
-          
-            header("Location: error.php");
-        } else {
+        try {
+            $UsuarioReglasNegocio = new usuarioReglasNegocio();
+            $UsuarioReglasNegocio->insertarAdmin($_POST['nick'],$_POST['clave']);
+    
+            $AdminBL = new adminReglasNegocio();
+            $Admin = $AdminBL->createAdmin($_POST['nombre'],$_POST['primerApellido'],$_POST['segundoApellido'],$_POST['fechaNacimiento'],$_POST['cargo']);
+           
+                header("Location: " . $_SERVER['PHP_SELF']);
             
-            header("Location: " . $_SERVER['PHP_SELF']);
+        
+        } catch (Exception $e) {
+           
+            echo "Error en la vista: " . $e->getMessage();
+            header("Location: error.php");
+           
         }
+       
        
     }
 
